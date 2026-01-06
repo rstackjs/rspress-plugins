@@ -11,6 +11,7 @@
     "commit": "git add -A && czg",
     "packages:build": "pnpm -r --filter=./packages/**/* run build",
     "packages:build:p": "pnpm --parallel --filter=./packages/**/* run build",
+    "docs:build": "pnpm -r --filter=./packages/**/* run docs:build",
     "test": "vitest",
     "testu": "vitest --update",
     "test:cov": "vitest --coverage",
