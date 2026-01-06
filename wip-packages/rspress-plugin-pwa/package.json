@@ -2,6 +2,7 @@
   "name": "rspress-plugin-pwa",
   "version": "0.1.0",
   "description": "Rspress plugin to render mermaid diagrams",
+  "type": "module",
   "keywords": [
     "rspress",
     "plugin",

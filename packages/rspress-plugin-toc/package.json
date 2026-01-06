@@ -2,6 +2,7 @@
   "name": "rspress-plugin-toc",
   "version": "0.3.0",
   "description": "Rspress plugin that add a table of contents to your document page.",
+  "type": "module",
   "files": [
     "dist",
     "components"

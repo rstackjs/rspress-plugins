@@ -6,7 +6,7 @@ interface Props {
 }
 
 const TreeIndents: React.FC<Props> = ({ count }) => {
-  if (count <= 0) return null;
+  if (!count || count <= 0) return null;
 
   return (
     <>

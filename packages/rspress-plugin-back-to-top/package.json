@@ -5,6 +5,7 @@
     "dist"
   ],
   "description": "Rspress plugin that add a back to top button to your site.",
+  "type": "module",
   "keywords": [
     "rspress",
     "plugin",

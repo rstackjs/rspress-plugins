@@ -5,6 +5,7 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "keywords": [
     "rspress",
     "plugin",
