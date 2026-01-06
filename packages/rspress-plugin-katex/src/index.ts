@@ -9,6 +9,24 @@ export interface RspressPluginKatexOptions
   extends RemarkMathOptions,
     RehypeKatexOptions {}
 
+import { visit } from 'unist-util-visit';
+import type { Plugin } from 'unified';
+
+const remarkCodeBlockToMath: Plugin = () => {
+  return (tree) => {
+    visit(tree, 'code', (node: any) => {
+      if (node.lang === 'math') {
+        node.data = {
+          hName: 'div',
+          hProperties: { className: ['math', 'math-display'] },
+        };
+        delete node.lang;
+        delete node.meta;
+      }
+    });
+  };
+};
+
 export default function rspressPluginKatex(
   options: RspressPluginKatexOptions = {},
 ): RspressPlugin {
@@ -19,7 +37,7 @@ export default function rspressPluginKatex(
     // config not needed for Rspress V2
     globalStyles: katexCss,
     markdown: {
-      remarkPlugins: [[remarkMath, options]],
+      remarkPlugins: [[remarkMath, options], remarkCodeBlockToMath],
       rehypePlugins: [[rehypeKatex, options]],
     },
   };
