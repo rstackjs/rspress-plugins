@@ -20,7 +20,6 @@ export default function rspressPluginKatex(
     globalStyles: katexCss,
     markdown: {
       remarkPlugins: [[remarkMath, options]],
-      // @ts-expect-error
       rehypePlugins: [[rehypeKatex, options]],
     },
   };

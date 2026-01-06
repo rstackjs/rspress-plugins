@@ -47,13 +47,10 @@ export default function remarkTocPluginFactory(): RemarkPluginFactory<RemarkTocO
         tree.children.splice(
           enableInjectTocHeading ? firstH1Heading + 2 : firstH1Heading + 1,
           0,
-          // @ts-expect-error
           MdxJsxElementFactory.createMdxJsxFlowElementNode({}, 'Toc'),
         );
 
         tree.children.unshift(
-          // TODO: typing extends
-          // @ts-expect-error
           MdxJsxElementFactory.createMdxJsxImportStatementNode(
             ['Toc'],
             '@rspress/core/theme',
@@ -63,6 +60,7 @@ export default function remarkTocPluginFactory(): RemarkPluginFactory<RemarkTocO
         return;
       }
 
+      // @ts-ignore - mdast-util-toc types incompatible with mdast v4
       const result = toc(tree, {
         maxDepth,
         tight,
@@ -81,7 +79,7 @@ export default function remarkTocPluginFactory(): RemarkPluginFactory<RemarkTocO
         return;
       }
 
-      // @ts-expect-error
+      // @ts-ignore - mdast types version mismatch
       tree.children = [
         ...tree.children.slice(0, result.index!),
         MdxJsxElementFactory.createMdxJsxFlowElementNode(

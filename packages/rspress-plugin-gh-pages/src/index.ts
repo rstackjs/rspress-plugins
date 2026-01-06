@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import ghpages from 'gh-pages';
-import { logger } from '@rspress/core/logger';
+import { logger } from '@rspress/core';
 
 import type { MarkRequired } from 'rspress-plugin-devkit';
 import type { RspressPlugin } from '@rspress/core';

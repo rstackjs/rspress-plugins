@@ -34,7 +34,7 @@
     "docs:dev": "rspress dev"
   },
   "dependencies": {
-    "mdast-util-toc": "^6.1.1",
+    "mdast-util-toc": "^7.1.0",
     "rspress-plugin-devkit": "workspace:^"
   },
   "devDependencies": {
