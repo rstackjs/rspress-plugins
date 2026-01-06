@@ -4,7 +4,7 @@ import { usePageData, useLang, useDark } from '@rspress/core/runtime';
 import type { ReadTimeResults } from 'reading-time';
 import type { PresetLocale, WithDefaultLocale } from 'rspress-plugin-devkit';
 
-import './ReadingTime.less';
+import './ReadingTime.css';
 
 interface RspressReadingTimeComponentProps extends WithDefaultLocale {}
 
