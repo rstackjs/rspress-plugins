@@ -13,6 +13,8 @@ interface RspressPluginFileTreeOptions {
   initialExpandDepth?: number;
 }
 
+const PACKAGE_ROOT = path.resolve(__dirname, '../');
+
 export default function rspressPluginFileTree(
   options: RspressPluginFileTreeOptions = {},
 ): RspressPlugin {
@@ -23,8 +25,8 @@ export default function rspressPluginFileTree(
       {
         lang: 'tree',
         componentPath: path.join(
-          __dirname,
-          '../components/Tree/FileTreeRender.tsx',
+          PACKAGE_ROOT,
+          'dist/components/Tree/FileTreeRender',
         ),
         propsProvider(code) {
           return {
@@ -39,6 +41,7 @@ export default function rspressPluginFileTree(
   return {
     name: 'rspress-plugin-file-tree',
     // config not needed for Rspress V2
+    globalStyles: path.join(PACKAGE_ROOT, 'dist/components/Tree/index.css'),
     markdown: {
       remarkPlugins: [remarkFileTree.remarkPlugin],
       globalComponents: remarkFileTree.mdxComponents,

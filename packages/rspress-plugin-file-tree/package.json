@@ -3,8 +3,7 @@
   "version": "0.4.0",
   "description": "Rspress plugin that add support for file tree component.",
   "files": [
-    "dist",
-    "components"
+    "dist"
   ],
   "keywords": [
     "rspress",
@@ -28,8 +27,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc --declarationMap false",
-    "dev": "tsc -w",
+    "build": "rslib build",
+    "dev": "rslib build -w",
     "docs:build": "rspress build",
     "docs:dev": "rspress dev"
   },
@@ -37,6 +36,9 @@
     "rspress-plugin-devkit": "workspace:^"
   },
   "devDependencies": {
+    "@rsbuild/plugin-less": "^1.2.1",
+    "@rsbuild/plugin-react": "^1.1.1",
+    "@rslib/core": "^0.19.1",
     "@types/node": "^20.12.5",
     "@types/react": "^18.2.74",
     "typescript": "^5.4.4"
