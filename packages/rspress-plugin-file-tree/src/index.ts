@@ -1,11 +1,8 @@
 import path from 'node:path';
 
-import {
-  PresetConfigMutator,
-  RemarkCodeBlockToGlobalComponentPluginFactory,
-} from 'rspress-plugin-devkit';
+import { RemarkCodeBlockToGlobalComponentPluginFactory } from 'rspress-plugin-devkit';
 
-import { parseInput } from './parser';
+import { parseTreeContent } from './components/tree-parser/tree-parser';
 
 import type { RspressPlugin } from '@rspress/core';
 
@@ -26,11 +23,11 @@ export default function rspressPluginFileTree(
         lang: 'tree',
         componentPath: path.join(
           PACKAGE_ROOT,
-          'dist/components/Tree/FileTreeRender',
+          'dist/components/FileTree/FileTree',
         ),
         propsProvider(code) {
           return {
-            tree: parseInput(code),
+            nodes: parseTreeContent(code).nodes,
             initialExpandDepth,
           };
         },
@@ -40,8 +37,6 @@ export default function rspressPluginFileTree(
 
   return {
     name: 'rspress-plugin-file-tree',
-    // config not needed for Rspress V2
-    globalStyles: path.join(PACKAGE_ROOT, 'dist/components/Tree/index.css'),
     markdown: {
       remarkPlugins: [remarkFileTree.remarkPlugin],
       globalComponents: remarkFileTree.mdxComponents,
