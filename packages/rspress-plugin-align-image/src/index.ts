@@ -16,9 +16,7 @@ export default function rspressPluginAlignImage(
 ): RspressPlugin {
   return {
     name: 'rspress-plugin-align-image',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       rehypePlugins: [[rehypeAlignImage(), options]],
     },

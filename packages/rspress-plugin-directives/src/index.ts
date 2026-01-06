@@ -33,9 +33,7 @@ export default function rspressPluginDirectives(
 
   return {
     name: 'rspress-plugin-directives',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       remarkPlugins: [
         remarkParseDirective,

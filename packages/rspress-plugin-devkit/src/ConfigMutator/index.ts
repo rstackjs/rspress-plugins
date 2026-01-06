@@ -27,10 +27,4 @@ export class PresetConfigMutator {
 
     return this;
   }
-
-  public disableMdxRs(): PresetConfigMutator {
-    this.config.markdown ??= {};
-    this.config.markdown.mdxRs = false;
-    return this;
-  }
 }

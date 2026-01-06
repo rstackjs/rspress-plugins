@@ -14,9 +14,7 @@ export default function rspressPluginSupersub(
 ): RspressPlugin {
   return {
     name: 'rspress-plugin-supersub',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       remarkPlugins: [
         [remarkParseSuperSubScript, <RemarkParseSuperSubScriptOptions>options],

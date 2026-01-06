@@ -18,9 +18,7 @@ export default function rspressPluginToc(
 
   return {
     name: 'rspress-plugin-toc',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       remarkPlugins: [
         [remarkTocPluginFactory(), options satisfies RemarkTocOptions],

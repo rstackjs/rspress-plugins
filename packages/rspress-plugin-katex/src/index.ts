@@ -16,9 +16,7 @@ export default function rspressPluginKatex(
 
   return {
     name: 'rspress-plugin-katex',
-    config(config, utils, isProd) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     globalStyles: katexCss,
     markdown: {
       remarkPlugins: [[remarkMath, options]],

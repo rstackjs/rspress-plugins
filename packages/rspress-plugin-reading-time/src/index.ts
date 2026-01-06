@@ -33,11 +33,10 @@ export default function rspressPluginReadingTime(
 
   return {
     name: 'rspress-plugin-reading-time',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     extendPageData(pageData, isProd) {
       const estimatedReadingTime = getReadingTime(pageData.content);
+      // @ts-ignore - custom property
       pageData.readingTimeData = estimatedReadingTime;
     },
     markdown: {

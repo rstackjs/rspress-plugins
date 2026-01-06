@@ -42,9 +42,7 @@ export default function rspressPluginMermaid(
 
   return {
     name: 'rspress-plugin-mermaid',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       remarkPlugins: [remarkMermaid.remarkPlugin],
       globalComponents: remarkMermaid.mdxComponents,

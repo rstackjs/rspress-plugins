@@ -38,9 +38,7 @@ export default function rspressPluginFileTree(
 
   return {
     name: 'rspress-plugin-file-tree',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       remarkPlugins: [remarkFileTree.remarkPlugin],
       globalComponents: remarkFileTree.mdxComponents,

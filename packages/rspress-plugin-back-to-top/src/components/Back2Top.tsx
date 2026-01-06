@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// @ts-ignore - requires moduleResolution: bundler
 import { useDark } from '@rspress/core/runtime';
 
 import { throttle } from 'throttle-debounce';
