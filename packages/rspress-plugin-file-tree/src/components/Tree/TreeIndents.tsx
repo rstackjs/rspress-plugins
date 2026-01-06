@@ -6,11 +6,11 @@ interface Props {
 }
 
 const TreeIndents: React.FC<Props> = ({ count }) => {
-  if (count === 0) return null;
+  if (count <= 0) return null;
 
   return (
     <>
-      {[...new Array(count)].map((_, index) => (
+      {[...Array.from({ length: Math.floor(count) })].map((_, index) => (
         <span
           className={buildClassName('indent')}
           key={`indent-${index}`}
