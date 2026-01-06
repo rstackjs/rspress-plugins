@@ -1,1 +1,0 @@
-# rspress-theme-geist

@@ -1,3 +1,0 @@
-# RSPress
-
-:search-page[]{}
