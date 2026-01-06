@@ -21,4 +21,3 @@ This project utilizes the following tools and frameworks:
 
 The following content was retrieved from [https://v2.rspress.rs/llms.txt](https://v2.rspress.rs/llms.txt):
 
-I am a robot, but I am a good robot.
