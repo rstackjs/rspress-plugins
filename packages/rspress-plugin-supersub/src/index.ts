@@ -4,7 +4,7 @@ import {
   type RemarkParseSuperSubScriptOptions,
 } from './remark-plugins/parse-super-sub-script';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 export interface RspressPluginSupersubOptions
   extends RemarkParseSuperSubScriptOptions {}

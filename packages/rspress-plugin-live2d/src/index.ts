@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import type { Live2DWidgetProps } from './typings';
 
 export interface RspressPluginLive2dOptions extends Live2DWidgetProps {}

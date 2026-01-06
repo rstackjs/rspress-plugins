@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { usePageData, useDark, useSearchParams } from 'rspress/runtime';
+import { usePageData, useDark, useSearchParams } from '@rspress/core/runtime';
 import {
   DefaultMatchResult,
   MatchResult,
   useFullTextSearch,
-} from 'rspress/theme';
+} from '@rspress/core/theme';
 
 import './index.less';
 

@@ -30,7 +30,6 @@
     "dev": "tsc -w"
   },
   "dependencies": {
-    "@rspress/shared": "^1.17.1",
     "@types/estree-jsx": "^1.0.5",
     "@types/hast": "^2.3.4",
     "@types/mdast": "^3.0.15",
@@ -55,6 +54,6 @@
     "@types/lodash-es": "^4.17.12"
   },
   "peerDependencies": {
-    "rspress": "*"
+    "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
   }
 }

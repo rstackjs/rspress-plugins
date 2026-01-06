@@ -9,14 +9,13 @@
     "docs:dev": "rspress dev"
   },
   "dependencies": {
-    "@rspress/shared": "^1.17.1",
     "contentful": "^10.8.7",
     "contentful-management": "^11.24.3",
     "dotenv": "^16.4.5",
     "rspress-plugin-devkit": "workspace:^"
   },
   "peerDependencies": {
-    "rspress": "*"
+    "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.12.5",

@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { defineConfig } from 'rspress/config';
+import { defineConfig } from '@rspress/core';
 import _PLUGIN_NAME_ from './src';
 
 export default defineConfig({

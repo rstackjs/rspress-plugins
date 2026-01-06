@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { usePageData, Content } from 'rspress/runtime';
+import { usePageData, Content } from '@rspress/core/runtime';
 
 function Layout() {
   return (
@@ -13,4 +13,4 @@ function Layout() {
 
 const setup = () => {};
 
-export default { Layout, setup };
+export { Layout, setup };

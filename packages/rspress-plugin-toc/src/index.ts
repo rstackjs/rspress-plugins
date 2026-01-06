@@ -6,7 +6,7 @@ import remarkTocPluginFactory, {
   type RemarkTocOptions,
 } from './remark-plugins/remark-toc';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import type { TocOptions } from './shared';
 
 export interface RspressPluginTocOptions extends TocOptions {}

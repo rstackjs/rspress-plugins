@@ -5,7 +5,7 @@ import {
   RemarkCodeBlockToGlobalComponentPluginFactory,
 } from 'rspress-plugin-devkit';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import type { MermaidConfig } from 'mermaid';
 import type { MermaidRendererProps } from './typings';
 

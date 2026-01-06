@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDark } from 'rspress/runtime';
+import { useDark } from '@rspress/core/runtime';
 
 import { throttle } from 'throttle-debounce';
 

@@ -3,7 +3,7 @@ import { PresetConfigMutator } from 'rspress-plugin-devkit';
 import remarkMath, { Options as RemarkMathOptions } from 'remark-math';
 import rehypeKatex, { Options as RehypeKatexOptions } from 'rehype-katex';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 export interface RspressPluginKatexOptions
   extends RemarkMathOptions,

@@ -32,7 +32,6 @@
     "docs:dev": "rspress dev"
   },
   "dependencies": {
-    "@rspress/shared": "^1.17.1",
     "katex": "^0.16.10",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
@@ -43,6 +42,6 @@
     "typescript": "^5.4.4"
   },
   "peerDependencies": {
-    "rspress": "*"
+    "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
   }
 }

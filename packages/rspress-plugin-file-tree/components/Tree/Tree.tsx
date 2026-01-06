@@ -4,7 +4,7 @@ import TreeFolder from './TreeFolder';
 import { TreeContext } from './TreeContext';
 import { sortChildren } from '../helpers';
 import { buildClassName } from '../presets';
-import { useDark } from 'rspress/runtime';
+import { useDark } from '@rspress/core/runtime';
 
 export const tuple = <T extends string[]>(...args: T) => args;
 

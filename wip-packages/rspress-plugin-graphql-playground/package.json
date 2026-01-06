@@ -10,13 +10,12 @@
   },
   "dependencies": {
     "@geist-ui/core": "^2.3.8",
-    "@rspress/shared": "^1.17.1",
     "graphql-playground-react": "^1.7.28",
     "react-redux": "^9.1.0",
     "rspress-plugin-devkit": "workspace:^"
   },
   "peerDependencies": {
-    "rspress": "*"
+    "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.12.5",

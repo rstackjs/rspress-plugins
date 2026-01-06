@@ -5,7 +5,7 @@ import {
   RemarkCodeBlockToGlobalComponentPluginFactory,
 } from 'rspress-plugin-devkit';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 interface RspressPluginSiteMapOptions {}
 

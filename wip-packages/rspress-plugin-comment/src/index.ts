@@ -5,7 +5,7 @@ import {
   RemarkInsertComponentPluginFactory,
 } from 'rspress-plugin-devkit';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import type { GiscusProps } from '@giscus/react';
 
 export interface RspressPluginGiscusOptions extends GiscusProps {}

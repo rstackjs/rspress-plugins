@@ -7,7 +7,7 @@ import {
 
 import { parseInput } from './parser';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 interface RspressPluginFileTreeOptions {
   initialExpandDepth?: number;

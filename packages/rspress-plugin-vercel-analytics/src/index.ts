@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import type { VercelAnalyticsProps } from './typings';
 
 interface RspressPluginVercelAnalyticsOptions extends VercelAnalyticsProps {}

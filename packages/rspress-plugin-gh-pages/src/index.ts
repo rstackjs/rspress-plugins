@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import ghpages from 'gh-pages';
-import { logger } from '@rspress/shared/logger';
+import { logger } from '@rspress/core/logger';
 
 import type { MarkRequired } from 'rspress-plugin-devkit';
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 const DefaultDocBuildOutput = 'doc_build';
 

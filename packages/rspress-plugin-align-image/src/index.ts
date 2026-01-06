@@ -4,7 +4,7 @@ import {
   type HASTRoot,
   type RehypePluginFactory,
 } from 'rspress-plugin-devkit';
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 export interface RspressPluginAlignImageOptions {
   containerClassNames?: string[];

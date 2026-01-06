@@ -56,7 +56,7 @@ export default function remarkTocPluginFactory(): RemarkPluginFactory<RemarkTocO
           // @ts-expect-error
           MdxJsxElementFactory.createMdxJsxImportStatementNode(
             ['Toc'],
-            'rspress/theme',
+            '@rspress/core/theme',
           ),
         );
 

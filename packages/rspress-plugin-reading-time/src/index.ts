@@ -8,7 +8,7 @@ import {
   type WithDefaultLocale,
 } from 'rspress-plugin-devkit';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 export interface RspressPluginReadingTimeOptions extends WithDefaultLocale {
   getReadingTime?: (content: string) => ReadTimeResults;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDark } from 'rspress/runtime';
+import { useDark } from '@rspress/core/runtime';
 
 import './TocList.less';
 

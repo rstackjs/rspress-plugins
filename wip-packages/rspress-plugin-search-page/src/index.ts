@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import { PresetConfigMutator } from 'rspress-plugin-devkit';
 
 export const componentsPath = path.join(__dirname, './components');
