@@ -1,0 +1,47 @@
+name: Test (macOS)
+
+concurrency:
+  group: macos-test-${{ github.head_ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    branches: [main]
+
+  merge_group:
+
+  workflow_dispatch:
+
+jobs:
+  test-macos:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [22.x]
+        os: [macos-14] # M1 Mac
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install Pnpm
+        run: |
+          npm install -g corepack@latest --force
+          corepack enable
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Packages
+        run: pnpm run build
+
+      - name: Unit Test
+        run: pnpm run test
