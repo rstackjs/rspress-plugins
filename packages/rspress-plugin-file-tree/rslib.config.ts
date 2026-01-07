@@ -8,28 +8,46 @@ export default defineConfig({
       format: 'esm',
       syntax: 'es2021',
       autoExtension: true,
-      bundle: false,
+      bundle: true,
       dts: true,
       source: {
         entry: {
-          index: ['./src/**/*.{tsx,ts,less}', '!./src/**/*.test.{ts,tsx}'],
+          'components/FileTree/FileTree': 
+            './src/components/FileTree/FileTree.tsx',
         },
+      },
+      tools: {
+        rspack: {
+          optimization: {
+            runtimeChunk: false,
+          }
+        }
+      },
+      output: {
+        target: 'web',
+        externals: {
+          react: 'module react',
+          'react/jsx-runtime': 'module react/jsx-runtime',
+          'react/jsx-dev-runtime': 'module react/jsx-dev-runtime',
+          'react-dom': 'module react-dom',
+        },
+      },
+      plugins: [pluginReact(), pluginLess()],
+    },
+    {
+      format: 'esm',
+      syntax: 'es2021',
+      autoExtension: true,
+      bundle: true,
+      dts: false,
+      source: {
+        entry: {
+          index: './src/index.ts',
+        },
+      },
+      output: {
+        target: 'node',
       },
     },
   ],
-  output: {
-    target: 'web',
-    distPath: {
-      root: './dist',
-    },
-    externals: {
-      react: 'react',
-      'react-dom': 'react-dom',
-      '@rspress/core/runtime': '@rspress/core/runtime',
-    },
-    filename: {
-      js: '[name].js',
-    },
-  },
-  plugins: [pluginReact(), pluginLess()],
 });

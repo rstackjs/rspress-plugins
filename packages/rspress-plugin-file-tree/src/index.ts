@@ -41,6 +41,10 @@ export default function rspressPluginFileTree(
       remarkPlugins: [remarkFileTree.remarkPlugin],
       globalComponents: remarkFileTree.mdxComponents,
     },
+    globalStyles: path.join(
+      PACKAGE_ROOT,
+      'dist/components/FileTree/FileTree.css',
+    ),
     builderConfig: remarkFileTree.builderConfig,
   };
 }
