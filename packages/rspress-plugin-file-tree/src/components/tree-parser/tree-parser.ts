@@ -11,7 +11,13 @@ import { ParsedTree, TreeNode } from './types';
  *     └── another.ts
  */
 export function parseTreeContent(content: string): ParsedTree {
-  const lines = content.split('\n').filter((line) => line.trim());
+  let lines = content.split('\n').filter((line) => line.trim());
+
+  // Skip leading "." line (current directory marker)
+  if (lines.length > 0 && lines[0].trim() === '.') {
+    lines = lines.slice(1);
+  }
+
   const nodes: TreeNode[] = [];
   const stack: { node: TreeNode; indent: number }[] = [];
 

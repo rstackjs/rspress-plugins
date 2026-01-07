@@ -31,13 +31,6 @@ test('Should parse normal input', () => {
       {
         "children": [],
         "comment": undefined,
-        "extension": "",
-        "name": ".",
-        "type": "file",
-      },
-      {
-        "children": [],
-        "comment": undefined,
         "extension": "ts",
         "name": "rspress.config.ts",
         "type": "file",
@@ -802,6 +795,42 @@ test('Should treat any text after filename as comment', () => {
   expect(result[3].comment).toBe('--> right arrow comment');
   expect(result[4].comment).toBe('any text here is comment');
   expect(result[5].comment).toBe('(note: this is also a comment)');
+});
+
+test('Should skip leading . line (current directory marker)', () => {
+  const input = `
+.
+├── docs
+│   └── index.mdx  <-- "@rspress/core/theme"
+├── theme
+│   └── index.tsx  <-- "@rspress/core/theme-original"
+└── rspress.config.ts
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  // Should have 3 top-level items (docs, theme, rspress.config.ts)
+  // The leading "." should be skipped
+  expect(result.length).toBe(3);
+
+  // docs directory
+  const docsDir = result[0];
+  expect(docsDir.name).toBe('docs');
+  expect(docsDir.type).toBe('directory');
+  expect(docsDir.children[0].name).toBe('index.mdx');
+  expect(docsDir.children[0].comment).toBe('<-- "@rspress/core/theme"');
+
+  // theme directory
+  const themeDir = result[1];
+  expect(themeDir.name).toBe('theme');
+  expect(themeDir.type).toBe('directory');
+  expect(themeDir.children[0].name).toBe('index.tsx');
+  expect(themeDir.children[0].comment).toBe('<-- "@rspress/core/theme-original"');
+
+  // rspress.config.ts
+  const configTs = result[2];
+  expect(configTs.name).toBe('rspress.config.ts');
+  expect(configTs.type).toBe('file');
 });
 
 test('Should parse .html files and ... ellipsis correctly', () => {
