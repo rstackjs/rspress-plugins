@@ -12,7 +12,9 @@ interface FileTreeItemProps {
 const INDENT_SIZE = 12;
 
 export const FileTreeItem: React.FC<FileTreeItemProps> = ({ node, depth }) => {
-  const [expanded, setExpanded] = useState(true);
+  // Default to collapsed if directory has no children
+  const hasChildren = node.type === 'directory' && node.children.length > 0;
+  const [expanded, setExpanded] = useState(hasChildren);
 
   const icon = useMemo(() => {
     if (node.type === 'directory') {
@@ -57,6 +59,7 @@ export const FileTreeItem: React.FC<FileTreeItemProps> = ({ node, depth }) => {
           />
         </div>
         <span className={styles.name}>{node.name}</span>
+        {node.comment && <span className={styles.comment}>{node.comment}</span>}
       </div>
 
       {isDirectory && node.children.length > 0 && expanded && (
