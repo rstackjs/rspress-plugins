@@ -1,5 +1,0 @@
-# Oops
-
-```graphql
-ddd
-```

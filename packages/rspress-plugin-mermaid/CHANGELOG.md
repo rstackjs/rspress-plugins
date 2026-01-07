@@ -1,5 +1,16 @@
 # rspress-plugin-mermaid
 
+## 1.0.0
+
+### Major Changes
+
+- 732b475: feat: Compatible with V2 Rspress
+
+### Patch Changes
+
+- Updated dependencies [732b475]
+  - rspress-plugin-devkit@1.0.0
+
 ## 0.3.0
 
 ### Minor Changes

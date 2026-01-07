@@ -1,6 +1,6 @@
 {
   "name": "rspress-plugin-gh-pages",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "files": [
     "dist"
   ],
@@ -33,7 +33,6 @@
     "docs:dev": "rspress dev"
   },
   "dependencies": {
-    "@rspress/shared": "^1.17.1",
     "chalk": "^5.3.0",
     "gh-pages": "^6.1.1",
     "rspress-plugin-devkit": "workspace:^"
@@ -44,6 +43,6 @@
     "typescript": "^5.4.4"
   },
   "peerDependencies": {
-    "rspress": "*"
+    "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
   }
 }

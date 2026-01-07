@@ -1,124 +1,165 @@
 import { expect, test } from 'vitest';
-
-import { parseInput } from '../src/parser';
-
-import {
-  normalTreeInput,
-  withCommentTreeInput,
-  withSpacesTreeInput,
-} from './fixtures';
+import { parseTreeContent } from '../src/components/tree-parser/tree-parser';
 
 test('Should parse normal input', () => {
-  expect(parseInput(normalTreeInput)).toMatchInlineSnapshot(`
+  const input = `
+.
+├── rspress.config.ts
+├── src
+│   ├── components
+│   │   ├── FileTreeRender.tsx
+│   │   ├── Tree
+│   │   │   ├── Expand.tsx
+│   │   │   ├── FileIcon.tsx
+│   │   │   ├── Tree.tsx
+│   │   │   ├── TreeContext.tsx
+│   │   │   ├── TreeFile.tsx
+│   │   │   ├── TreeFolder.tsx
+│   │   │   ├── TreeFolderIcon.tsx
+│   │   │   ├── TreeIndents.tsx
+│   │   │   ├── TreeStatusIcon.tsx
+│   │   │   ├── index.less
+│   │   │   └── index.tsx
+│   │   ├── helpers.ts
+│   │   └── presets.ts
+│   ├── index.ts
+│   └── parser.ts
+└── tsconfig.json
+`;
+  expect(parseTreeContent(input).nodes).toMatchInlineSnapshot(`
     [
       {
-        "extra": "",
+        "children": [],
+        "extension": "",
+        "name": ".",
+        "type": "file",
+      },
+      {
+        "children": [],
+        "extension": "ts",
         "name": "rspress.config.ts",
         "type": "file",
       },
       {
-        "extra": "",
-        "files": [
+        "children": [
           {
-            "extra": "",
-            "files": [
+            "children": [
               {
-                "extra": "",
+                "children": [],
+                "extension": "tsx",
                 "name": "FileTreeRender.tsx",
                 "type": "file",
               },
               {
-                "extra": "",
-                "files": [
+                "children": [
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "Expand.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "FileIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "Tree.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeContext.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFile.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFolder.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFolderIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeIndents.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeStatusIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "less",
                     "name": "index.less",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "index.tsx",
                     "type": "file",
                   },
                 ],
+                "extension": undefined,
                 "name": "Tree",
                 "type": "directory",
               },
               {
-                "extra": "",
+                "children": [],
+                "extension": "ts",
                 "name": "helpers.ts",
                 "type": "file",
               },
               {
-                "extra": "",
+                "children": [],
+                "extension": "ts",
                 "name": "presets.ts",
                 "type": "file",
               },
             ],
+            "extension": undefined,
             "name": "components",
             "type": "directory",
           },
           {
-            "extra": "",
+            "children": [],
+            "extension": "ts",
             "name": "index.ts",
             "type": "file",
           },
           {
-            "extra": "",
+            "children": [],
+            "extension": "ts",
             "name": "parser.ts",
             "type": "file",
           },
         ],
+        "extension": undefined,
         "name": "src",
         "type": "directory",
       },
       {
-        "extra": "",
+        "children": [],
+        "extension": "json",
         "name": "tsconfig.json",
         "type": "file",
       },
@@ -127,116 +168,157 @@ test('Should parse normal input', () => {
 });
 
 test('Should parse input with comments', () => {
-  expect(parseInput(withCommentTreeInput)).toMatchInlineSnapshot(`
+  const input = `
+├── rspress.config.ts // Rspress config
+├── src
+│   ├── components // Shared components
+│   │   ├── FileTreeRender.tsx // The file tree render entry
+│   │   ├── Tree
+│   │   │   ├── Expand.tsx
+│   │   │   ├── FileIcon.tsx
+│   │   │   ├── Tree.tsx
+│   │   │   ├── TreeContext.tsx
+│   │   │   ├── TreeFile.tsx
+│   │   │   ├── TreeFolder.tsx
+│   │   │   ├── TreeFolderIcon.tsx
+│   │   │   ├── TreeIndents.tsx
+│   │   │   ├── TreeStatusIcon.tsx
+│   │   │   ├── index.less
+│   │   │   └── index.tsx
+│   │   ├── helpers.ts
+│   │   └── presets.ts
+│   ├── index.ts
+│   └── parser.ts // Parse string input to tree structure
+└── tsconfig.json
+`;
+  expect(parseTreeContent(input).nodes).toMatchInlineSnapshot(`
     [
       {
-        "extra": "Rspress config",
+        "children": [],
+        "extension": "ts",
         "name": "rspress.config.ts",
         "type": "file",
       },
       {
-        "extra": "",
-        "files": [
+        "children": [
           {
-            "extra": "Shared components",
-            "files": [
+            "children": [
               {
-                "extra": "The file tree render entry",
+                "children": [],
+                "extension": "tsx",
                 "name": "FileTreeRender.tsx",
                 "type": "file",
               },
               {
-                "extra": "",
-                "files": [
+                "children": [
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "Expand.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "FileIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "Tree.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeContext.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFile.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFolder.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFolderIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeIndents.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeStatusIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "less",
                     "name": "index.less",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "index.tsx",
                     "type": "file",
                   },
                 ],
+                "extension": undefined,
                 "name": "Tree",
                 "type": "directory",
               },
               {
-                "extra": "",
+                "children": [],
+                "extension": "ts",
                 "name": "helpers.ts",
                 "type": "file",
               },
               {
-                "extra": "",
+                "children": [],
+                "extension": "ts",
                 "name": "presets.ts",
                 "type": "file",
               },
             ],
+            "extension": undefined,
             "name": "components",
             "type": "directory",
           },
           {
-            "extra": "",
+            "children": [],
+            "extension": "ts",
             "name": "index.ts",
             "type": "file",
           },
           {
-            "extra": "Parse string input to tree structure",
+            "children": [],
+            "extension": "ts",
             "name": "parser.ts",
             "type": "file",
           },
         ],
+        "extension": undefined,
         "name": "src",
         "type": "directory",
       },
       {
-        "extra": "",
+        "children": [],
+        "extension": "json",
         "name": "tsconfig.json",
         "type": "file",
       },
@@ -245,116 +327,157 @@ test('Should parse input with comments', () => {
 });
 
 test('Should parse input with spaces', () => {
-  expect(parseInput(withSpacesTreeInput)).toMatchInlineSnapshot(`
+  const input = `
+├── 0. rspress.config.ts // Rspress config
+├── -1. src
+│   ├── 2. components // Shared components
+│   │   ├── FileTreeRender.tsx // The file tree render entry
+│   │   ├── Tree
+│   │   │   ├── Expand.tsx
+│   │   │   ├── FileIcon.tsx
+│   │   │   ├── Tree.tsx
+│   │   │   ├── TreeContext.tsx
+│   │   │   ├── TreeFile.tsx
+│   │   │   ├── TreeFolder.tsx
+│   │   │   ├── TreeFolderIcon.tsx
+│   │   │   ├── TreeIndents.tsx
+│   │   │   ├── TreeStatusIcon.tsx
+│   │   │   ├── index.less
+│   │   │   └── index.tsx
+│   │   ├── helpers.ts
+│   │   └── presets.ts
+│   ├── index.ts
+│   └── parser.ts // Parse string input to tree structure
+└── 1. tsconfig.json
+`;
+  expect(parseTreeContent(input).nodes).toMatchInlineSnapshot(`
     [
       {
-        "extra": "Rspress config",
-        "name": "-1. rspress.config.ts",
+        "children": [],
+        "extension": "ts",
+        "name": "0. rspress.config.ts",
         "type": "file",
       },
       {
-        "extra": "",
-        "files": [
+        "children": [
           {
-            "extra": "Shared components",
-            "files": [
+            "children": [
               {
-                "extra": "The file tree render entry",
+                "children": [],
+                "extension": "tsx",
                 "name": "FileTreeRender.tsx",
                 "type": "file",
               },
               {
-                "extra": "",
-                "files": [
+                "children": [
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "Expand.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "FileIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "Tree.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeContext.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFile.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFolder.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeFolderIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeIndents.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "TreeStatusIcon.tsx",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "less",
                     "name": "index.less",
                     "type": "file",
                   },
                   {
-                    "extra": "",
+                    "children": [],
+                    "extension": "tsx",
                     "name": "index.tsx",
                     "type": "file",
                   },
                 ],
+                "extension": undefined,
                 "name": "Tree",
                 "type": "directory",
               },
               {
-                "extra": "",
+                "children": [],
+                "extension": "ts",
                 "name": "helpers.ts",
                 "type": "file",
               },
               {
-                "extra": "",
+                "children": [],
+                "extension": "ts",
                 "name": "presets.ts",
                 "type": "file",
               },
             ],
-            "name": "components",
+            "extension": undefined,
+            "name": "2. components",
             "type": "directory",
           },
           {
-            "extra": "",
+            "children": [],
+            "extension": "ts",
             "name": "index.ts",
             "type": "file",
           },
           {
-            "extra": "Parse string input to tree structure",
+            "children": [],
+            "extension": "ts",
             "name": "parser.ts",
             "type": "file",
           },
         ],
-        "name": "0. src",
+        "extension": undefined,
+        "name": "-1. src",
         "type": "directory",
       },
       {
-        "extra": "",
+        "children": [],
+        "extension": "json",
         "name": "1. tsconfig.json",
         "type": "file",
       },

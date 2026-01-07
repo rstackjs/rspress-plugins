@@ -7,7 +7,7 @@ import {
   type RemarkDirectiveTransformer,
 } from 'rspress-plugin-devkit';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 type RspressPluginDirectivesOptions = MaybeArray<
   RemarkDirectiveTransformer<
@@ -33,9 +33,7 @@ export default function rspressPluginDirectives(
 
   return {
     name: 'rspress-plugin-directives',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       remarkPlugins: [
         remarkParseDirective,

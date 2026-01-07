@@ -8,7 +8,7 @@ import {
   type WithDefaultLocale,
 } from 'rspress-plugin-devkit';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 export interface RspressPluginReadingTimeOptions extends WithDefaultLocale {
   getReadingTime?: (content: string) => ReadTimeResults;
@@ -33,11 +33,10 @@ export default function rspressPluginReadingTime(
 
   return {
     name: 'rspress-plugin-reading-time',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     extendPageData(pageData, isProd) {
       const estimatedReadingTime = getReadingTime(pageData.content);
+      // @ts-ignore - custom property
       pageData.readingTimeData = estimatedReadingTime;
     },
     markdown: {

@@ -1,7 +1,8 @@
 {
   "name": "rspress-plugin-live2d",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Rspress plugin with live 2d.",
+  "type": "module",
   "files": [
     "dist",
     "components"
@@ -33,7 +34,6 @@
     "docs:dev": "rspress dev"
   },
   "dependencies": {
-    "@rspress/shared": "^1.17.1",
     "oh-my-live2d": "^0.15.2",
     "rspress-plugin-devkit": "workspace:^"
   },
@@ -43,6 +43,6 @@
     "typescript": "^5.4.4"
   },
   "peerDependencies": {
-    "rspress": "*"
+    "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
   }
 }

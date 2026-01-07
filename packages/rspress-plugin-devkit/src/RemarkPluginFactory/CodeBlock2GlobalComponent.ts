@@ -33,7 +33,6 @@ export class RemarkCodeBlockToGlobalComponentPluginFactory extends RemarkPluginF
               parent!.children.splice(
                 index,
                 1,
-                // @ts-expect-error
                 MdxJsxElementFactory.createMdxJsxFlowElementNode(code.value, {
                   componentName: getComponentName(componentPath),
                   propsProvider,

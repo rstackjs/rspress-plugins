@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "moduleResolution": "bundler",
+    "declarationMap": false
   },
   "include": ["src"],
   "extends": "../../tsconfig.base.json"

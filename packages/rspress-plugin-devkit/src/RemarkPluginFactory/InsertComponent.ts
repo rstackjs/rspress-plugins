@@ -35,7 +35,6 @@ export class RemarkInsertComponentPluginFactory extends RemarkPluginFactoryBase 
         switch (position) {
           case 'pre':
             return (
-              // @ts-expect-error
               tree.children.findLastIndex((node) => node.type === 'mdxjsEsm') +
               1
             );
@@ -66,7 +65,6 @@ export class RemarkInsertComponentPluginFactory extends RemarkPluginFactoryBase 
           tree.children.splice(
             insertIndex,
             0,
-            // @ts-expect-error
             MdxJsxElementFactory.createMdxJsxFlowElementNode<any>(
               {},
               {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useLocation } from 'rspress/runtime';
+import { useLocation } from '@rspress/core/runtime';
 
 export default () => {
   const location = useLocation();

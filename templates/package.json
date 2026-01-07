@@ -2,6 +2,7 @@
   "name": "rspress-plugin-_PLUGIN_NAME_",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc --declarationMap false",
     "dev": "tsc -w",
@@ -9,11 +10,10 @@
     "docs:dev": "rspress dev"
   },
   "dependencies": {
-    "@rspress/shared": "^1.16.2",
     "rspress-plugin-devkit": "workspace:^"
   },
   "peerDependencies": {
-    "rspress": "*"
+    "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.12.2",

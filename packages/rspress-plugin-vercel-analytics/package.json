@@ -1,7 +1,8 @@
 {
   "name": "rspress-plugin-vercel-analytics",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Rspress plugin for vercel analytics",
+  "type": "module",
   "files": [
     "dist",
     "components"
@@ -34,7 +35,6 @@
     "docs:dev": "rspress dev"
   },
   "dependencies": {
-    "@rspress/shared": "^1.17.1",
     "@vercel/analytics": "^1.2.2",
     "rspress-plugin-devkit": "workspace:^"
   },
@@ -44,6 +44,6 @@
     "typescript": "^5.4.4"
   },
   "peerDependencies": {
-    "rspress": "*"
+    "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
   }
 }

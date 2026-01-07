@@ -4,7 +4,7 @@ import {
   type HASTRoot,
   type RehypePluginFactory,
 } from 'rspress-plugin-devkit';
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 export interface RspressPluginAlignImageOptions {
   containerClassNames?: string[];
@@ -16,9 +16,7 @@ export default function rspressPluginAlignImage(
 ): RspressPlugin {
   return {
     name: 'rspress-plugin-align-image',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       rehypePlugins: [[rehypeAlignImage(), options]],
     },

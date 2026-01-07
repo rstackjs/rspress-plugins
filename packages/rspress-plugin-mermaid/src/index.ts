@@ -5,7 +5,7 @@ import {
   RemarkCodeBlockToGlobalComponentPluginFactory,
 } from 'rspress-plugin-devkit';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import type { MermaidConfig } from 'mermaid';
 import type { MermaidRendererProps } from './typings';
 
@@ -42,9 +42,7 @@ export default function rspressPluginMermaid(
 
   return {
     name: 'rspress-plugin-mermaid',
-    config(config) {
-      return new PresetConfigMutator(config).disableMdxRs().toConfig();
-    },
+    // config not needed for Rspress V2
     markdown: {
       remarkPlugins: [remarkMermaid.remarkPlugin],
       globalComponents: remarkMermaid.mdxComponents,

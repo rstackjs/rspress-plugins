@@ -1,6 +1,6 @@
 import { uniqArray } from '../Utils/uniqArray';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import type { Content } from 'mdast';
 import type { Dictionary } from 'util-ts-types';
 

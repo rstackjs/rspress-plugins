@@ -1,4 +1,4 @@
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 
 type PluginConfigMutatorInput = Parameters<
   NonNullable<RspressPlugin['config']>
@@ -25,12 +25,6 @@ export class PresetConfigMutator {
       this.utils!.addPlugin(plugin);
     });
 
-    return this;
-  }
-
-  public disableMdxRs(): PresetConfigMutator {
-    this.config.markdown ??= {};
-    this.config.markdown.mdxRs = false;
     return this;
   }
 }

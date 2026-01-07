@@ -2,7 +2,7 @@ import path from 'node:path';
 
 import { PresetConfigMutator } from 'rspress-plugin-devkit';
 
-import type { RspressPlugin } from '@rspress/shared';
+import type { RspressPlugin } from '@rspress/core';
 import type { Back2TopProps } from './components/Back2Top';
 
 export const componentsPath = path.join(__dirname, './components');
