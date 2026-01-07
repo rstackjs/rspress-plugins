@@ -56,7 +56,7 @@ export function parseTreeContent(content: string): ParsedTree {
 
 /**
  * Calculate indent level from line
- * Each level is typically 4 characters: "│   " or "    "
+ * Supports both 4-character ("│   ") and 2-character ("│ ") indent patterns
  */
 function calculateIndent(line: string): number {
   let indent = 0;
@@ -65,10 +65,18 @@ function calculateIndent(line: string): number {
   while (i < line.length) {
     const char = line[i];
 
-    // Check for "│   " pattern (vertical line + 3 spaces)
+    // Check for "│   " pattern (vertical line + 3 spaces) - 4-char indent
     if (char === '│' && line.substring(i, i + 4) === '│   ') {
       indent++;
       i += 4;
+      continue;
+    }
+
+    // Check for "│ " pattern (vertical line + 1 space) - 2-char indent
+    // Must check this AFTER 4-char to avoid partial matches
+    if (char === '│' && line[i + 1] === ' ') {
+      indent++;
+      i += 2;
       continue;
     }
 
@@ -76,6 +84,13 @@ function calculateIndent(line: string): number {
     if (line.substring(i, i + 4) === '    ') {
       indent++;
       i += 4;
+      continue;
+    }
+
+    // Check for 2 spaces (must come after 4-space check)
+    if (line.substring(i, i + 2) === '  ') {
+      indent++;
+      i += 2;
       continue;
     }
 

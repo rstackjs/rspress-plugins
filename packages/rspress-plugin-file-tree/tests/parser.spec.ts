@@ -350,6 +350,31 @@ test('Should parse input with spaces', () => {
 │   └── parser.ts // Parse string input to tree structure
 └── 1. tsconfig.json
 `;
+
+  // Alternative format with 2-space indentation (should produce same result)
+  const input2SpaceIndent = `
+├── 0. rspress.config.ts // Rspress config
+├── -1. src
+│ ├── 2. components // Shared components
+│ │ ├── FileTreeRender.tsx // The file tree render entry
+│ │ ├── Tree
+│ │ │ ├── Expand.tsx
+│ │ │ ├── FileIcon.tsx
+│ │ │ ├── Tree.tsx
+│ │ │ ├── TreeContext.tsx
+│ │ │ ├── TreeFile.tsx
+│ │ │ ├── TreeFolder.tsx
+│ │ │ ├── TreeFolderIcon.tsx
+│ │ │ ├── TreeIndents.tsx
+│ │ │ ├── TreeStatusIcon.tsx
+│ │ │ ├── index.less
+│ │ │ └── index.tsx
+│ │ ├── helpers.ts
+│ │ └── presets.ts
+│ ├── index.ts
+│ └── parser.ts // Parse string input to tree structure
+└── 1. tsconfig.json
+`;
   expect(parseTreeContent(input).nodes).toMatchInlineSnapshot(`
     [
       {
@@ -480,6 +505,100 @@ test('Should parse input with spaces', () => {
         "extension": "json",
         "name": "1. tsconfig.json",
         "type": "file",
+      },
+    ]
+  `);
+
+  // Both formats should produce the same result
+  expect(parseTreeContent(input2SpaceIndent).nodes).toEqual(
+    parseTreeContent(input).nodes
+  );
+});
+
+test('Should parse 2-space and 4-space indentation identically', () => {
+  // 4-space indentation format (standard)
+  const input4Space = `
+├── docs
+│   ├── index.md
+│   ├── api
+│   │   ├── index.md
+│   │   ├── theme
+│   │   │   ├── index.md
+│   │   │   ├── component.mdx
+│   │   │   ├── utils.mdx
+`;
+
+  // 2-space indentation format (alternative)
+  const input2Space = `
+├── docs
+│ ├── index.md
+│ ├── api
+│ │ ├── index.md
+│ │ ├── theme
+│ │ │ ├── index.md
+│ │ │ ├── component.mdx
+│ │ │ ├── utils.mdx
+`;
+
+  const result4Space = parseTreeContent(input4Space).nodes;
+  const result2Space = parseTreeContent(input2Space).nodes;
+
+  // Both should produce identical results
+  expect(result2Space).toEqual(result4Space);
+
+  // Verify the structure is correct
+  expect(result4Space).toMatchInlineSnapshot(`
+    [
+      {
+        "children": [
+          {
+            "children": [],
+            "extension": "md",
+            "name": "index.md",
+            "type": "file",
+          },
+          {
+            "children": [
+              {
+                "children": [],
+                "extension": "md",
+                "name": "index.md",
+                "type": "file",
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "extension": "md",
+                    "name": "index.md",
+                    "type": "file",
+                  },
+                  {
+                    "children": [],
+                    "extension": "mdx",
+                    "name": "component.mdx",
+                    "type": "file",
+                  },
+                  {
+                    "children": [],
+                    "extension": "mdx",
+                    "name": "utils.mdx",
+                    "type": "file",
+                  },
+                ],
+                "extension": undefined,
+                "name": "theme",
+                "type": "directory",
+              },
+            ],
+            "extension": undefined,
+            "name": "api",
+            "type": "directory",
+          },
+        ],
+        "extension": undefined,
+        "name": "docs",
+        "type": "directory",
       },
     ]
   `);
