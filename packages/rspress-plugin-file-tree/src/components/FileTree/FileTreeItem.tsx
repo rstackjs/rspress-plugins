@@ -57,6 +57,7 @@ export const FileTreeItem: React.FC<FileTreeItemProps> = ({ node, depth }) => {
           />
         </div>
         <span className={styles.name}>{node.name}</span>
+        {node.comment && <span className={styles.comment}>{node.comment}</span>}
       </div>
 
       {isDirectory && node.children.length > 0 && expanded && (

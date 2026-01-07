@@ -19,9 +19,12 @@ export function parseTreeContent(content: string): ParsedTree {
     const indent = calculateIndent(line);
     const fullName = extractName(line);
     // Split name and potential comment
+    // Supports both "//" and "#" style comments
     // e.g. "file.ts // comment" -> name="file.ts", comment="comment"
-    const commentMatch = fullName.match(/^(.*?)(?:\s*\/\/\s*(.*))?$/);
+    // e.g. "file.ts # comment" -> name="file.ts", comment="comment"
+    const commentMatch = fullName.match(/^(.*?)(?:\s*(?:\/\/|#)\s*(.*))?$/);
     const name = commentMatch ? commentMatch[1].trim() : fullName;
+    const comment = commentMatch?.[2]?.trim() || undefined;
 
     if (!name) continue;
 
@@ -32,6 +35,7 @@ export function parseTreeContent(content: string): ParsedTree {
       type: isDirectory ? 'directory' : 'file',
       children: [],
       extension: isDirectory ? undefined : getExtension(name),
+      comment,
     };
 
     // Find parent node by popping items with equal or greater indent
@@ -129,8 +133,8 @@ function extractName(line: string): string {
  * - Has no extension
  */
 function isDirectoryName(name: string): boolean {
-  // Strip comments if any (though name passed here usually already has them, let's be safe if logic changes)
-  const cleanName = name.split(/\s+\/\//)[0].trim();
+  // Strip comments if any (supports both // and # comments)
+  const cleanName = name.split(/\s+(?:\/\/|#)/)[0].trim();
 
   if (cleanName.endsWith('/')) return true;
 

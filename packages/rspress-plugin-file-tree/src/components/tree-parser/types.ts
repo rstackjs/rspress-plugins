@@ -3,6 +3,7 @@ export interface TreeNode {
   type: 'file' | 'directory';
   children: TreeNode[];
   extension?: string;
+  comment?: string;
 }
 
 export interface ParsedTree {
