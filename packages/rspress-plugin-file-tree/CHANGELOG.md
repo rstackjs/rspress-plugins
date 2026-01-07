@@ -1,5 +1,11 @@
 # rspress-plugin-file-tree
 
+## 1.0.1
+
+### Patch Changes
+
+- 6cd114a: fix that the material-icon-theme is uninstalled
+
 ## 1.0.0
 
 ### Major Changes
