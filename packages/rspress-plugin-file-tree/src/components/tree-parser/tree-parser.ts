@@ -18,13 +18,11 @@ export function parseTreeContent(content: string): ParsedTree {
   for (const line of lines) {
     const indent = calculateIndent(line);
     const fullName = extractName(line);
-    // Split name and potential comment
-    // Supports both "//" and "#" style comments
-    // e.g. "file.ts // comment" -> name="file.ts", comment="comment"
-    // e.g. "file.ts # comment" -> name="file.ts", comment="comment"
-    const commentMatch = fullName.match(/^(.*?)(?:\s*(?:\/\/|#)\s*(.*))?$/);
-    const name = commentMatch ? commentMatch[1].trim() : fullName;
-    const comment = commentMatch?.[2]?.trim() || undefined;
+
+    // Extract name and comment
+    // Rule: filename ends when we detect a valid file/directory name pattern,
+    // everything after (with leading spaces) is treated as comment
+    const { name, comment } = extractNameAndComment(fullName);
 
     if (!name) continue;
 
@@ -128,26 +126,126 @@ function extractName(line: string): string {
 }
 
 /**
+ * Extract filename/dirname and comment from a line
+ *
+ * Rules for detecting end of filename:
+ * 1. Files have extensions: name.ext (e.g., file.ts, config.json)
+ * 2. Hidden files start with dot: .gitignore, .env
+ * 3. Directories end with / or have no extension
+ * 4. Special names: ... (ellipsis for omitted content)
+ * 5. Everything after the name (separated by 2+ spaces) is comment
+ *
+ * Note: Filenames can contain spaces (e.g., "0. file.ts"), so we use
+ * 2+ consecutive spaces as the delimiter between name and comment.
+ */
+function extractNameAndComment(fullName: string): {
+  name: string;
+  comment: string | undefined;
+} {
+  const trimmed = fullName.trim();
+  if (!trimmed) {
+    return { name: '', comment: undefined };
+  }
+
+  // Special case: "..." or similar ellipsis patterns (standalone)
+  if (/^\.{2,}$/.test(trimmed)) {
+    return { name: trimmed, comment: undefined };
+  }
+
+  // Strategy: Find the last occurrence of a file extension pattern,
+  // then check if there's content after it (separated by 2+ spaces)
+
+  // First, try to split by 2+ spaces (common comment delimiter)
+  const doubleSpaceMatch = trimmed.match(/^(.+?)\s{2,}(.+)$/);
+  if (doubleSpaceMatch) {
+    const potentialName = doubleSpaceMatch[1].trim();
+    const potentialComment = doubleSpaceMatch[2].trim();
+
+    // Verify the name part looks like a valid file/directory
+    if (isValidName(potentialName)) {
+      return { name: potentialName, comment: potentialComment };
+    }
+  }
+
+  // If no double-space delimiter, check if the whole thing is just a name
+  // For files with extensions or directories, we can be more lenient
+  // Look for pattern: name.ext followed by single space and non-extension content
+  const singleSpaceMatch = trimmed.match(
+    /^(.+?\.[a-zA-Z0-9]+)\s+([^.].*)$/
+  );
+  if (singleSpaceMatch) {
+    const potentialName = singleSpaceMatch[1].trim();
+    const potentialComment = singleSpaceMatch[2].trim();
+    return { name: potentialName, comment: potentialComment };
+  }
+
+  // Check for hidden files followed by comment
+  const hiddenFileMatch = trimmed.match(/^(\.[^\s]+)\s+(.+)$/);
+  if (hiddenFileMatch) {
+    return {
+      name: hiddenFileMatch[1].trim(),
+      comment: hiddenFileMatch[2].trim(),
+    };
+  }
+
+  // Check for directory name followed by single space and comment
+  // Directory names don't have extensions, so look for "word space non-word-start"
+  // Also handles names starting with numbers like "2. components"
+  const dirCommentMatch = trimmed.match(/^([\w][\w.\s-]*?)\s+([^a-zA-Z0-9].*)$/);
+  if (dirCommentMatch) {
+    const potentialName = dirCommentMatch[1].trim();
+    // Make sure it's not a file with extension
+    if (!/\.[a-zA-Z0-9]+$/.test(potentialName)) {
+      return {
+        name: potentialName,
+        comment: dirCommentMatch[2].trim(),
+      };
+    }
+  }
+
+  // No comment detected, return the whole thing as name
+  return { name: trimmed, comment: undefined };
+}
+
+/**
+ * Check if a string looks like a valid file/directory name
+ */
+function isValidName(name: string): boolean {
+  if (!name) return false;
+
+  // Ends with / (explicit directory)
+  if (name.endsWith('/')) return true;
+
+  // Has a file extension
+  if (/\.[a-zA-Z0-9]+$/.test(name)) return true;
+
+  // Hidden file/directory (starts with dot)
+  if (name.startsWith('.')) return true;
+
+  // Looks like a directory name (no extension, word characters)
+  if (/^[\w\s.-]+$/.test(name)) return true;
+
+  return false;
+}
+
+/**
  * Check if name represents a directory
  * - Ends with /
  * - Has no extension
  */
 function isDirectoryName(name: string): boolean {
-  // Strip comments if any (supports both // and # comments)
-  const cleanName = name.split(/\s+(?:\/\/|#)/)[0].trim();
+  if (name.endsWith('/')) return true;
 
-  if (cleanName.endsWith('/')) return true;
+  const lastPart = name.split('/').pop() || name;
 
-  const lastPart = cleanName.split('/').pop() || cleanName;
-
-  // Use a more robust check: files usually have extensions.
-  // Directories usually don't.
-  // Exception: Dotfiles (.gitignore) are files.
-  // exception: names with dots but known extensions are files.
+  // Special case: ellipsis is not a directory
+  if (/^\.{2,}$/.test(lastPart)) {
+    return false;
+  }
 
   // If it starts with a dot, it's a file (hidden file), e.g., .gitignore
   if (lastPart.startsWith('.')) {
-    return false; // Treat as file
+    return false;
   }
 
   // If it has an extension (e.g. foo.ts, bar.config.js), it's a file

@@ -217,7 +217,7 @@ test('Should parse input with comments', () => {
     [
       {
         "children": [],
-        "comment": "Rspress config",
+        "comment": "// Rspress config",
         "extension": "ts",
         "name": "rspress.config.ts",
         "type": "file",
@@ -228,7 +228,7 @@ test('Should parse input with comments', () => {
             "children": [
               {
                 "children": [],
-                "comment": "The file tree render entry",
+                "comment": "// The file tree render entry",
                 "extension": "tsx",
                 "name": "FileTreeRender.tsx",
                 "type": "file",
@@ -333,7 +333,7 @@ test('Should parse input with comments', () => {
                 "type": "file",
               },
             ],
-            "comment": "Shared components",
+            "comment": "// Shared components",
             "extension": undefined,
             "name": "components",
             "type": "directory",
@@ -347,7 +347,7 @@ test('Should parse input with comments', () => {
           },
           {
             "children": [],
-            "comment": "Parse string input to tree structure",
+            "comment": "// Parse string input to tree structure",
             "extension": "ts",
             "name": "parser.ts",
             "type": "file",
@@ -422,7 +422,7 @@ test('Should parse input with spaces', () => {
     [
       {
         "children": [],
-        "comment": "Rspress config",
+        "comment": "// Rspress config",
         "extension": "ts",
         "name": "0. rspress.config.ts",
         "type": "file",
@@ -433,7 +433,7 @@ test('Should parse input with spaces', () => {
             "children": [
               {
                 "children": [],
-                "comment": "The file tree render entry",
+                "comment": "// The file tree render entry",
                 "extension": "tsx",
                 "name": "FileTreeRender.tsx",
                 "type": "file",
@@ -538,7 +538,7 @@ test('Should parse input with spaces', () => {
                 "type": "file",
               },
             ],
-            "comment": "Shared components",
+            "comment": "// Shared components",
             "extension": undefined,
             "name": "2. components",
             "type": "directory",
@@ -552,7 +552,7 @@ test('Should parse input with spaces', () => {
           },
           {
             "children": [],
-            "comment": "Parse string input to tree structure",
+            "comment": "// Parse string input to tree structure",
             "extension": "ts",
             "name": "parser.ts",
             "type": "file",
@@ -739,15 +739,67 @@ docs
 
   const result = parseTreeContent(input).nodes;
 
-  // Check that comments are parsed correctly
+  // Check that comments are parsed correctly (comments include the markers)
   const advancedDir = result[0].children[1];
   expect(advancedDir.name).toBe('advanced');
 
   const metaJson = advancedDir.children[0];
   expect(metaJson.name).toBe('_meta.json');
-  expect(metaJson.comment).toBe('hello world');
+  expect(metaJson.comment).toBe('# hello world');
 
   const utilsTs = advancedDir.children[1];
   expect(utilsTs.name).toBe('utils.ts');
-  expect(utilsTs.comment).toBe('hello world2');
+  expect(utilsTs.comment).toBe('// hello world2');
+});
+
+test('Should parse arrow style comments (<--, -->, <-, ->)', () => {
+  const input = `
+├── docs
+│   └── index.mdx  <-- "@rspress/core/theme"
+├── theme
+│   └── index.tsx  <-- "@rspress/core/theme-original"
+└── rspress.config.ts
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  // docs/index.mdx - comment includes the arrow
+  const docsDir = result[0];
+  expect(docsDir.name).toBe('docs');
+  const indexMdx = docsDir.children[0];
+  expect(indexMdx.name).toBe('index.mdx');
+  expect(indexMdx.comment).toBe('<-- "@rspress/core/theme"');
+
+  // theme/index.tsx - comment includes the arrow
+  const themeDir = result[1];
+  expect(themeDir.name).toBe('theme');
+  const indexTsx = themeDir.children[0];
+  expect(indexTsx.name).toBe('index.tsx');
+  expect(indexTsx.comment).toBe('<-- "@rspress/core/theme-original"');
+
+  // rspress.config.ts (no comment)
+  const configTs = result[2];
+  expect(configTs.name).toBe('rspress.config.ts');
+  expect(configTs.comment).toBeUndefined();
+});
+
+test('Should treat any text after filename as comment', () => {
+  const input = `
+├── file1.ts // slash comment
+├── file2.ts # hash comment
+├── file3.ts <-- left arrow comment
+├── file4.ts --> right arrow comment
+├── file5.ts any text here is comment
+└── file6.ts (note: this is also a comment)
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  // All text after filename is treated as comment (including markers)
+  expect(result[0].comment).toBe('// slash comment');
+  expect(result[1].comment).toBe('# hash comment');
+  expect(result[2].comment).toBe('<-- left arrow comment');
+  expect(result[3].comment).toBe('--> right arrow comment');
+  expect(result[4].comment).toBe('any text here is comment');
+  expect(result[5].comment).toBe('(note: this is also a comment)');
 });
