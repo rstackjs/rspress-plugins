@@ -803,3 +803,68 @@ test('Should treat any text after filename as comment', () => {
   expect(result[4].comment).toBe('any text here is comment');
   expect(result[5].comment).toBe('(note: this is also a comment)');
 });
+
+test('Should parse .html files and ... ellipsis correctly', () => {
+  const input = `
+doc_build
+├── static
+│   ├── main.js
+│   └── ...
+├── index.html
+├── about.html
+├── posts
+│   ├── hello-world.html
+│   └── ...
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  // doc_build is the root directory
+  const docBuild = result[0];
+  expect(docBuild.name).toBe('doc_build');
+  expect(docBuild.type).toBe('directory');
+
+  // static directory
+  const staticDir = docBuild.children[0];
+  expect(staticDir.name).toBe('static');
+  expect(staticDir.type).toBe('directory');
+
+  // main.js
+  const mainJs = staticDir.children[0];
+  expect(mainJs.name).toBe('main.js');
+  expect(mainJs.type).toBe('file');
+  expect(mainJs.extension).toBe('js');
+
+  // ... ellipsis (should be treated as file, not directory)
+  const ellipsis1 = staticDir.children[1];
+  expect(ellipsis1.name).toBe('...');
+  expect(ellipsis1.type).toBe('file');
+
+  // index.html
+  const indexHtml = docBuild.children[1];
+  expect(indexHtml.name).toBe('index.html');
+  expect(indexHtml.type).toBe('file');
+  expect(indexHtml.extension).toBe('html');
+
+  // about.html
+  const aboutHtml = docBuild.children[2];
+  expect(aboutHtml.name).toBe('about.html');
+  expect(aboutHtml.type).toBe('file');
+  expect(aboutHtml.extension).toBe('html');
+
+  // posts directory
+  const postsDir = docBuild.children[3];
+  expect(postsDir.name).toBe('posts');
+  expect(postsDir.type).toBe('directory');
+
+  // hello-world.html
+  const helloWorldHtml = postsDir.children[0];
+  expect(helloWorldHtml.name).toBe('hello-world.html');
+  expect(helloWorldHtml.type).toBe('file');
+  expect(helloWorldHtml.extension).toBe('html');
+
+  // ... ellipsis in posts
+  const ellipsis2 = postsDir.children[1];
+  expect(ellipsis2.name).toBe('...');
+  expect(ellipsis2.type).toBe('file');
+});
