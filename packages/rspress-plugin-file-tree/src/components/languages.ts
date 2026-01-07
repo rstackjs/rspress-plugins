@@ -101,4 +101,14 @@ export const SUPPORTED_LANGUAGES: LanguageDefinition[] = [
       },
     ],
   },
+  {
+    id: 'html',
+    icons: [
+      {
+        name: 'html',
+        content: () => import('material-icon-theme/icons/html.svg?raw'),
+        matcher: /^.*\.html?$/,
+      },
+    ],
+  },
 ];
