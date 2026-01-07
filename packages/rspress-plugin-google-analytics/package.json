@@ -1,6 +1,6 @@
 {
   "name": "rspress-plugin-google-analytics",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "rspress plugin for google analytics",
   "type": "module",
   "files": [

@@ -1,6 +1,6 @@
 {
   "name": "rspress-plugin-mermaid",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Rspress plugin to render mermaid diagrams",
   "type": "module",
   "files": [
