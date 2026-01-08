@@ -2,9 +2,16 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testMatch: 'packages/**/*.spec.ts',
-  timeout: 60000,
+ // 30 min for all tests
+  globalTimeout: 30 * 60 * 1000,
+  // 1 min for each test
+  timeout: 60 * 1000,
+  quiet: true,
+  reporter: 'list',
   use: {
-    trace: 'on-first-retry',
+    trace: 'on',
+    video: 'on',
+    viewport: { width: 1440, height: 900 }, // screen size
   },
-  reporter: 'html',
+  retries: process.env.CI ? 3 : 0,
 });

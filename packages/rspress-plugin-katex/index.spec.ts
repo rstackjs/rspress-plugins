@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { runDevCommand } from '../../e2e/utils.mts';
+import { runDevCommand, killProcess } from '../../e2e/utils.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,9 +16,9 @@ test.describe('rspress-plugin-katex', () => {
     url = result.url;
   });
 
-  test.afterAll(() => {
+  test.afterAll(async () => {
     if (devProcess) {
-      devProcess.kill();
+      await killProcess(devProcess);
     }
   });
 
