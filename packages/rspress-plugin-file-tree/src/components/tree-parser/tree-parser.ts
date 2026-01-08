@@ -18,11 +18,14 @@ export function parseTreeContent(content: string): ParsedTree {
     lines = lines.slice(1);
   }
 
+  // Detect the indentation mode (2-space or 4-space) for the entire content
+  const indentSize = detectIndentSize(lines);
+
   const nodes: TreeNode[] = [];
   const stack: { node: TreeNode; indent: number }[] = [];
 
   for (const line of lines) {
-    const indent = calculateIndent(line);
+    const indent = calculateIndent(line, indentSize);
     const fullName = extractName(line);
 
     // Extract name and comment
@@ -63,10 +66,41 @@ export function parseTreeContent(content: string): ParsedTree {
 }
 
 /**
+ * Detect the indentation size used in the content
+ * Returns 2 for 2-space indentation, 4 for 4-space indentation
+ */
+function detectIndentSize(lines: string[]): number {
+  for (const line of lines) {
+    // Look for space-only indentation before branch characters
+    const match = line.match(/^( +)[├└]/);
+    if (match) {
+      const spaceCount = match[1].length;
+      // If we find a line with 2 spaces (not 4), it's 2-space mode
+      if (spaceCount === 2) {
+        return 2;
+      }
+      // If we find exactly 4 spaces, check if there are any 2-space lines
+      // to distinguish between "4-space mode" and "2-space mode at level 2"
+    }
+
+    // Also check for "│ " (pipe + 1 space) pattern which indicates 2-space mode
+    if (/│ [├└]/.test(line)) {
+      return 2;
+    }
+  }
+
+  // Default to 4-space mode
+  return 4;
+}
+
+/**
  * Calculate indent level from line
  * Supports both 4-character ("│   ") and 2-character ("│ ") indent patterns
+ *
+ * @param line - The line to calculate indent for
+ * @param indentSize - The detected indent size (2 or 4)
  */
-function calculateIndent(line: string): number {
+function calculateIndent(line: string, indentSize: number): number {
   let indent = 0;
   let i = 0;
 
@@ -74,32 +108,31 @@ function calculateIndent(line: string): number {
     const char = line[i];
 
     // Check for "│   " pattern (vertical line + 3 spaces) - 4-char indent
-    if (char === '│' && line.substring(i, i + 4) === '│   ') {
+    if (indentSize === 4 && char === '│' && line.substring(i, i + 4) === '│   ') {
       indent++;
       i += 4;
       continue;
     }
 
     // Check for "│ " pattern (vertical line + 1 space) - 2-char indent
-    // Must check this AFTER 4-char to avoid partial matches
-    if (char === '│' && line[i + 1] === ' ') {
+    if (indentSize === 2 && char === '│' && line[i + 1] === ' ') {
       indent++;
       i += 2;
       continue;
     }
 
-    // Check for 4 spaces
-    if (line.substring(i, i + 4) === '    ') {
-      indent++;
-      i += 4;
-      continue;
-    }
-
-    // Check for 2 spaces (must come after 4-space check)
-    if (line.substring(i, i + 2) === '  ') {
-      indent++;
-      i += 2;
-      continue;
+    // Handle space-only indentation based on detected indent size
+    if (char === ' ') {
+      if (indentSize === 2 && line.substring(i, i + 2) === '  ') {
+        indent++;
+        i += 2;
+        continue;
+      }
+      if (indentSize === 4 && line.substring(i, i + 4) === '    ') {
+        indent++;
+        i += 4;
+        continue;
+      }
     }
 
     // Check for branch characters (├── or └──)
