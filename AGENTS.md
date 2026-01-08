@@ -11,11 +11,29 @@ This file describes the `rspress-plugins` project, the tools and frameworks it u
 This project utilizes the following tools and frameworks:
 
 *   **Package Manager:** [pnpm](https://pnpm.io/)
-*   **Testing:** [Vitest](https://vitest.dev/)
+*   **Testing:** [Vitest](https://vitest.dev/) (Unit), [Playwright](https://playwright.dev/) (E2E)
 *   **Language:** [TypeScript](https://www.typescriptlang.org/)
 *   **Linting & Formatting:** [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/)
 *   **Versioning:** [Changesets](https://github.com/changesets/changesets)
 *   **UI Framework:** [React](https://reactjs.org/)
+
+## Setup commands
+
+- Install deps: `pnpm install`
+
+- Start dev server: `pnpm dev`
+
+- Run unit tests: `pnpm test`
+
+- Run e2e tests: `pnpm e2e`
+
+## Code style
+
+- TypeScript strict mode
+
+- Single quotes, no semicolons
+
+- Use functional patterns where possible
 
 ## Content from rspress.rs
 

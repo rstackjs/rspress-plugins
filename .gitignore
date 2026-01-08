@@ -29,3 +29,6 @@ doc_build
 .TODO
 .env
 backup
+
+playwright-report
+test-results
