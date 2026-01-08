@@ -1,5 +1,11 @@
 # rspress-plugin-file-tree
 
+## 1.0.3
+
+### Patch Changes
+
+- aa8384f: fix the indent detection
+
 ## 1.0.2
 
 ### Patch Changes
