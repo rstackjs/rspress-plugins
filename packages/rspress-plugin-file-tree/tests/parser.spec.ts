@@ -897,3 +897,66 @@ doc_build
   expect(ellipsis2.name).toBe('...');
   expect(ellipsis2.type).toBe('file');
 });
+
+test('Should parse docs structure with basic directory containing mdx files', () => {
+  const input = `
+docs
+├── _meta.json
+└── guides
+  ├── _meta.json
+  └── basic
+    ├── introduction.mdx
+    ├── install.mdx
+    └── plugin-development.md
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  // docs is the root directory
+  const docs = result[0];
+  expect(docs.name).toBe('docs');
+  expect(docs.type).toBe('directory');
+  expect(docs.children.length).toBe(2);
+
+  // _meta.json at root level
+  const metaJson = docs.children[0];
+  expect(metaJson.name).toBe('_meta.json');
+  expect(metaJson.type).toBe('file');
+  expect(metaJson.extension).toBe('json');
+
+  // guides directory
+  const guides = docs.children[1];
+  expect(guides.name).toBe('guides');
+  expect(guides.type).toBe('directory');
+  expect(guides.children.length).toBe(2);
+
+  // _meta.json in guides
+  const guidesMetaJson = guides.children[0];
+  expect(guidesMetaJson.name).toBe('_meta.json');
+  expect(guidesMetaJson.type).toBe('file');
+  expect(guidesMetaJson.extension).toBe('json');
+
+  // basic directory (should be a directory, not a file)
+  const basic = guides.children[1];
+  expect(basic.name).toBe('basic');
+  expect(basic.type).toBe('directory');
+  expect(basic.children.length).toBe(3);
+
+  // introduction.mdx
+  const introduction = basic.children[0];
+  expect(introduction.name).toBe('introduction.mdx');
+  expect(introduction.type).toBe('file');
+  expect(introduction.extension).toBe('mdx');
+
+  // install.mdx
+  const install = basic.children[1];
+  expect(install.name).toBe('install.mdx');
+  expect(install.type).toBe('file');
+  expect(install.extension).toBe('mdx');
+
+  // plugin-development.md
+  const pluginDev = basic.children[2];
+  expect(pluginDev.name).toBe('plugin-development.md');
+  expect(pluginDev.type).toBe('file');
+  expect(pluginDev.extension).toBe('md');
+});
