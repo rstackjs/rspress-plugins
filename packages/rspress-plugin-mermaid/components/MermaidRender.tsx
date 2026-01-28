@@ -18,7 +18,7 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = (props) => {
     const hasDarkClass = document.documentElement.classList.contains('dark');
 
     const mermaidConfig: MermaidConfig = {
-      securityLevel: 'loose',
+      securityLevel: 'strict',
       startOnLoad: false,
       theme: hasDarkClass ? 'dark' : 'default',
       ...config,
@@ -43,15 +43,8 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = (props) => {
   }, [renderMermaid2SVG]);
 
   useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (
-          mutation.type === 'attributes' &&
-          mutation.attributeName === 'class'
-        ) {
-          renderMermaid2SVG();
-        }
-      }
+    const observer = new MutationObserver(() => {
+      renderMermaid2SVG();
     });
 
     observer.observe(document.documentElement, {
