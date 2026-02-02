@@ -1,5 +1,11 @@
 # rspress-plugin-file-tree
 
+## 1.0.4
+
+### Patch Changes
+
+- 24b82a2: fix SVG icons not displaying in Safari
+
 ## 1.0.3
 
 ### Patch Changes
