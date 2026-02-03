@@ -18,7 +18,7 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = (props) => {
     const hasDarkClass = document.documentElement.classList.contains('dark');
 
     const mermaidConfig: MermaidConfig = {
-      securityLevel: 'strict',
+      securityLevel: 'loose',
       startOnLoad: false,
       theme: hasDarkClass ? 'dark' : 'default',
       ...config,
