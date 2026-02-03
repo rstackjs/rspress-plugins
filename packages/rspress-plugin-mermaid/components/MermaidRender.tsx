@@ -13,7 +13,7 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = (props) => {
 
   const [renderError, setRenderError] = useState(false);
 
-  async function renderMermaid2SVG() {
+  const renderMermaid2SVG = React.useCallback(async () => {
     // https://github.com/mermaid-js/mermaid/blob/1b40f552b20df4ab99a986dd58c9d254b3bfd7bc/packages/mermaid/src/docs/.vitepress/theme/Mermaid.vue#L53
     const hasDarkClass = document.documentElement.classList.contains('dark');
 
@@ -36,11 +36,26 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = (props) => {
     } catch (error) {
       setRenderError(true);
     }
-  }
+  }, [code, config, id]);
 
   useEffect(() => {
     renderMermaid2SVG();
-  }, [code]);
+  }, [renderMermaid2SVG]);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      renderMermaid2SVG();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [renderMermaid2SVG]);
 
   return (
     <>
