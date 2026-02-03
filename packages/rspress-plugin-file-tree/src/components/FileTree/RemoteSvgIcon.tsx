@@ -29,7 +29,7 @@ export const RemoteSvgIcon: React.FC<RemoteSvgIconProps> = ({
   if (!svgContent) return null;
 
   return (
-    <span
+    <div
       className={className}
       dangerouslySetInnerHTML={{ __html: svgContent }}
     />

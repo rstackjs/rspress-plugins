@@ -52,12 +52,10 @@ export const FileTreeItem: React.FC<FileTreeItemProps> = ({ node, depth }) => {
             />
           </svg>
         </div>
-        <div className={styles.iconWrapper}>
-          <RemoteSvgIcon
-            content={icon.content as any}
-            className={styles.iconWrapper}
-          />
-        </div>
+        <RemoteSvgIcon
+          content={icon.content as any}
+          className={styles.iconWrapper}
+        />
         <span className={styles.name}>{node.name}</span>
         {node.comment && <span className={styles.comment}>{node.comment}</span>}
       </div>
