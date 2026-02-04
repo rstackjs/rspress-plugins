@@ -1,5 +1,11 @@
 # rspress-plugin-mermaid
 
+## 1.0.1
+
+### Patch Changes
+
+- 2d7e800: fix: dark mode
+
 ## 1.0.0
 
 ### Major Changes
