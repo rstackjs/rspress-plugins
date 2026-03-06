@@ -11,6 +11,7 @@ export interface RspressPluginKatexOptions
 
 import { visit } from 'unist-util-visit';
 import type { Plugin } from 'unified';
+import { createRequire } from 'node:module';
 
 const remarkCodeBlockToMath: Plugin = () => {
   return (tree) => {
@@ -30,6 +31,7 @@ const remarkCodeBlockToMath: Plugin = () => {
 export default function rspressPluginKatex(
   options: RspressPluginKatexOptions = {},
 ): RspressPlugin {
+  const require = createRequire(import.meta.url);
   const katexCss = require.resolve('katex/dist/katex.min.css');
 
   return {
