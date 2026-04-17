@@ -1,10 +1,10 @@
-export { RemarkCodeBlockToGlobalComponentPluginFactory } from './RemarkPluginFactory/CodeBlock2GlobalComponent';
-export { RemarkInsertComponentPluginFactory } from './RemarkPluginFactory/InsertComponent';
+export { RemarkCodeBlockToGlobalComponentPluginFactory } from './RemarkPluginFactory/CodeBlock2GlobalComponent.js';
+export { RemarkInsertComponentPluginFactory } from './RemarkPluginFactory/InsertComponent.js';
 
-export { PresetConfigMutator } from './ConfigMutator/index';
+export { PresetConfigMutator } from './ConfigMutator/index.js';
 
 export type * from 'util-ts-types';
-export * from './Exports/Unist';
+export * from './Exports/Unist.js';
 export {
   type DirectiveTypes,
   type DirectiveTransformerTypes,
@@ -12,20 +12,20 @@ export {
   type RemarkTransformDirectiveOptions,
   remarkTransformDirective,
   remarkParseDirective,
-} from './DirectivesTransformer';
+} from './DirectivesTransformer/index.js';
 
-export { MDASTNodeFactory } from './NodeFactory/MdAstNodeFactory';
-export { ESTreeNodeFactory } from './NodeFactory/ESTreeNodeFactory';
-export { MdxAttrNodeFactory } from './NodeFactory/MdxAttrNodeFactory';
-export { MdxJsxElementFactory } from './NodeFactory/MdxJsxElementFactory';
+export { MDASTNodeFactory } from './NodeFactory/MdAstNodeFactory.js';
+export { ESTreeNodeFactory } from './NodeFactory/ESTreeNodeFactory.js';
+export { MdxAttrNodeFactory } from './NodeFactory/MdxAttrNodeFactory.js';
+export { MdxJsxElementFactory } from './NodeFactory/MdxJsxElementFactory.js';
 
 export { TSSourceParser } from './SourceParser/TS.mjs';
 
-export { createTuple } from './Utils/createTuple';
-export { ensureArray } from './Utils/ensureArray';
-export { uniqArray } from './Utils/uniqArray';
-export { resolveSourcePath } from './Utils//resolveSourcePath';
-export * from './Utils/registerComponent';
-export * from './Utils/is';
+export { createTuple } from './Utils/createTuple.js';
+export { ensureArray } from './Utils/ensureArray.js';
+export { uniqArray } from './Utils/uniqArray.js';
+export { resolveSourcePath } from './Utils/resolveSourcePath.js';
+export * from './Utils/registerComponent.js';
+export * from './Utils/is.js';
 
-export * from './Shared/SharedPluginOptions';
+export * from './Shared/SharedPluginOptions.js';

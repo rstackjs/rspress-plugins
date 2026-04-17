@@ -1,6 +1,6 @@
-import { ensureArray } from '../Utils/ensureArray';
-import { ESTreeNodeFactory } from './ESTreeNodeFactory';
-import { MdxAttrNodeFactory } from './MdxAttrNodeFactory';
+import { ensureArray } from '../Utils/ensureArray.js';
+import { ESTreeNodeFactory } from './ESTreeNodeFactory.js';
+import { MdxAttrNodeFactory } from './MdxAttrNodeFactory.js';
 
 import type { Content } from 'mdast';
 import type { Dictionary, MaybeArray } from 'util-ts-types';

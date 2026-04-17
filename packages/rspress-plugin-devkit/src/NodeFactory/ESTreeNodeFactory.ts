@@ -1,4 +1,4 @@
-import { isObject } from '../Utils/is';
+import { isObject } from '../Utils/is.js';
 
 import type { Dictionary, StrictOmit } from 'util-ts-types';
 import type {
@@ -17,7 +17,7 @@ import type {
   ModuleDeclaration,
 } from 'estree-jsx';
 
-import type { Primitive } from '../Shared';
+import type { Primitive } from '../Shared.js';
 
 export class ESTreeNodeFactory {
   private static createNamedImportSpecifierNode(name: string): ImportSpecifier {

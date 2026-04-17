@@ -1,9 +1,9 @@
-import { MdxJsxElementFactory } from '../NodeFactory/MdxJsxElementFactory';
+import { MdxJsxElementFactory } from '../NodeFactory/MdxJsxElementFactory.js';
 import {
   RemarkPluginFactoryBase,
   type ComponentRegistration,
-} from './FactoryBase';
-import { getComponentName } from '../Utils/registerComponent';
+} from './FactoryBase.js';
+import { getComponentName } from '../Utils/registerComponent.js';
 
 import type { Plugin } from 'unified';
 import type { Root } from 'mdast';

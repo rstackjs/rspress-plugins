@@ -1,11 +1,11 @@
 import {
   RemarkPluginFactoryBase,
   type ComponentRegistration,
-} from './FactoryBase';
+} from './FactoryBase.js';
 
-import { unistVisit } from '../Exports/Unist';
-import { MdxJsxElementFactory } from '../NodeFactory/MdxJsxElementFactory';
-import { getComponentName } from '../Utils/registerComponent';
+import { unistVisit } from '../Exports/Unist.js';
+import { MdxJsxElementFactory } from '../NodeFactory/MdxJsxElementFactory.js';
+import { getComponentName } from '../Utils/registerComponent.js';
 
 import type { Plugin } from 'unified';
 import type { Root } from 'mdast';

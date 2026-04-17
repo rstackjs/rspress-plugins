@@ -1,12 +1,12 @@
 import _remarkParseDirective from 'remark-mdc';
 import { toString } from 'mdast-util-to-string';
 
-import { unistVisit, type RemarkPluginFactory } from '../Exports/Unist';
+import { unistVisit, type RemarkPluginFactory } from '../Exports/Unist.js';
 
-import { createTuple } from '../Utils/createTuple';
-import { ensureArray } from '../Utils/ensureArray';
+import { createTuple } from '../Utils/createTuple.js';
+import { ensureArray } from '../Utils/ensureArray.js';
 
-import { MdxAttrNodeFactory } from '../NodeFactory/MdxAttrNodeFactory';
+import { MdxAttrNodeFactory } from '../NodeFactory/MdxAttrNodeFactory.js';
 
 import type { Content } from 'mdast';
 import type { VFile } from 'vfile';

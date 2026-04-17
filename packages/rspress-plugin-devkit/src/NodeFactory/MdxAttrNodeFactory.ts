@@ -1,5 +1,5 @@
-import { ESTreeNodeFactory } from './ESTreeNodeFactory';
-import { isObject } from '../Utils/is';
+import { ESTreeNodeFactory } from './ESTreeNodeFactory.js';
+import { isObject } from '../Utils/is.js';
 
 import type {
   MdxJsxAttribute,

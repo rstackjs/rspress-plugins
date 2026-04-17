@@ -1,4 +1,4 @@
-import { uniqArray } from '../Utils/uniqArray';
+import { uniqArray } from '../Utils/uniqArray.js';
 
 import type { RspressPlugin } from '@rspress/core';
 import type { Content } from 'mdast';
