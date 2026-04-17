@@ -288,7 +288,7 @@ function isDirectoryName(name: string): boolean {
   }
 
   // If it has an extension (e.g. foo.ts, bar.config.js), it's a file
-  if (/\.[a-zA-Z0-9]+$/.test(lastPart)) {
+  if (/\.[a-zA-Z0-9_-]+$/.test(lastPart)) {
     return false;
   }
 
