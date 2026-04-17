@@ -960,3 +960,442 @@ docs
   expect(pluginDev.type).toBe('file');
   expect(pluginDev.extension).toBe('md');
 });
+
+test('Should correctly identify files with various extensions', () => {
+  const input = `
+├── file.ts
+├── file.tsx
+├── file.js
+├── file.jsx
+├── file.json
+├── file.html
+├── file.md
+├── file.mdx
+├── file.css
+├── file.less
+├── file.scss
+├── file.svg
+├── file.png
+├── file.jpg
+├── file.gif
+├── file.woff
+├── file.woff2
+├── file.ttf
+├── file.eot
+└── file.ico
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.extension).toBeDefined();
+  });
+});
+
+test('Should correctly identify files with extensions containing underscores and hyphens', () => {
+  const input = `
+├── file.config_dev.js
+├── file.config-prod.json
+├── file.test_spec.ts
+├── file.e2e-test.tsx
+├── component.stories_tsx
+└── style.module_css
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.extension).toBeDefined();
+  });
+
+  expect(result[0].name).toBe('file.config_dev.js');
+  expect(result[0].extension).toBe('js');
+  expect(result[1].name).toBe('file.config-prod.json');
+  expect(result[1].extension).toBe('json');
+  expect(result[2].name).toBe('file.test_spec.ts');
+  expect(result[2].extension).toBe('ts');
+  expect(result[3].name).toBe('file.e2e-test.tsx');
+  expect(result[3].extension).toBe('tsx');
+  expect(result[4].name).toBe('component.stories_tsx');
+  expect(result[4].extension).toBe('stories_tsx');
+  expect(result[5].name).toBe('style.module_css');
+  expect(result[5].extension).toBe('module_css');
+});
+
+test('Should correctly identify files with multiple dots', () => {
+  const input = `
+├── rspress.config.ts
+├── webpack.config.dev.js
+├── webpack.config.prod.js
+├── tsconfig.build.json
+├── package.lock.json
+├── .env.local
+├── .env.production
+└── file.test.unit.spec.ts
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  expect(result[0].name).toBe('rspress.config.ts');
+  expect(result[0].type).toBe('file');
+  expect(result[0].extension).toBe('ts');
+
+  expect(result[1].name).toBe('webpack.config.dev.js');
+  expect(result[1].type).toBe('file');
+  expect(result[1].extension).toBe('js');
+
+  expect(result[2].name).toBe('webpack.config.prod.js');
+  expect(result[2].type).toBe('file');
+  expect(result[2].extension).toBe('js');
+
+  expect(result[3].name).toBe('tsconfig.build.json');
+  expect(result[3].type).toBe('file');
+  expect(result[3].extension).toBe('json');
+
+  expect(result[4].name).toBe('package.lock.json');
+  expect(result[4].type).toBe('file');
+  expect(result[4].extension).toBe('json');
+
+  expect(result[5].name).toBe('.env.local');
+  expect(result[5].type).toBe('file');
+  expect(result[5].extension).toBe('local');
+
+  expect(result[6].name).toBe('.env.production');
+  expect(result[6].type).toBe('file');
+  expect(result[6].extension).toBe('production');
+
+  expect(result[7].name).toBe('file.test.unit.spec.ts');
+  expect(result[7].type).toBe('file');
+  expect(result[7].extension).toBe('ts');
+});
+
+test('Should correctly identify hidden files (starting with dot)', () => {
+  const input = `
+├── .gitignore
+├── .env
+├── .eslintrc
+├── .prettierrc
+├── .dockerignore
+└── .npmrc
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.name.startsWith('.')).toBe(true);
+  });
+
+  expect(result[0].name).toBe('.gitignore');
+  expect(result[1].name).toBe('.env');
+  expect(result[2].name).toBe('.eslintrc');
+  expect(result[3].name).toBe('.prettierrc');
+  expect(result[4].name).toBe('.dockerignore');
+  expect(result[5].name).toBe('.npmrc');
+});
+
+test('Should correctly identify directories without extensions', () => {
+  const input = `
+├── src
+├── components
+├── utils
+├── pages
+├── docs
+├── public
+├── assets
+└── styles
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('directory');
+    expect(node.extension).toBeUndefined();
+  });
+});
+
+test('Should correctly identify directories with trailing slash', () => {
+  const input = `
+├── src/
+├── components/
+├── utils/
+└── pages/
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('directory');
+    expect(node.extension).toBeUndefined();
+    expect(node.name.endsWith('/')).toBe(false);
+  });
+});
+
+test('Should correctly identify files with dots in name (treated as extensions)', () => {
+  const input = `
+├── node_modules
+├── test.utils
+├── my.components
+├── v1.0.0
+└── release-1.2.3
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  expect(result[0].name).toBe('node_modules');
+  expect(result[0].type).toBe('directory');
+  expect(result[0].extension).toBeUndefined();
+
+  expect(result[1].name).toBe('test.utils');
+  expect(result[1].type).toBe('file');
+  expect(result[1].extension).toBe('utils');
+
+  expect(result[2].name).toBe('my.components');
+  expect(result[2].type).toBe('file');
+  expect(result[2].extension).toBe('components');
+
+  expect(result[3].name).toBe('v1.0.0');
+  expect(result[3].type).toBe('file');
+  expect(result[3].extension).toBe('0');
+
+  expect(result[4].name).toBe('release-1.2.3');
+  expect(result[4].type).toBe('file');
+  expect(result[4].extension).toBe('3');
+});
+
+test('Should correctly identify files with numeric extensions', () => {
+  const input = `
+├── file.123
+├── file.456
+├── file.789
+└── file.0
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.extension).toBeDefined();
+  });
+
+  expect(result[0].extension).toBe('123');
+  expect(result[1].extension).toBe('456');
+  expect(result[2].extension).toBe('789');
+  expect(result[3].extension).toBe('0');
+});
+
+test('Should correctly identify files in nested paths', () => {
+  const input = `
+├── src
+│   ├── components
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   └── Modal
+│   │       ├── Modal.tsx
+│   │       ├── Modal.test.tsx
+│   │       └── index.ts
+│   └── utils
+│       ├── helpers.ts
+│       └── constants.ts
+└── package.json
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  expect(result[0].name).toBe('src');
+  expect(result[0].type).toBe('directory');
+
+  const components = result[0].children[0];
+  expect(components.name).toBe('components');
+  expect(components.type).toBe('directory');
+
+  expect(components.children[0].name).toBe('Button.tsx');
+  expect(components.children[0].type).toBe('file');
+  expect(components.children[0].extension).toBe('tsx');
+
+  expect(components.children[1].name).toBe('Input.tsx');
+  expect(components.children[1].type).toBe('file');
+  expect(components.children[1].extension).toBe('tsx');
+
+  const modal = components.children[2];
+  expect(modal.name).toBe('Modal');
+  expect(modal.type).toBe('directory');
+
+  expect(modal.children[0].name).toBe('Modal.tsx');
+  expect(modal.children[0].type).toBe('file');
+  expect(modal.children[0].extension).toBe('tsx');
+
+  expect(modal.children[1].name).toBe('Modal.test.tsx');
+  expect(modal.children[1].type).toBe('file');
+  expect(modal.children[1].extension).toBe('tsx');
+
+  expect(modal.children[2].name).toBe('index.ts');
+  expect(modal.children[2].type).toBe('file');
+  expect(modal.children[2].extension).toBe('ts');
+
+  const utils = result[0].children[1];
+  expect(utils.name).toBe('utils');
+  expect(utils.type).toBe('directory');
+
+  expect(utils.children[0].name).toBe('helpers.ts');
+  expect(utils.children[0].type).toBe('file');
+  expect(utils.children[0].extension).toBe('ts');
+
+  expect(utils.children[1].name).toBe('constants.ts');
+  expect(utils.children[1].type).toBe('file');
+  expect(utils.children[1].extension).toBe('ts');
+
+  expect(result[1].name).toBe('package.json');
+  expect(result[1].type).toBe('file');
+  expect(result[1].extension).toBe('json');
+});
+
+test('Should correctly handle mixed files and directories', () => {
+  const input = `
+├── src
+│   ├── index.ts
+│   ├── App.tsx
+│   └── styles
+│       ├── index.css
+│       └── variables.less
+├── public
+│   ├── index.html
+│   └── favicon.ico
+├── package.json
+├── tsconfig.json
+└── README.md
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  expect(result[0].type).toBe('directory');
+  expect(result[0].name).toBe('src');
+
+  expect(result[0].children[0].type).toBe('file');
+  expect(result[0].children[0].name).toBe('index.ts');
+
+  expect(result[0].children[1].type).toBe('file');
+  expect(result[0].children[1].name).toBe('App.tsx');
+
+  expect(result[0].children[2].type).toBe('directory');
+  expect(result[0].children[2].name).toBe('styles');
+
+  expect(result[1].type).toBe('directory');
+  expect(result[1].name).toBe('public');
+
+  expect(result[2].type).toBe('file');
+  expect(result[2].name).toBe('package.json');
+
+  expect(result[3].type).toBe('file');
+  expect(result[3].name).toBe('tsconfig.json');
+
+  expect(result[4].type).toBe('file');
+  expect(result[4].name).toBe('README.md');
+});
+
+test('Should correctly identify files with uppercase extensions', () => {
+  const input = `
+├── file.TS
+├── file.TSX
+├── file.JS
+├── file.JSX
+├── file.JSON
+├── file.HTML
+├── file.CSS
+└── file.MD
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.extension).toBeDefined();
+  });
+
+  expect(result[0].extension).toBe('TS');
+  expect(result[1].extension).toBe('TSX');
+  expect(result[2].extension).toBe('JS');
+  expect(result[3].extension).toBe('JSX');
+  expect(result[4].extension).toBe('JSON');
+  expect(result[5].extension).toBe('HTML');
+  expect(result[6].extension).toBe('CSS');
+  expect(result[7].extension).toBe('MD');
+});
+
+test('Should correctly identify files with mixed case extensions', () => {
+  const input = `
+├── file.Ts
+├── file.TsX
+├── file.Js
+├── file.JsOn
+└── file.HtMl
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.extension).toBeDefined();
+  });
+
+  expect(result[0].extension).toBe('Ts');
+  expect(result[1].extension).toBe('TsX');
+  expect(result[2].extension).toBe('Js');
+  expect(result[3].extension).toBe('JsOn');
+  expect(result[4].extension).toBe('HtMl');
+});
+
+test('Should handle edge case: files with only extension', () => {
+  const input = `
+├── .ts
+├── .js
+└── .json
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.name.startsWith('.')).toBe(true);
+  });
+});
+
+test('Should handle edge case: files with underscore-only extension', () => {
+  const input = `
+├── file._
+├── file.__
+└── file._test
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.extension).toBeDefined();
+  });
+
+  expect(result[0].extension).toBe('_');
+  expect(result[1].extension).toBe('__');
+  expect(result[2].extension).toBe('_test');
+});
+
+test('Should handle edge case: files with hyphen-only extension', () => {
+  const input = `
+├── file.-
+├── file.--
+└── file.-test
+`;
+
+  const result = parseTreeContent(input).nodes;
+
+  result.forEach((node) => {
+    expect(node.type).toBe('file');
+    expect(node.extension).toBeDefined();
+  });
+
+  expect(result[0].extension).toBe('-');
+  expect(result[1].extension).toBe('--');
+  expect(result[2].extension).toBe('-test');
+});
