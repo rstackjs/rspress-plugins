@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.5",
-    "typescript": "^5.4.4",
+    "typescript": "^6.0.3",
     "unified": "^11.0.5"
   },
   "peerDependencies": {

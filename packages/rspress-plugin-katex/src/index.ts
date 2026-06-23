@@ -6,8 +6,7 @@ import rehypeKatex, { Options as RehypeKatexOptions } from 'rehype-katex';
 import type { RspressPlugin } from '@rspress/core';
 
 export interface RspressPluginKatexOptions
-  extends RemarkMathOptions,
-    RehypeKatexOptions {}
+  extends RemarkMathOptions, RehypeKatexOptions {}
 
 import { visit } from 'unist-util-visit';
 import type { Plugin } from 'unified';

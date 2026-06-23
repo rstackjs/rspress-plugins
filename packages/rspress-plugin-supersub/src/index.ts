@@ -6,8 +6,7 @@ import {
 
 import type { RspressPlugin } from '@rspress/core';
 
-export interface RspressPluginSupersubOptions
-  extends RemarkParseSuperSubScriptOptions {}
+export interface RspressPluginSupersubOptions extends RemarkParseSuperSubScriptOptions {}
 
 export default function rspressPluginSupersub(
   options: RemarkParseSuperSubScriptOptions = {},

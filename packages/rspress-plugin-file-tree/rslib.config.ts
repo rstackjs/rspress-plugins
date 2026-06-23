@@ -1,18 +1,22 @@
 import { defineConfig } from '@rslib/core';
 import { pluginLess } from '@rsbuild/plugin-less';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginPublint } from 'rsbuild-plugin-publint';
 
 export default defineConfig({
+  plugins: [pluginPublint()],
   lib: [
     {
       format: 'esm',
       syntax: 'es2021',
       autoExtension: true,
       bundle: true,
-      dts: true,
+      dts: {
+        tsgo: true,
+      },
       source: {
         entry: {
-          'components/FileTree/FileTree': 
+          'components/FileTree/FileTree':
             './src/components/FileTree/FileTree.tsx',
         },
       },
@@ -20,8 +24,8 @@ export default defineConfig({
         rspack: {
           optimization: {
             runtimeChunk: false,
-          }
-        }
+          },
+        },
       },
       output: {
         target: 'web',

@@ -1,6 +1,5 @@
 # RSPress x Katex
 
-
 ```math
 % \f is defined as #1f(#2) using the macro
 \f\relax{x} = \int_{-\infty}^\infty

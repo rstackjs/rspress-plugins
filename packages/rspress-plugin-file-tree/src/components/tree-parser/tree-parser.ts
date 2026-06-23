@@ -108,7 +108,11 @@ function calculateIndent(line: string, indentSize: number): number {
     const char = line[i];
 
     // Check for "│   " pattern (vertical line + 3 spaces) - 4-char indent
-    if (indentSize === 4 && char === '│' && line.substring(i, i + 4) === '│   ') {
+    if (
+      indentSize === 4 &&
+      char === '│' &&
+      line.substring(i, i + 4) === '│   '
+    ) {
       indent++;
       i += 4;
       continue;
@@ -209,9 +213,7 @@ function extractNameAndComment(fullName: string): {
   // If no double-space delimiter, check if the whole thing is just a name
   // For files with extensions or directories, we can be more lenient
   // Look for pattern: name.ext followed by single space and non-extension content
-  const singleSpaceMatch = trimmed.match(
-    /^(.+?\.[a-zA-Z0-9]+)\s+([^.].*)$/
-  );
+  const singleSpaceMatch = trimmed.match(/^(.+?\.[a-zA-Z0-9]+)\s+([^.].*)$/);
   if (singleSpaceMatch) {
     const potentialName = singleSpaceMatch[1].trim();
     const potentialComment = singleSpaceMatch[2].trim();
@@ -230,7 +232,9 @@ function extractNameAndComment(fullName: string): {
   // Check for directory name followed by single space and comment
   // Directory names don't have extensions, so look for "word space non-word-start"
   // Also handles names starting with numbers like "2. components"
-  const dirCommentMatch = trimmed.match(/^([\w][\w.\s-]*?)\s+([^a-zA-Z0-9].*)$/);
+  const dirCommentMatch = trimmed.match(
+    /^([\w][\w.\s-]*?)\s+([^a-zA-Z0-9].*)$/,
+  );
   if (dirCommentMatch) {
     const potentialName = dirCommentMatch[1].trim();
     // Make sure it's not a file with extension

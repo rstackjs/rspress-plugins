@@ -1,3 +1,3 @@
 # RSPress x ReadingTime SHORT
 
-Lorem 
+Lorem

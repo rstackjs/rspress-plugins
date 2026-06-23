@@ -55,7 +55,7 @@ export class MdxJsxElementFactory {
         ? ensureArray(componentProvider.childrenProvider?.(meta) ?? [])
         : [],
       attributes: MdxAttrNodeFactory.createMdxJsxAttributeNodes(
-        meta ? componentProvider.propsProvider?.(meta) ?? {} : {},
+        meta ? (componentProvider.propsProvider?.(meta) ?? {}) : {},
       ),
     };
   }

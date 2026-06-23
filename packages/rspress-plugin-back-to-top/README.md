@@ -36,8 +36,10 @@ import back2Top from 'rspress-plugin-back-to-top';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
-  plugins: [back2Top({
-    threshold: 500,
-  })],
+  plugins: [
+    back2Top({
+      threshold: 500,
+    }),
+  ],
 });
 ```

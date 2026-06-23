@@ -11,6 +11,7 @@ import type {
   Blockquote,
   ThematicBreak,
   Content,
+  PhrasingContent,
 } from 'mdast';
 
 export type Depth = Heading['depth'];
@@ -31,7 +32,9 @@ export class MDASTNodeFactory {
     };
   }
 
-  public static createAnyNodeParagraphNode(...contents: any): Paragraph {
+  public static createAnyNodeParagraphNode(
+    ...contents: (string | PhrasingContent)[]
+  ): Paragraph {
     const children = contents.map((content) =>
       typeof content === 'string'
         ? MDASTNodeFactory.createTextChildren(content)[0]
@@ -114,7 +117,7 @@ export class MDASTNodeFactory {
     };
   }
 
-  public static crateTableNode<T extends any = any>(
+  public static crateTableNode<T = unknown>(
     source: T[],
     getter: {
       [key: string]: (source: T) =>

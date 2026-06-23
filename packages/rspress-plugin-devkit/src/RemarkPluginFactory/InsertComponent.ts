@@ -38,7 +38,7 @@ export class RemarkInsertComponentPluginFactory extends RemarkPluginFactoryBase 
               tree.children.findLastIndex((node) => node.type === 'mdxjsEsm') +
               1
             );
-          case 'post':
+          case 'post': {
             const beforeInsertCount = components.filter(
               ({ position }) =>
                 position === 'pre' || position === 'after-first-heading',
@@ -47,12 +47,14 @@ export class RemarkInsertComponentPluginFactory extends RemarkPluginFactoryBase 
             const insertIndexAtPost = tree.children.length + beforeInsertCount;
 
             return insertIndexAtPost;
-          case 'after-first-heading':
+          }
+          case 'after-first-heading': {
             const firstHeadingIndex = tree.children.findIndex(
               (node) => node.type === 'heading',
             );
 
             return firstHeadingIndex + 1;
+          }
           default:
             throw new Error(`Unknown insert position: ${position}`);
         }

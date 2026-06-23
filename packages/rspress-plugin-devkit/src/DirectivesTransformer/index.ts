@@ -129,7 +129,6 @@ export const remarkTransformDirective: RemarkPluginFactory<
                   },
                 ],
           });
-        } else {
         }
       });
     });

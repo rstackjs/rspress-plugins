@@ -568,7 +568,7 @@ test('Should parse input with spaces', () => {
 
   // Both formats should produce the same result
   expect(parseTreeContent(input2SpaceIndent).nodes).toEqual(
-    parseTreeContent(input).nodes
+    parseTreeContent(input).nodes,
   );
 });
 
@@ -825,7 +825,9 @@ test('Should skip leading . line (current directory marker)', () => {
   expect(themeDir.name).toBe('theme');
   expect(themeDir.type).toBe('directory');
   expect(themeDir.children[0].name).toBe('index.tsx');
-  expect(themeDir.children[0].comment).toBe('<-- "@rspress/core/theme-original"');
+  expect(themeDir.children[0].comment).toBe(
+    '<-- "@rspress/core/theme-original"',
+  );
 
   // rspress.config.ts
   const configTs = result[2];

@@ -7,8 +7,10 @@ import type { RspressPlugin } from '@rspress/core';
 
 const DefaultDocBuildOutput = 'doc_build';
 
-interface RspressPluginGHPagesOptions
-  extends MarkRequired<ghpages.PublishOptions, 'repo'> {
+interface RspressPluginGHPagesOptions extends MarkRequired<
+  ghpages.PublishOptions,
+  'repo'
+> {
   directory?: string;
   silent?: boolean;
   siteBase?: string;
@@ -37,9 +39,9 @@ export default function rspressPluginGHPages(
   return {
     name: 'rspress-plugin-gh-pages',
     config(config) {
-      let baseFromRepo = repo.includes('github.io')
+      const baseFromRepo = repo.includes('github.io')
         ? '/'
-        : /\/([^\/]+)\.git$/.exec(repo)?.[1];
+        : /\/([^/]+)\.git$/.exec(repo)?.[1];
 
       // Use || here to as ?? will consider '' as a valid value
       const base = siteBase || baseFromRepo || '';
@@ -81,13 +83,15 @@ export default function rspressPluginGHPages(
           ...publishOptions,
         });
       } catch (error) {
-        silent
-          ? void 0
-          : logger.error(`${logPrefix} Failed to publish: ${error}`);
+        if (!silent) {
+          logger.error(`${logPrefix} Failed to publish: ${error}`);
+        }
         process.exit(1);
       }
 
-      silent ? void 0 : logger.success(`${logPrefix} Page Published.`);
+      if (!silent) {
+        logger.success(`${logPrefix} Page Published.`);
+      }
     },
   };
 }

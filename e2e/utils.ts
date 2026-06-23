@@ -36,14 +36,18 @@ export const runDevCommand = async (
   port?: number,
 ): Promise<{ process: ChildProcess; url: string }> => {
   const targetPort = port || (await getRandomPort());
-  const childProcess = spawn('pnpm', ['rspress', 'dev', '--port', targetPort.toString()], {
-    cwd: root,
-    stdio: 'pipe',
-    env: {
-      ...process.env,
-      NODE_ENV: 'development',
+  const childProcess = spawn(
+    'pnpm',
+    ['rspress', 'dev', '--port', targetPort.toString()],
+    {
+      cwd: root,
+      stdio: 'pipe',
+      env: {
+        ...process.env,
+        NODE_ENV: 'development',
+      },
     },
-  });
+  );
 
   return new Promise((resolve, reject) => {
     let resolved = false;
@@ -52,7 +56,10 @@ export const runDevCommand = async (
       // Rspress dev server started
       if (output.includes('http://localhost') && !resolved) {
         resolved = true;
-        resolve({ process: childProcess, url: `http://localhost:${targetPort}` });
+        resolve({
+          process: childProcess,
+          url: `http://localhost:${targetPort}`,
+        });
       }
     });
 
@@ -63,11 +70,11 @@ export const runDevCommand = async (
     childProcess.on('error', (err) => {
       reject(err);
     });
-    
+
     childProcess.on('close', (code) => {
-        if (!resolved && code !== 0) {
-            reject(new Error(`Dev process exited with code ${code}`));
-        }
+      if (!resolved && code !== 0) {
+        reject(new Error(`Dev process exited with code ${code}`));
+      }
     });
   });
 };
@@ -98,22 +105,29 @@ export const runPreviewCommand = async (
   port?: number,
 ): Promise<{ process: ChildProcess; url: string }> => {
   const targetPort = port || (await getRandomPort());
-  const childProcess = spawn('npx', ['rspress', 'preview', '--port', targetPort.toString()], {
-    cwd: root,
-    stdio: 'pipe',
-    env: {
-      ...process.env,
-      NODE_ENV: 'production',
+  const childProcess = spawn(
+    'npx',
+    ['rspress', 'preview', '--port', targetPort.toString()],
+    {
+      cwd: root,
+      stdio: 'pipe',
+      env: {
+        ...process.env,
+        NODE_ENV: 'production',
+      },
     },
-  });
+  );
 
   return new Promise((resolve, reject) => {
     let resolved = false;
     childProcess.stdout?.on('data', (data) => {
       const output = data.toString();
       if (output.includes('http://localhost') && !resolved) {
-          resolved = true;
-          resolve({ process: childProcess, url: `http://localhost:${targetPort}` });
+        resolved = true;
+        resolve({
+          process: childProcess,
+          url: `http://localhost:${targetPort}`,
+        });
       }
     });
 
@@ -126,9 +140,9 @@ export const runPreviewCommand = async (
     });
 
     childProcess.on('close', (code) => {
-        if (!resolved && code !== 0) {
-            reject(new Error(`Preview process exited with code ${code}`));
-        }
+      if (!resolved && code !== 0) {
+        reject(new Error(`Preview process exited with code ${code}`));
+      }
     });
   });
 };

@@ -29,7 +29,6 @@ Basic usage:
 
 With comment:
 
-
 ```tree
 ├── rspress.config.ts // Rspress config
 ├── src
@@ -53,7 +52,6 @@ With comment:
 │   └── parser.ts // Parse string input to tree structure
 └── tsconfig.json
 ```
-
 
 With number prefix(spaces):
 

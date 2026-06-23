@@ -37,13 +37,15 @@
     "rspress-plugin-devkit": "workspace:^"
   },
   "devDependencies": {
-    "@rsbuild/plugin-less": "^1.2.1",
-    "@rsbuild/plugin-react": "^1.1.1",
-    "@rslib/core": "^0.19.1",
+    "@rsbuild/plugin-less": "^2.0.0",
+    "@rsbuild/plugin-react": "^2.1.0",
+    "@rslib/core": "^0.23.0",
     "@types/node": "^20.12.5",
     "@types/react": "^18.2.74",
+    "@typescript/native-preview": "7.0.0-dev.20260622.1",
     "material-icon-theme": "^5.30.0",
-    "typescript": "^5.4.4"
+    "rsbuild-plugin-publint": "^1.0.0",
+    "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"

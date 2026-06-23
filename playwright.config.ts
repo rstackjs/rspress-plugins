@@ -2,7 +2,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testMatch: 'packages/**/*.spec.ts',
- // 30 min for all tests
+  // 30 min for all tests
   globalTimeout: 30 * 60 * 1000,
   // 1 min for each test
   timeout: 60 * 1000,
