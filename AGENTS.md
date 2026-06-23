@@ -11,7 +11,7 @@ This file describes the `rspress-plugins` project, the tools and frameworks it u
 This project utilizes the following tools and frameworks:
 
 *   **Package Manager:** [pnpm](https://pnpm.io/)
-*   **Testing:** [Vitest](https://vitest.dev/) (Unit), [Playwright](https://playwright.dev/) (E2E)
+*   **Testing:** [Rstest](https://rstest.rs/) (Unit), [Playwright](https://playwright.dev/) (E2E)
 *   **Language:** [TypeScript](https://www.typescriptlang.org/)
 *   **Linting & Formatting:** [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/)
 *   **Versioning:** [Changesets](https://github.com/changesets/changesets)
@@ -38,4 +38,3 @@ This project utilizes the following tools and frameworks:
 ## Content from rspress.rs
 
 The following content was retrieved from [https://v2.rspress.rs/llms.txt](https://v2.rspress.rs/llms.txt):
-
