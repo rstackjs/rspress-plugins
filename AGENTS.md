@@ -1,40 +1,39 @@
 # AGENTS.md
 
-This file describes the `rspress-plugins` project, the tools and frameworks it uses, and other relevant information.
+## Stack
 
-## Project Overview
+- Node.js via the repository CI matrix
+- `pnpm` workspace with packages under `packages/*`
+- Rspress plugin packages published as TypeScript ESM packages
+- Build: mostly `tsc`, with `rspress-plugin-file-tree` using Rslib
+- Unit tests: Rstest
+- E2E tests: Playwright
+- Lint and format: Rslint and Prettier
 
-`rspress-plugins` is a monorepo containing a collection of plugins for Rspress, a static site generator built on top of Rspack.
+## Commands (run early)
 
-## Tools and Frameworks
+```bash
+# setup
+corepack enable && pnpm install
 
-This project utilizes the following tools and frameworks:
+# checks
+pnpm lint
+pnpm test
 
-*   **Package Manager:** [pnpm](https://pnpm.io/)
-*   **Testing:** [Rstest](https://rstest.rs/) (Unit), [Playwright](https://playwright.dev/) (E2E)
-*   **Language:** [TypeScript](https://www.typescriptlang.org/)
-*   **Linting & Formatting:** [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/)
-*   **Versioning:** [Changesets](https://github.com/changesets/changesets)
-*   **UI Framework:** [React](https://reactjs.org/)
+# build / package validation
+pnpm run build
+```
 
-## Setup commands
+## Project structure
 
-- Install deps: `pnpm install`
-
-- Start dev server: `pnpm dev`
-
-- Run unit tests: `pnpm test`
-
-- Run e2e tests: `pnpm e2e`
+```text
+packages/   # published Rspress plugin packages
+templates/  # plugin template sources
+e2e/        # Playwright end-to-end tests
+```
 
 ## Code style
 
-- TypeScript strict mode
-
-- Single quotes, no semicolons
-
-- Use functional patterns where possible
-
-## Content from rspress.rs
-
-The following content was retrieved from [https://v2.rspress.rs/llms.txt](https://v2.rspress.rs/llms.txt):
+- Use single quotes and existing Prettier conventions.
+- Keep TypeScript strict-safe; avoid `any`.
+- Naming: camelCase (functions/files), PascalCase (types/classes).
