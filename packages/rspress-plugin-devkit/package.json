@@ -11,24 +11,30 @@
     "plugin",
     "devkit"
   ],
-  "homepage": "https://github.com/linbudu599/rspress-plugins/tree/main/packages/rspress-plugin-devkit#readme",
+  "homepage": "https://github.com/rstackjs/rspress-plugins/tree/main/packages/rspress-plugin-devkit#readme",
   "bugs": {
-    "url": "https://github.com/linbudu599/rspress-plugins/issues"
+    "url": "https://github.com/rstackjs/rspress-plugins/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linbudu599/rspress-plugins.git"
+    "url": "git+https://github.com/rstackjs/rspress-plugins.git"
   },
   "license": "MIT",
   "author": "Linbudu <linbudu599@gmail.com> (https://github.com/linbudu599)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "tsc --declarationMap false",
-    "dev": "tsc -w"
+    "build": "rslib build",
+    "dev": "rslib build -w"
   },
   "dependencies": {
     "@types/estree-jsx": "^1.0.5",
@@ -52,6 +58,8 @@
     "vfile-reporter": "^8.1.1"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.58.12",
+    "@rslib/core": "^0.23.0",
     "@types/lodash-es": "^4.17.12"
   },
   "peerDependencies": {

@@ -12,18 +12,24 @@
     "file-tree",
     "tree"
   ],
-  "homepage": "https://github.com/linbudu599/rspress-plugins/tree/main/packages/rspress-plugin-file-tree#readme",
+  "homepage": "https://github.com/rstackjs/rspress-plugins/tree/main/packages/rspress-plugin-file-tree#readme",
   "bugs": {
-    "url": "https://github.com/linbudu599/rspress-plugins/issues"
+    "url": "https://github.com/rstackjs/rspress-plugins/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linbudu599/rspress-plugins.git"
+    "url": "git+https://github.com/rstackjs/rspress-plugins.git"
   },
   "license": "MIT",
   "author": "Linbudu <linbudu599@gmail.com> (https://github.com/linbudu599)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
