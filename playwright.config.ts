@@ -9,8 +9,9 @@ export default defineConfig({
   quiet: true,
   reporter: 'list',
   use: {
-    trace: 'on',
-    video: 'on',
+    screenshot: 'only-on-failure',
+    trace: 'retain-on-failure',
+    video: 'retain-on-failure',
     viewport: { width: 1440, height: 900 }, // screen size
   },
   retries: process.env.CI ? 3 : 0,

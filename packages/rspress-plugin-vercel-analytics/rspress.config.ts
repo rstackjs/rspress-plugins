@@ -5,5 +5,10 @@ import vercelAnalytics from './src';
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'Rspress x Vercel Analytics Example',
-  plugins: [vercelAnalytics()],
+  plugins: [
+    vercelAnalytics({
+      endpoint: '/e2e-insights',
+      disableAutoTrack: true,
+    }),
+  ],
 });

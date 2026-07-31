@@ -7,7 +7,8 @@ export default defineConfig({
   title: 'Rspress x GA Example',
   plugins: [
     ga({
-      id: 'G-E47ZZ8QFC1',
+      id: ['G-E2EPRIMARY', 'G-E2ESECONDARY'],
+      anonymizeIP: true,
     }),
   ],
 });
