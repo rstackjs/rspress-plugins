@@ -19,9 +19,10 @@ export default function rspressPluginBack2Top(
     },
     globalUIComponents: [
       [
-        path.join(componentsPath, 'Back2Top.tsx'),
+        path.join(componentsPath, 'Back2Top.js'),
         options satisfies Back2TopProps,
       ],
     ],
+    globalStyles: path.join(componentsPath, 'Back2Top.css'),
   };
 }

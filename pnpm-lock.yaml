@@ -130,6 +130,12 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
     devDependencies:
+      '@rsbuild/plugin-less':
+        specifier: ^2.0.0
+        version: 2.0.0(@rsbuild/core@2.0.15)
+      '@rslib/core':
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@6.0.3)
       '@types/node':
         specifier: ^20.12.5
         version: 20.12.5
@@ -1274,6 +1280,28 @@ packages:
     dependencies:
       '@rsbuild/core': 2.0.15
       rsbuild-plugin-dts: 0.23.0(@rsbuild/core@2.0.15)(@typescript/native-preview@7.0.0-dev.20260622.1)(typescript@6.0.3)
+      typescript: 6.0.3
+    transitivePeerDependencies:
+      - '@module-federation/runtime-tools'
+      - '@typescript/native-preview'
+      - core-js
+    dev: true
+
+  /@rslib/core@0.23.0(typescript@6.0.3):
+    resolution: {integrity: sha512-OEn5iNKYIyoy0JEUOXH2UTPBKlQRy/RjOtODhC4vS/sIw9iE8Nsp/4s0aeOkNtxsenuuxZCZo2foYvilI7VRgg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      '@microsoft/api-extractor': ^7
+      typescript: ^5 || ^6
+    peerDependenciesMeta:
+      '@microsoft/api-extractor':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@rsbuild/core': 2.0.15
+      rsbuild-plugin-dts: 0.23.0(@rsbuild/core@2.0.15)(typescript@6.0.3)
       typescript: 6.0.3
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
@@ -7011,6 +7039,27 @@ packages:
       '@ast-grep/napi': 0.37.0
       '@rsbuild/core': 2.0.15
       '@typescript/native-preview': 7.0.0-dev.20260622.1
+      typescript: 6.0.3
+    dev: true
+
+  /rsbuild-plugin-dts@0.23.0(@rsbuild/core@2.0.15)(typescript@6.0.3):
+    resolution: {integrity: sha512-3dyx2+ZeIFRR1E3f28wQrcDW1kMa15thHBe97dJby/rE9GQusGPw+td8sVQnxcxhXwzy7eFkUOzN5XoZ/Nj++A==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    peerDependencies:
+      '@microsoft/api-extractor': ^7
+      '@rsbuild/core': ^1.0.0 || ^2.0.0-0
+      '@typescript/native-preview': ^7.0.0-0
+      typescript: ^5 || ^6
+    peerDependenciesMeta:
+      '@microsoft/api-extractor':
+        optional: true
+      '@typescript/native-preview':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@ast-grep/napi': 0.37.0
+      '@rsbuild/core': 2.0.15
       typescript: 6.0.3
     dev: true
 

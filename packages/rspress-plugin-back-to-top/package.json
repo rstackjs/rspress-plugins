@@ -27,7 +27,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc --declarationMap false",
+    "build": "rslib build",
     "dev": "tsc -w",
     "docs:build": "rspress build",
     "docs:dev": "rspress dev"
@@ -37,6 +37,8 @@
     "throttle-debounce": "^5.0.0"
   },
   "devDependencies": {
+    "@rsbuild/plugin-less": "^2.0.0",
+    "@rslib/core": "^0.23.0",
     "@types/node": "^20.12.5",
     "@types/react": "^18.2.74",
     "@types/throttle-debounce": "^5.0.2",
