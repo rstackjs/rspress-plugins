@@ -13,7 +13,7 @@
     "commit": "git add -A && czg",
     "packages:build": "pnpm -r --filter=./packages/**/* run build",
     "packages:build:p": "pnpm --parallel --filter=./packages/**/* run build",
-    "docs:build": "pnpm -r --filter=./packages/**/* run docs:build",
+    "docs:build": "pnpm -r --filter=./packages/**/* --filter=!rspress-plugin-gh-pages run docs:build",
     "lint": "rslint && prettier --check .",
     "lint:write": "rslint --fix && prettier --write .",
     "test": "rstest",
