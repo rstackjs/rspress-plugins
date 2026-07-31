@@ -11,26 +11,33 @@
     "plugin",
     "katex"
   ],
-  "homepage": "https://github.com/linbudu599/rspress-plugins/tree/main/packages/rspress-plugin-katex#readme",
+  "homepage": "https://github.com/rstackjs/rspress-plugins/tree/main/packages/rspress-plugin-katex#readme",
   "bugs": {
-    "url": "https://github.com/linbudu599/rspress-plugins/issues"
+    "url": "https://github.com/rstackjs/rspress-plugins/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linbudu599/rspress-plugins.git"
+    "url": "git+https://github.com/rstackjs/rspress-plugins.git",
+    "directory": "packages/rspress-plugin-katex"
   },
   "license": "MIT",
   "author": "Linbudu <linbudu599@gmail.com> (https://github.com/linbudu599)",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "tsc --declarationMap false",
-    "dev": "tsc -w",
-    "docs:build": "rspress build",
-    "docs:dev": "rspress dev"
+    "build": "rs lib",
+    "dev": "rs lib -w",
+    "docs:build": "rs doc build",
+    "docs:dev": "rs doc"
   },
   "dependencies": {
     "katex": "^0.16.10",
@@ -40,8 +47,9 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.12.5",
-    "typescript": "^6.0.3",
+    "@rspress/core": "catalog:",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
     "unified": "^11.0.5"
   },
   "peerDependencies": {

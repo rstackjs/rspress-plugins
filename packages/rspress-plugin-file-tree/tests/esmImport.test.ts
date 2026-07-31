@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-import { test } from '@rstest/core';
+import { test } from 'rstack/test';
 
 test('can be imported by native Node.js ESM', () => {
   const packageRoot =

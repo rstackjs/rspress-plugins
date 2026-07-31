@@ -1,18 +1,17 @@
-import { defineConfig } from '@rslib/core';
 import { pluginLess } from '@rsbuild/plugin-less';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { define } from 'rstack';
 import { pluginPublint } from 'rsbuild-plugin-publint';
 
-export default defineConfig({
+define.lib({
   plugins: [pluginPublint()],
   lib: [
     {
-      format: 'esm',
-      syntax: 'es2021',
-      autoExtension: true,
+      id: 'components',
       bundle: true,
+      syntax: 'es2023',
       dts: {
-        tsgo: true,
+        bundle: true,
       },
       source: {
         entry: {
@@ -20,30 +19,24 @@ export default defineConfig({
             './src/components/FileTree/FileTree.tsx',
         },
       },
-      tools: {
-        rspack: {
-          optimization: {
-            runtimeChunk: false,
-          },
-        },
-      },
       output: {
         target: 'web',
-        externals: {
-          react: 'module react',
-          'react/jsx-runtime': 'module react/jsx-runtime',
-          'react/jsx-dev-runtime': 'module react/jsx-dev-runtime',
-          'react-dom': 'module react-dom',
-        },
+        externals: [
+          'react',
+          'react-dom',
+          'react/jsx-runtime',
+          'react/jsx-dev-runtime',
+        ],
       },
       plugins: [pluginReact(), pluginLess()],
     },
     {
-      format: 'esm',
-      syntax: 'es2021',
-      autoExtension: true,
+      id: 'plugin',
       bundle: true,
-      dts: false,
+      syntax: 'es2023',
+      dts: {
+        bundle: true,
+      },
       source: {
         entry: {
           index: './src/index.ts',
@@ -51,7 +44,10 @@ export default defineConfig({
       },
       output: {
         target: 'node',
+        autoExternal: true,
       },
     },
   ],
 });
+
+define.doc(async () => (await import('./rspress.config.ts')).default);

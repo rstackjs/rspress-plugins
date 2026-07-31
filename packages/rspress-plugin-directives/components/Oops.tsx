@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (props) => {
+export default (props: Record<string, unknown>) => {
   return (
     <div>
       <h1>This is Oops directive component.</h1>

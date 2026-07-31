@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
+    "target": "ES2023",
     "module": "ESNext",
     "jsx": "preserve",
     "declaration": true,
-    "lib": ["es2022", "esnext", "dom"],
+    "lib": ["ES2023", "ESNext", "DOM"],
     "sourceMap": false,
     "declarationMap": true,
     "skipLibCheck": true,

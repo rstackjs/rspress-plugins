@@ -11,42 +11,46 @@
     "plugin",
     "back-to-top"
   ],
-  "homepage": "https://github.com/linbudu599/rspress-plugins/tree/main/packages/rspress-plugin-back-to-top#readme",
+  "homepage": "https://github.com/rstackjs/rspress-plugins/tree/main/packages/rspress-plugin-back-to-top#readme",
   "bugs": {
-    "url": "https://github.com/linbudu599/rspress-plugins/issues"
+    "url": "https://github.com/rstackjs/rspress-plugins/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linbudu599/rspress-plugins.git"
+    "url": "git+https://github.com/rstackjs/rspress-plugins.git",
+    "directory": "packages/rspress-plugin-back-to-top"
   },
   "license": "MIT",
   "author": "Linbudu <linbudu599@gmail.com> (https://github.com/linbudu599)",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "rslib build",
-    "dev": "rslib build --watch",
-    "docs:build": "pnpm build && rspress build",
-    "docs:dev": "pnpm build && run-p dev docs:serve",
-    "docs:serve": "rspress dev"
+    "build": "rs lib",
+    "dev": "rs lib -w",
+    "docs:build": "rs doc build",
+    "docs:dev": "rs doc"
   },
   "dependencies": {
     "rspress-plugin-devkit": "workspace:^",
     "throttle-debounce": "^5.0.0"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.58.12",
-    "@rsbuild/plugin-less": "^2.0.0",
-    "@rslib/core": "^0.23.0",
-    "@types/node": "^20.12.5",
-    "@types/react": "^18.2.74",
+    "@rsbuild/plugin-less": "catalog:",
+    "@rspress/core": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
     "@types/throttle-debounce": "^5.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^6.0.3"
+    "react": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"

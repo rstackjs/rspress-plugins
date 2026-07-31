@@ -1,9 +1,9 @@
 import * as path from 'path';
 import { defineConfig } from '@rspress/core';
-import ga from './src';
+import ga from 'rspress-plugin-google-analytics';
 
 export default defineConfig({
-  root: path.join(__dirname, 'docs'),
+  root: path.join(import.meta.dirname, 'docs'),
   title: 'Rspress x GA Example',
   plugins: [
     ga({

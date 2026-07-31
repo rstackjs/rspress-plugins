@@ -25,8 +25,10 @@ function getReadingTimeText(
   lang: string,
   defaultLocale: PresetLocale,
 ) {
-  const langKey = Object.keys(presetReadingTimeBuilder).includes(lang)
-    ? lang
+  const langKey: PresetLocale = Object.keys(presetReadingTimeBuilder).includes(
+    lang,
+  )
+    ? (lang as PresetLocale)
     : defaultLocale;
 
   return presetReadingTimeBuilder[langKey](result);

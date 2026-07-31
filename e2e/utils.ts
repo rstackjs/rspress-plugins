@@ -62,7 +62,7 @@ export const runDevCommand = async (
   const targetPort = port || (await getRandomPort());
   const childProcess = spawn(
     'pnpm',
-    ['rspress', 'dev', '--port', targetPort.toString()],
+    ['rs', 'doc', '--port', targetPort.toString()],
     {
       cwd: root,
       stdio: 'pipe',
