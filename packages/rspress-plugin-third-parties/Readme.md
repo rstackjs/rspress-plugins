@@ -2,6 +2,11 @@
 
 <div align="center">
 
+<img src="https://sanjaiyan-dev.github.io/rspress-plugin-third-parties/rspress-plugin-third-party-hero.png" alt="rspress-plugin-third-parties banner" width="100%" />
+
+<br/>
+<br/>
+
 [![npm version](https://img.shields.io/npm/v/rspress-plugin-third-parties.svg?style=for-the-badge&color=A855F7&labelColor=1F2937)](https://www.npmjs.com/package/rspress-plugin-third-parties)
 [![npm downloads](https://img.shields.io/npm/dm/rspress-plugin-third-parties.svg?style=for-the-badge&color=3B82F6&labelColor=1F2937)](https://www.npmjs.com/package/rspress-plugin-third-parties)
 [![license](https://img.shields.io/npm/l/rspress-plugin-third-parties.svg?style=for-the-badge&color=10B981&labelColor=1F2937)](./LICENSE)
