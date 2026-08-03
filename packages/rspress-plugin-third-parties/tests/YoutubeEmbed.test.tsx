@@ -53,7 +53,7 @@ describe('YouTubeEmbed Component', () => {
     await render(<YouTubeEmbed videoid="sSbDtQTtwBY" />);
 
     const preconnectLocator = page.locator(
-      'link[rel="preconnect"][href="https://cdn.jsdelivr.net"]',
+      'link[rel="preconnect"][href*="cdn.jsdelivr.net"]',
     );
 
     await expect.element(preconnectLocator).toBeAttached();

@@ -53,7 +53,7 @@
   ],
   "author": "Sanjaiyan Parthipan <https://github.com/sanjaiyan-dev>",
   "license": "MIT",
-  "homepage": "https://github.com/rstackjs/rspress-plugins/tree/main/packages/rspress-plugin-third-parties#readme",
+  "homepage": "https://sanjaiyan-dev.github.io/rspress-plugin-third-parties",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rstackjs/rspress-plugins.git",
@@ -77,6 +77,8 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "@rsbuild/plugin-react": "^2.1.0",
     "@rslib/core": "^0.23.2",
     "@rspress/core": "^2.0.18",

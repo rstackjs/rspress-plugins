@@ -106,7 +106,7 @@ importers:
     dependencies:
       '@rspress/core':
         specifier: ^2.0.0-rc.4 || ^2.0.0
-        version: 2.0.0-rc.4(@types/react@18.2.74)
+        version: 2.0.0-rc.4(@types/react@19.2.18)
       rspress-plugin-devkit:
         specifier: workspace:^
         version: link:../rspress-plugin-devkit
@@ -153,7 +153,7 @@ importers:
     dependencies:
       '@rspress/core':
         specifier: ^2.0.0-rc.4 || ^2.0.0
-        version: 2.0.0-rc.4(@types/react@18.2.74)
+        version: 2.0.0-rc.4(@types/react@19.2.18)
       '@types/estree-jsx':
         specifier: ^1.0.5
         version: 1.0.5
@@ -226,7 +226,7 @@ importers:
     dependencies:
       '@rspress/core':
         specifier: ^2.0.0-rc.4 || ^2.0.0
-        version: 2.0.0-rc.4(@types/react@18.2.74)
+        version: 2.0.0-rc.4(@types/react@19.2.18)
       rspress-plugin-devkit:
         specifier: workspace:^
         version: link:../rspress-plugin-devkit
@@ -279,7 +279,7 @@ importers:
     dependencies:
       '@rspress/core':
         specifier: ^2.0.0-rc.4 || ^2.0.0
-        version: 2.0.0-rc.4(@types/react@18.2.74)
+        version: 2.0.0-rc.4(@types/react@19.2.18)
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -323,7 +323,7 @@ importers:
     dependencies:
       '@rspress/core':
         specifier: ^2.0.0-rc.4 || ^2.0.0
-        version: 2.0.0-rc.4(@types/react@18.2.74)
+        version: 2.0.0-rc.4(@types/react@19.2.18)
       katex:
         specifier: ^0.16.10
         version: 0.16.10
@@ -449,18 +449,12 @@ importers:
 
   packages/rspress-plugin-third-parties:
     dependencies:
-      react:
-        specifier: ^18.0.0 || ^19.0.0
-        version: 18.2.0
       react-compiler-runtime:
         specifier: 0.0.0-experimental-a1856f3-20260507
-        version: 0.0.0-experimental-a1856f3-20260507(react@18.2.0)
-      react-dom:
-        specifier: ^18.0.0 || ^19.0.0
-        version: 18.2.0(react@18.2.0)
+        version: 0.0.0-experimental-a1856f3-20260507(react@19.2.8)
       react-tweet:
         specifier: ^3.3.1
-        version: 3.3.1(react-dom@18.2.0)(react@18.2.0)
+        version: 3.3.1(react-dom@19.2.8)(react@19.2.8)
       third-party-capital:
         specifier: ^3.0.0
         version: 3.0.0
@@ -482,7 +476,7 @@ importers:
         version: 0.11.5(@rstest/core@0.11.5)(playwright@1.57.0)
       '@rstest/browser-react':
         specifier: ^0.11.5
-        version: 0.11.5(@rstest/core@0.11.5)(react-dom@18.2.0)(react@18.2.0)
+        version: 0.11.5(@rstest/core@0.11.5)(react-dom@19.2.8)(react@19.2.8)
       '@rstest/core':
         specifier: ^0.11.5
         version: 0.11.5
@@ -501,6 +495,12 @@ importers:
       babel-plugin-react-compiler:
         specifier: 0.0.0-experimental-a1856f3-20260507
         version: 0.0.0-experimental-a1856f3-20260507
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
       typescript:
         specifier: ^7.0.2
         version: 7.0.2
@@ -512,7 +512,7 @@ importers:
         version: 2.0.0-rc.4(@types/react@18.2.74)
       '@vercel/analytics':
         specifier: ^1.2.2
-        version: 1.2.2(react@19.2.3)
+        version: 1.2.2(react@19.2.8)
       rspress-plugin-devkit:
         specifier: workspace:^
         version: link:../rspress-plugin-devkit
@@ -909,6 +909,7 @@ packages:
     dependencies:
       '@emnapi/wasi-threads': 1.2.1
       tslib: 2.8.1
+    dev: true
     optional: true
 
   /@emnapi/core@1.11.2:
@@ -917,7 +918,6 @@ packages:
     dependencies:
       '@emnapi/wasi-threads': 1.2.2
       tslib: 2.8.1
-    dev: true
     optional: true
 
   /@emnapi/runtime@1.10.0:
@@ -925,6 +925,7 @@ packages:
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
+    dev: true
     optional: true
 
   /@emnapi/runtime@1.11.2:
@@ -932,7 +933,6 @@ packages:
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
-    dev: true
     optional: true
 
   /@emnapi/wasi-threads@1.2.1:
@@ -940,6 +940,7 @@ packages:
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
+    dev: true
     optional: true
 
   /@emnapi/wasi-threads@1.2.2:
@@ -947,7 +948,6 @@ packages:
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
-    dev: true
     optional: true
 
   /@eslint-community/eslint-utils@4.4.0(eslint@9.0.0):
@@ -1105,7 +1105,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@mdx-js/react@3.1.1(@types/react@18.2.74)(react@19.2.3):
+  /@mdx-js/react@3.1.1(@types/react@18.2.74)(react@19.2.8):
     resolution: {integrity: sha512-f++rKLQgUVYDAtECQ6fn/is15GkEH9+nZPM3MS0RcxVqoTfawHvDlSCH7JbMhAM6uJ32v3eXLvLmLvjGu7PTQw==}
     peerDependencies:
       '@types/react': '>=16'
@@ -1113,6 +1113,17 @@ packages:
     dependencies:
       '@types/mdx': 2.0.12
       '@types/react': 18.2.74
+      react: 19.2.8
+    dev: false
+
+  /@mdx-js/react@3.1.1(@types/react@19.2.18)(react@19.2.3):
+    resolution: {integrity: sha512-f++rKLQgUVYDAtECQ6fn/is15GkEH9+nZPM3MS0RcxVqoTfawHvDlSCH7JbMhAM6uJ32v3eXLvLmLvjGu7PTQw==}
+    peerDependencies:
+      '@types/react': '>=16'
+      react: '>=16'
+    dependencies:
+      '@types/mdx': 2.0.12
+      '@types/react': 19.2.18
       react: 19.2.3
     dev: false
 
@@ -1212,9 +1223,9 @@ packages:
     resolution: {integrity: sha512-SeDnOO0Tk7Okiq6DbXmmBODgOAb9dp9gjlphokTUxmt8U3liIP1ZsozBahH69j/RJv+Rfs6IwUKHTgQYJ/HBAw==}
     requiresBuild: true
     dependencies:
-      '@emnapi/core': 1.10.0
-      '@emnapi/runtime': 1.10.0
-      '@tybys/wasm-util': 0.10.1
+      '@emnapi/core': 1.11.2
+      '@emnapi/runtime': 1.11.2
+      '@tybys/wasm-util': 0.10.3
     dev: false
     optional: true
 
@@ -1227,7 +1238,7 @@ packages:
     dependencies:
       '@emnapi/core': 1.10.0
       '@emnapi/runtime': 1.10.0
-      '@tybys/wasm-util': 0.10.1
+      '@tybys/wasm-util': 0.10.3
     dev: true
     optional: true
 
@@ -1940,7 +1951,61 @@ packages:
     hasBin: true
     dependencies:
       '@mdx-js/mdx': 3.1.1
-      '@mdx-js/react': 3.1.1(@types/react@18.2.74)(react@19.2.3)
+      '@mdx-js/react': 3.1.1(@types/react@18.2.74)(react@19.2.8)
+      '@rsbuild/core': 1.6.15
+      '@rsbuild/plugin-react': 1.4.2(@rsbuild/core@1.6.15)
+      '@rspress/mdx-rs': 0.6.6
+      '@rspress/runtime': 2.0.0-rc.4
+      '@rspress/shared': 2.0.0-rc.4
+      '@shikijs/rehype': 3.20.0
+      '@types/unist': 3.0.3
+      '@unhead/react': 2.1.1(react@19.2.8)
+      body-scroll-lock: 4.0.0-beta.0
+      cac: 6.7.14
+      chokidar: 3.6.0
+      clsx: 2.1.1
+      copy-to-clipboard: 3.3.3
+      flexsearch: 0.8.212
+      github-slugger: 2.0.0
+      hast-util-heading-rank: 3.0.0
+      hast-util-to-jsx-runtime: 2.3.6
+      html-to-text: 9.0.5
+      lodash-es: 4.17.22
+      mdast-util-mdx: 3.0.0
+      mdast-util-mdxjs-esm: 2.0.1
+      medium-zoom: 1.1.0
+      nprogress: 0.2.0
+      picocolors: 1.1.1
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+      react-lazy-with-preload: 2.2.1
+      react-reconciler: 0.33.0(react@19.2.8)
+      react-router-dom: 7.11.0(react-dom@19.2.8)(react@19.2.8)
+      rehype-external-links: 3.0.0
+      rehype-raw: 7.0.0
+      remark-gfm: 4.0.1
+      remark-mdx: 3.1.1
+      remark-stringify: 11.0.0
+      scroll-into-view-if-needed: 3.1.0
+      shiki: 3.20.0
+      tinyglobby: 0.2.15
+      tinypool: 1.1.1
+      unified: 11.0.5
+      unist-util-visit: 5.0.0
+      unist-util-visit-children: 3.0.0
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+      - webpack-hot-middleware
+    dev: false
+
+  /@rspress/core@2.0.0-rc.4(@types/react@19.2.18):
+    resolution: {integrity: sha512-EHJjbc8yA/La6sJN3bjZus24KhSCdh5lEIVtjt7EBEnLteDN+wULzO1sFKj8agH3BXYE0XOuz2W1HbTTGfcGJQ==}
+    engines: {node: '>=20.9.0'}
+    hasBin: true
+    dependencies:
+      '@mdx-js/mdx': 3.1.1
+      '@mdx-js/react': 3.1.1(@types/react@19.2.18)(react@19.2.3)
       '@rsbuild/core': 1.6.15
       '@rsbuild/plugin-react': 1.4.2(@rsbuild/core@1.6.15)
       '@rspress/mdx-rs': 0.6.6
@@ -2131,10 +2196,10 @@ packages:
     engines: {node: '>=20.9.0'}
     dependencies:
       '@rspress/shared': 2.0.0-rc.4
-      '@unhead/react': 2.1.1(react@19.2.3)
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
-      react-router-dom: 7.11.0(react-dom@19.2.3)(react@19.2.3)
+      '@unhead/react': 2.1.1(react@19.2.8)
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+      react-router-dom: 7.11.0(react-dom@19.2.8)(react@19.2.8)
     dev: false
 
   /@rspress/shared@2.0.0-rc.4:
@@ -2161,7 +2226,7 @@ packages:
       - supports-color
     dev: true
 
-  /@rstest/browser-react@0.11.5(@rstest/core@0.11.5)(react-dom@18.2.0)(react@18.2.0):
+  /@rstest/browser-react@0.11.5(@rstest/core@0.11.5)(react-dom@19.2.8)(react@19.2.8):
     resolution: {integrity: sha512-GeOhZ8MnuxiykUUjr/6qiRAre9vVZDOmFE0OxdZvuv+XxUPpxrqn/4oNVmMmSZrawplEEVQ79YrFxbKMY0BGVg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
@@ -2170,8 +2235,8 @@ packages:
       react-dom: ^18.0.0 || ^19.0.0
     dependencies:
       '@rstest/core': 0.11.5
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
     dev: true
 
   /@rstest/browser@0.11.5(@rstest/core@0.11.5)(playwright@1.57.0):
@@ -2491,19 +2556,11 @@ packages:
       tinyglobby: 0.2.15
     dev: false
 
-  /@tybys/wasm-util@0.10.1:
-    resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
-    requiresBuild: true
-    dependencies:
-      tslib: 2.8.1
-    optional: true
-
   /@tybys/wasm-util@0.10.3:
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
-    dev: true
     optional: true
 
   /@types/argparse@1.0.38:
@@ -2707,7 +2764,6 @@ packages:
     resolution: {integrity: sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==}
     dependencies:
       csstype: 3.2.3
-    dev: true
 
   /@types/semver@7.5.8:
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
@@ -3005,6 +3061,15 @@ packages:
       unhead: 2.1.1
     dev: false
 
+  /@unhead/react@2.1.1(react@19.2.8):
+    resolution: {integrity: sha512-WD2seVvB7PsReydiE+XQTmIjia55wosuDj2VQuS96elIDhNuFI7ZHYQzZzNXbg7QCm7BhtzR+cKYa/+iXWWyCw==}
+    peerDependencies:
+      react: '>=18.3.1'
+    dependencies:
+      react: 19.2.8
+      unhead: 2.1.1
+    dev: false
+
   /@unhead/react@2.1.16(react@19.2.8):
     resolution: {integrity: sha512-FhKVVHAsHbiD24yNAklQIAbjGmcVLTJjKFx1YEhOzGmiZaH2q6CzbwxboJYK6oasepio8Qap9UqHhudJ98wTbA==}
     peerDependencies:
@@ -3014,7 +3079,7 @@ packages:
       unhead: 2.1.16
     dev: true
 
-  /@vercel/analytics@1.2.2(react@19.2.3):
+  /@vercel/analytics@1.2.2(react@19.2.8):
     resolution: {integrity: sha512-X0rctVWkQV1e5Y300ehVNqpOfSOufo7ieA5PIdna8yX/U7Vjz0GFsGf4qvAhxV02uQ2CVt7GYcrFfddXXK2Y4A==}
     peerDependencies:
       next: '>= 13'
@@ -3025,7 +3090,7 @@ packages:
       react:
         optional: true
     dependencies:
-      react: 19.2.3
+      react: 19.2.8
       server-only: 0.0.1
     dev: false
 
@@ -3640,7 +3705,6 @@ packages:
 
   /csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
-    dev: true
 
   /csv-generate@3.4.3:
     resolution: {integrity: sha512-w/T+rqR0vwvHqWs/1ZyMDWtHHSJaN06klRqJXBEpDJaM/+dZkso0OKh1VcuuYvK3XM53KysVNq8Ko/epCK8wOw==}
@@ -5642,6 +5706,7 @@ packages:
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    dev: true
 
   /js-yaml@3.14.1:
     resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
@@ -5850,6 +5915,7 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+    dev: true
 
   /lru-cache@10.2.0:
     resolution: {integrity: sha512-2bIM8x+VAf6JT4bKAljS1qUWgMsqZRPGJS6FSahIMPVvctcNhyVp7AJu7quxOW9jwkryBReKZY5tY5JYv2n/7Q==}
@@ -7523,12 +7589,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /react-compiler-runtime@0.0.0-experimental-a1856f3-20260507(react@18.2.0):
+  /react-compiler-runtime@0.0.0-experimental-a1856f3-20260507(react@19.2.8):
     resolution: {integrity: sha512-2UOQV9KDc/W7/aIFp+Y817a4nOoj9kWjvg3dVrlTb9I9dtXyMgC6/FnaWRYE50xOwJbbz2h/v6vemVu1u1ZaBQ==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
     dependencies:
-      react: 18.2.0
+      react: 19.2.8
     dev: false
 
   /react-dom@18.2.0(react@18.2.0):
@@ -7539,6 +7605,7 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: true
 
   /react-dom@19.2.3(react@19.2.3):
     resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
@@ -7556,7 +7623,6 @@ packages:
     dependencies:
       react: 19.2.8
       scheduler: 0.27.0
-    dev: true
 
   /react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
@@ -7583,7 +7649,6 @@ packages:
     dependencies:
       react: 19.2.8
       scheduler: 0.27.0
-    dev: true
 
   /react-refresh@0.18.0:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
@@ -7608,6 +7673,18 @@ packages:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
       react-router: 7.11.0(react-dom@19.2.3)(react@19.2.3)
+    dev: false
+
+  /react-router-dom@7.11.0(react-dom@19.2.8)(react@19.2.8):
+    resolution: {integrity: sha512-e49Ir/kMGRzFOOrYQBdoitq3ULigw4lKbAyKusnvtDu2t4dBX4AGYPrzNvorXmVuOyeakai6FUPW5MmibvVG8g==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    dependencies:
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+      react-router: 7.11.0(react-dom@19.2.8)(react@19.2.8)
     dev: false
 
   /react-router-dom@7.18.2(react-dom@19.2.8)(react@19.2.8):
@@ -7638,6 +7715,22 @@ packages:
       set-cookie-parser: 2.7.2
     dev: false
 
+  /react-router@7.11.0(react-dom@19.2.8)(react@19.2.8):
+    resolution: {integrity: sha512-uI4JkMmjbWCZc01WVP2cH7ZfSzH91JAZUDd7/nIprDgWxBV1TkkmLToFh7EbMTcMak8URFRa2YoBL/W8GWnCTQ==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+    dependencies:
+      cookie: 1.1.1
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+      set-cookie-parser: 2.7.2
+    dev: false
+
   /react-router@7.18.2(react-dom@19.2.8)(react@19.2.8):
     resolution: {integrity: sha512-aUVMjFm3GAPTTZL7oYr5E7ETiqfQCHRLH+B+5afnICvf0r7kkK4eR6SMuwbSTJw/7t+12khT/Kahij49fqOCIg==}
     engines: {node: '>=20.0.0'}
@@ -7654,7 +7747,7 @@ packages:
       set-cookie-parser: 2.7.2
     dev: true
 
-  /react-tweet@3.3.1(react-dom@18.2.0)(react@18.2.0):
+  /react-tweet@3.3.1(react-dom@19.2.8)(react@19.2.8):
     resolution: {integrity: sha512-0Gj1YgBTe1K85NBMoWBlUc17Rdc67gIJLlacrVgj+3jWIoXpFfxPdZ1U5OnWkkF9zxhphqs2pY1i//JBfP3Qog==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
@@ -7662,9 +7755,9 @@ packages:
     dependencies:
       '@swc/helpers': 0.5.23
       clsx: 2.1.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      swr: 2.5.0(react@18.2.0)
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+      swr: 2.5.0(react@19.2.8)
     dev: false
 
   /react@18.2.0:
@@ -7672,6 +7765,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
+    dev: true
 
   /react@19.2.3:
     resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
@@ -7681,7 +7775,6 @@ packages:
   /react@19.2.8:
     resolution: {integrity: sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /read-pkg-up@7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
@@ -8152,6 +8245,7 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
+    dev: true
 
   /scheduler@0.27.0:
     resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
@@ -8645,14 +8739,14 @@ packages:
       xml-reader: 2.4.3
     dev: true
 
-  /swr@2.5.0(react@18.2.0):
+  /swr@2.5.0(react@19.2.8):
     resolution: {integrity: sha512-W0GomadRJe9OfzIoRX0kZHhDSaRRfdiOUeH6uazgR05SibBhDNwfdTbhAxmFtObvkf59fFymo22mooKukosvNA==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     dependencies:
       dequal: 2.0.3
-      react: 18.2.0
-      use-sync-external-store: 1.6.0(react@18.2.0)
+      react: 19.2.8
+      use-sync-external-store: 1.6.0(react@19.2.8)
     dev: false
 
   /system-architecture@0.1.0:
@@ -9021,12 +9115,12 @@ packages:
       punycode: 2.3.1
     dev: true
 
-  /use-sync-external-store@1.6.0(react@18.2.0):
+  /use-sync-external-store@1.6.0(react@19.2.8):
     resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     dependencies:
-      react: 18.2.0
+      react: 19.2.8
     dev: false
 
   /util-deprecate@1.0.2:
