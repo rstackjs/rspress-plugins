@@ -28,15 +28,17 @@
   },
   "scripts": {
     "build": "rslib build",
-    "dev": "tsc -w",
-    "docs:build": "rspress build",
-    "docs:dev": "rspress dev"
+    "dev": "rslib build --watch",
+    "docs:build": "pnpm build && rspress build",
+    "docs:dev": "pnpm build && run-p dev docs:serve",
+    "docs:serve": "rspress dev"
   },
   "dependencies": {
     "rspress-plugin-devkit": "workspace:^",
     "throttle-debounce": "^5.0.0"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.58.12",
     "@rsbuild/plugin-less": "^2.0.0",
     "@rslib/core": "^0.23.0",
     "@types/node": "^20.12.5",

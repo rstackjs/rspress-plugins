@@ -13,7 +13,11 @@ const waitForServer = async (url: string) => {
 
   while (Date.now() < deadline) {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        signal: AbortSignal.timeout(
+          Math.min(2_000, Math.max(1, deadline - Date.now())),
+        ),
+      });
       if (response.ok) {
         return;
       }
@@ -86,7 +90,14 @@ export const runDevCommand = async (
               url,
             });
           })
-          .catch(reject);
+          .catch(async (error) => {
+            try {
+              await killProcess(childProcess);
+            } catch (cleanupError) {
+              console.error(`Dev cleanup error: ${cleanupError}`);
+            }
+            reject(error);
+          });
       }
     });
 
