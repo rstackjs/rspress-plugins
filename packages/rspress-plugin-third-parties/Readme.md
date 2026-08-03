@@ -82,16 +82,16 @@ To auto-inject **Google Analytics** globally across your Rspress documentation, 
 
 ```typescript
 // rspress.config.ts
-import { defineConfig } from "rspress/config";
-import { pluginThirdParties } from "rspress-plugin-third-parties/plugin";
+import { defineConfig } from 'rspress/config';
+import { pluginThirdParties } from 'rspress-plugin-third-parties/plugin';
 
 export default defineConfig({
   plugins: [
     pluginThirdParties({
       googleAnalytics: {
-        gaId: "G-XXXXXXXXXX", // Your GA4 Measurement ID
+        gaId: 'G-XXXXXXXXXX', // Your GA4 Measurement ID
         debugMode: false, // Set to true for local testing
-        dataLayerName: "dataLayer",
+        dataLayerName: 'dataLayer',
       },
     }),
   ],
@@ -109,14 +109,14 @@ export default defineConfig({
 The foundation component powering all external integrations. It manages script mounting, deduplication, inline scripts, stylesheet preloading, and lifecycle events (`onLoad`, `onReady`, `onError`).
 
 ```mdx
-import { Script } from "rspress-plugin-third-parties";
+import { Script } from 'rspress-plugin-third-parties';
 
 {/* Load after interactive */}
 
 <Script
   src="https://sanjaiyan-cool.web.app/script/v1/1/SanWebMaker.js"
   strategy="afterInteractive"
-  onLoad={() => console.log("Widgets loaded!")}
+  onLoad={() => console.log('Widgets loaded!')}
 />
 
 {/* Inline Script */}
@@ -145,7 +145,7 @@ import { Script } from "rspress-plugin-third-parties";
 Powered by `lite-youtube-embed` under the hood. Renders an ultra-fast visual facade that defers the heavy YouTube player until play is clicked—keeping your main thread pristine and Lighthouse scores flawless.
 
 ```mdx
-import { YouTubeEmbed } from "rspress-plugin-third-parties";
+import { YouTubeEmbed } from 'rspress-plugin-third-parties';
 
 # Youtube Video
 
@@ -174,7 +174,7 @@ import { YouTubeEmbed } from "rspress-plugin-third-parties";
 Provides performance-optimized embeds for Google Maps without blocking the browser during initial navigation.
 
 ```mdx
-import { GoogleMapsEmbed } from "rspress-plugin-third-parties";
+import { GoogleMapsEmbed } from 'rspress-plugin-third-parties';
 
 <GoogleMapsEmbed
   apiKey="YOUR_GOOGLE_MAPS_API_KEY"
@@ -206,7 +206,7 @@ import { GoogleMapsEmbed } from "rspress-plugin-third-parties";
 Zero-overhead Twitter/X post embed powered by `react-tweet`. Fetches raw post data and renders lightweight, native React DOM components styled identically to X/Twitter UI without downloading heavy `widgets.js` scripts or layout-shifting IFrames.
 
 ```mdx
-import { TweetEmbed } from "rspress-plugin-third-parties";
+import { TweetEmbed } from 'rspress-plugin-third-parties';
 
 {/* Basic Tweet */}
 
@@ -238,7 +238,7 @@ import { TweetEmbed } from "rspress-plugin-third-parties";
 Explicitly embed Google Analytics 4 (GA4) inside MDX pages or custom layout components.
 
 ```mdx
-import { GoogleAnalytics } from "rspress-plugin-third-parties";
+import { GoogleAnalytics } from 'rspress-plugin-third-parties';
 
 <GoogleAnalytics gaId="G-XXXXXXXXXX" debugMode={true} />
 ```
@@ -259,11 +259,11 @@ import { GoogleAnalytics } from "rspress-plugin-third-parties";
 Integrate Google Tag Manager (GTM) with support for custom domains, authentication, preview environments, and custom initial dataLayer states.
 
 ```mdx
-import { GoogleTagManager } from "rspress-plugin-third-parties";
+import { GoogleTagManager } from 'rspress-plugin-third-parties';
 
 <GoogleTagManager
   gtmId="GTM-XXXXXXX"
-  dataLayer={{ userRole: "developer", env: "production" }}
+  dataLayer={{ userRole: 'developer', env: 'production' }}
 />
 ```
 
