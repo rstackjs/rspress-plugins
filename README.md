@@ -28,6 +28,7 @@ A collection of plugins to extend the capabilities of [rspress](https://rspress.
 
 - [rspress-plugin-google-analytics](./packages/rspress-plugin-google-analytics), integrate Google Analytics in your site.
 - [rspress-plugin-vercel-analytics](./packages/rspress-plugin-vercel-analytics), integrate Vercel Analytics in your site.
+- [rspress-plugin-third-parties](./packages/rspress-plugin-third-parties), optimized third-party script loading and component embeds (YouTube, Twitter/X, Google Analytics, GTM).
 - [ ] rspress-plugin-sitemap
 - [ ] rspress-plugin-pwa
 
