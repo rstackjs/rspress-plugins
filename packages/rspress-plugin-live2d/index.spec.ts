@@ -7,10 +7,11 @@ const pageUrl = useRspressDevServer(import.meta.dirname);
 const sdk = await readFile(
   path.join(import.meta.dirname, 'node_modules/oh-my-live2d/lib/complete.js'),
 );
+const sdkUrl = 'https://lib.oml2d.com/complete.js';
 
 describe('rspress-plugin-live2d', () => {
   beforeEach(async ({ page }) => {
-    await page.route('https://e2e.local/complete.js', (route) =>
+    await page.route(sdkUrl, (route) =>
       route.fulfill({
         body: sdk,
         contentType: 'application/javascript',
@@ -19,9 +20,9 @@ describe('rspress-plugin-live2d', () => {
     await page.route('https://model.oml2d.com/**', (route) => route.abort());
   });
 
-  // Covers dynamic SDK loading through the configured library URL.
-  test('loads the configured Live2D SDK', async ({ page }) => {
-    const sdkRequest = page.waitForRequest('https://e2e.local/complete.js');
+  // Covers dynamic SDK loading through the default library URL.
+  test('loads the default Live2D SDK', async ({ page }) => {
+    const sdkRequest = page.waitForRequest(sdkUrl);
     await page.goto(pageUrl());
 
     await sdkRequest;
