@@ -38,7 +38,7 @@
     "build": "rs lib",
     "dev": "rs lib -w",
     "docs:build": "rs doc build",
-    "docs:dev": "rs doc"
+    "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
   "dependencies": {
     "rspress-plugin-devkit": "workspace:^"
@@ -52,6 +52,7 @@
     "material-icon-theme": "^5.30.0",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "rspress-plugin-file-tree": "workspace:*",
     "typescript": "catalog:"
   },
   "peerDependencies": {

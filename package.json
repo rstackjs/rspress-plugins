@@ -38,6 +38,7 @@
     "@types/cross-spawn": "^6.0.6",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
+    "concurrently": "^10.0.4",
     "cross-spawn": "^7.0.6",
     "czg": "^1.9.1",
     "fs-extra": "^11.3.6",

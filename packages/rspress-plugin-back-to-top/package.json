@@ -37,7 +37,7 @@
     "build": "rs lib",
     "dev": "rs lib -w",
     "docs:build": "rs doc build",
-    "docs:dev": "rs doc"
+    "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
   "dependencies": {
     "rspress-plugin-devkit": "workspace:^",
@@ -50,6 +50,7 @@
     "@types/react": "catalog:",
     "@types/throttle-debounce": "^5.0.2",
     "react": "catalog:",
+    "rspress-plugin-back-to-top": "workspace:*",
     "typescript": "catalog:"
   },
   "peerDependencies": {

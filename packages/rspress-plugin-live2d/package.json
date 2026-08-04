@@ -38,7 +38,7 @@
     "build": "rs lib",
     "dev": "rs lib -w",
     "docs:build": "rs doc build",
-    "docs:dev": "rs doc"
+    "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
   "dependencies": {
     "oh-my-live2d": "^0.15.2"
@@ -47,6 +47,7 @@
     "@rspress/core": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
+    "rspress-plugin-live2d": "workspace:*",
     "typescript": "catalog:"
   },
   "peerDependencies": {

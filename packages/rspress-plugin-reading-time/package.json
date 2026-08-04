@@ -38,7 +38,7 @@
     "build": "rs lib",
     "dev": "rs lib -w",
     "docs:build": "rs doc build",
-    "docs:dev": "rs doc"
+    "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
   "dependencies": {
     "reading-time": "^1.5.0",
@@ -48,6 +48,7 @@
     "@rspress/core": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
+    "rspress-plugin-reading-time": "workspace:*",
     "typescript": "catalog:"
   },
   "peerDependencies": {

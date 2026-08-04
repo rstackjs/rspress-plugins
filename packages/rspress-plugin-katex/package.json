@@ -37,7 +37,7 @@
     "build": "rs lib",
     "dev": "rs lib -w",
     "docs:build": "rs doc build",
-    "docs:dev": "rs doc"
+    "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
   "dependencies": {
     "katex": "^0.16.10",
@@ -49,6 +49,7 @@
   "devDependencies": {
     "@rspress/core": "catalog:",
     "@types/node": "catalog:",
+    "rspress-plugin-katex": "workspace:*",
     "typescript": "catalog:",
     "unified": "^11.0.5"
   },
