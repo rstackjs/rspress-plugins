@@ -8,8 +8,8 @@
 - Build, lint, tests, and Git hooks: Rstack CLI
 - Build: shared Rslib v1 configuration, with package-specific entries only when required
 - Unit tests: Rstest through `rs test`
-- E2E tests: Playwright
-- Lint and format: `rs lint --type-check` and Prettier
+- E2E tests: Playwright through `@rstest/playwright`
+- Lint and format: `rs lint --type-check` and `rs fmt`
 
 ## Commands (run early)
 
@@ -21,9 +21,11 @@ pnpm install
 # checks
 pnpm lint
 pnpm test
+pnpm e2e
 
-# build / package validation
+# build / docs validation
 pnpm build
+pnpm docs:build
 ```
 
 ## Project structure

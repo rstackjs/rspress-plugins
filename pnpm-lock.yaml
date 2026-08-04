@@ -81,9 +81,6 @@ importers:
       playwright:
         specifier: 1.61.1
         version: 1.61.1
-      prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
       react:
         specifier: 'catalog:'
         version: 18.3.1
@@ -94,8 +91,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(@rsbuild/core@2.1.8)
       rstack:
-        specifier: ^0.2.0
-        version: 0.2.0(@microsoft/api-extractor@7.58.12)(@rspress/core@2.0.19)(typescript@6.0.3)
+        specifier: ^0.3.2
+        version: 0.3.2(@microsoft/api-extractor@7.58.12)(@rspress/core@2.0.19)(typescript@6.0.3)
       tree-kill:
         specifier: ^1.2.2
         version: 1.2.2
@@ -634,6 +631,16 @@ packages:
 
   '@rsbuild/core@2.1.8':
     resolution: {integrity: sha512-Y70LMcCZspVoQ7Oip1W2Agu5wVhWZ2x3cYl4s9GLQG4VYphBud53DY/jkrqkyQF8ASYZDDDrW2KWNFj0kNLLuA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      core-js: '>= 3.0.0'
+    peerDependenciesMeta:
+      core-js:
+        optional: true
+
+  '@rsbuild/core@2.1.9':
+    resolution: {integrity: sha512-yqf1hFZ3wbMYI431LqsxLH3r0VZkfyarVKTf7kMeIiGe0YLwsrgsfp+sKpIyVkQkq60J0qyp6l/CoqqsQZqEwQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -2548,8 +2555,8 @@ packages:
       '@rsbuild/core':
         optional: true
 
-  rstack@0.2.0:
-    resolution: {integrity: sha512-ZAZLW3fDaKfsLofbywwLfCNJ5LKTlLPcwiQ+jfdouSzakaTnnxGJTRblQWIkWVyfNKkA+eCRePtqDLa8Oq8Qqg==}
+  rstack@0.3.2:
+    resolution: {integrity: sha512-xT2trYrQlxZ9SGtt4+BZzd9MCkPrVT5QJZt9B0kfJexByC37uEVryzEjkIiPFFvC6HCJMjBbdd5Cizoatwjmxg==}
     engines: {node: '>=22.12.0'}
     hasBin: true
     peerDependencies:
@@ -2703,6 +2710,10 @@ packages:
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
     engines: {node: '>=12.0.0'}
+
+  tinypool@2.1.0:
+    resolution: {integrity: sha512-Pugqs6M0m7Lv1I7FtxN4aoyToKg1C4tu+/381vH35y8oENM/Ai7f7C4StcoK4/+BSw9ebcS8jRiVrORFKCALLw==}
+    engines: {node: ^20.0.0 || >=22.0.0}
 
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
@@ -3172,6 +3183,13 @@ snapshots:
       tinyexec: 1.2.4
 
   '@rsbuild/core@2.1.8':
+    dependencies:
+      '@rspack/core': 2.1.7(@swc/helpers@0.5.23)
+      '@swc/helpers': 0.5.23
+    transitivePeerDependencies:
+      - '@module-federation/runtime-tools'
+
+  '@rsbuild/core@2.1.9':
     dependencies:
       '@rspack/core': 2.1.7(@swc/helpers@0.5.23)
       '@swc/helpers': 0.5.23
@@ -5586,12 +5604,15 @@ snapshots:
     optionalDependencies:
       '@rsbuild/core': 2.1.8
 
-  rstack@0.2.0(@microsoft/api-extractor@7.58.12)(@rspress/core@2.0.19)(typescript@6.0.3):
+  rstack@0.3.2(@microsoft/api-extractor@7.58.12)(@rspress/core@2.0.19)(typescript@6.0.3):
     dependencies:
-      '@rsbuild/core': 2.1.8
+      '@rsbuild/core': 2.1.9
       '@rslib/core': 1.0.0-beta.1(@microsoft/api-extractor@7.58.12)(typescript@6.0.3)
       '@rslint/core': 0.7.2
       '@rstest/core': 0.11.5
+      prettier: 3.9.6
+      tinypool: 2.1.0
+      yuku-parser: 0.8.3
     optionalDependencies:
       '@rspress/core': 2.0.19(@rspack/core@2.1.7)(micromark-util-types@2.0.2)(micromark@4.0.2)(supports-color@9.4.0)
     transitivePeerDependencies:
@@ -5729,6 +5750,8 @@ snapshots:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
+
+  tinypool@2.1.0: {}
 
   to-regex-range@5.0.1:
     dependencies:

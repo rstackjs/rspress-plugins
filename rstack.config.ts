@@ -1,8 +1,13 @@
 import { define } from 'rstack';
 
 define.staged({
-  '*.{js,jsx,ts,tsx,mjs,cjs}': ['rs lint --type-check', 'prettier --write'],
-  '*.{json,md,mdx,css,less,scss,yml,yaml}': 'prettier --write',
+  '*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}': ['rs lint --type-check', 'rs fmt'],
+  '*.{json,jsonc,md,mdx,css,less,scss,html,yml,yaml}': 'rs fmt',
+});
+
+define.fmt({
+  printWidth: 80,
+  singleQuote: true,
 });
 
 define.lint(async () => {
