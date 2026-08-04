@@ -1,10 +1,10 @@
-import { expect, test } from '@playwright/test';
+import { beforeEach, describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-google-analytics', () => {
-  test.beforeEach(async ({ page }) => {
+describe('rspress-plugin-google-analytics', () => {
+  beforeEach(async ({ page }) => {
     await page.route('https://www.googletagmanager.com/**', (route) =>
       route.abort(),
     );
@@ -31,13 +31,15 @@ test.describe('rspress-plugin-google-analytics', () => {
     await page.goto(pageUrl());
 
     await expect
-      .poll(() =>
-        page.evaluate(() => {
-          const analyticsWindow = window as typeof window & {
-            dataLayer: ArrayLike<unknown>[];
-          };
-          return analyticsWindow.dataLayer.map((entry) => Array.from(entry));
-        }),
+      .poll(
+        () =>
+          page.evaluate(() => {
+            const analyticsWindow = window as typeof window & {
+              dataLayer: ArrayLike<unknown>[];
+            };
+            return analyticsWindow.dataLayer.map((entry) => Array.from(entry));
+          }),
+        { timeout: 5_000 },
       )
       .toEqual(
         expect.arrayContaining([

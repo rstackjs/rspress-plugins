@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { afterAll, beforeAll } from '@rstest/playwright';
 import type { ChildProcess } from 'node:child_process';
 import spawn from 'cross-spawn';
 import getPortLib from 'get-port';
@@ -32,9 +32,9 @@ const waitForServer = async (url: string) => {
 };
 
 export const killProcess = async (instance: ChildProcess) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     if (!instance || !instance.pid) {
-      resolve(null);
+      resolve();
       return;
     }
     treeKill(instance.pid, (err) => {
@@ -46,11 +46,11 @@ export const killProcess = async (instance: ChildProcess) => {
             err.message.includes('not found'))
         ) {
           // Windows throws an error if the process is already dead
-          return resolve(null);
+          return resolve();
         }
         return reject(err);
       }
-      return resolve(null);
+      return resolve();
     });
   });
 };
@@ -74,43 +74,45 @@ export const runDevCommand = async (
   );
 
   return new Promise((resolve, reject) => {
-    let resolved = false;
-    let starting = false;
-    childProcess.stdout?.on('data', (data) => {
-      const output = data.toString();
-      // Rspress dev server started
-      if (output.includes('http://localhost') && !resolved && !starting) {
-        starting = true;
-        const url = `http://localhost:${targetPort}`;
-        waitForServer(url)
-          .then(() => {
-            resolved = true;
-            resolve({
-              process: childProcess,
-              url,
-            });
-          })
-          .catch(async (error) => {
-            try {
-              await killProcess(childProcess);
-            } catch (cleanupError) {
-              console.error(`Dev cleanup error: ${cleanupError}`);
-            }
-            reject(error);
-          });
-      }
-    });
+    let settled = false;
+    const url = `http://localhost:${targetPort}`;
+
+    waitForServer(url)
+      .then(() => {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        resolve({ process: childProcess, url });
+      })
+      .catch(async (error) => {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        try {
+          await killProcess(childProcess);
+        } catch (cleanupError) {
+          console.error(`Dev cleanup error: ${cleanupError}`);
+        }
+        reject(error);
+      });
 
     childProcess.stderr?.on('data', (data) => {
       console.error(`Dev Error: ${data}`);
     });
 
     childProcess.on('error', (err) => {
+      if (settled) {
+        return;
+      }
+      settled = true;
       reject(err);
     });
 
     childProcess.on('close', (code) => {
-      if (!resolved && code !== 0) {
+      if (!settled) {
+        settled = true;
         reject(new Error(`Dev process exited with code ${code}`));
       }
     });
@@ -121,13 +123,13 @@ export const useRspressDevServer = (root: string) => {
   let devProcess: ChildProcess | undefined;
   let url = '';
 
-  test.beforeAll(async () => {
+  beforeAll(async () => {
     const result = await runDevCommand(root);
     devProcess = result.process;
     url = result.url;
   });
 
-  test.afterAll(async () => {
+  afterAll(async () => {
     if (devProcess) {
       await killProcess(devProcess);
     }

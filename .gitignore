@@ -4,6 +4,7 @@
 node_modules/
 .rslib/
 **/.rslib/
+.rstest/
 # production
 .docusaurus/
 build/

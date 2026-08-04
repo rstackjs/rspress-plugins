@@ -7,4 +7,5 @@ playwright-report
 test-results
 .rslib
 **/.rslib
+.rstest
 pnpm-lock.yaml

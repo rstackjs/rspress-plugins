@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-reading-time', () => {
+describe('rspress-plugin-reading-time', () => {
   // Covers locale fallback and the short-content estimate.
   test('renders a localized short reading-time estimate', async ({ page }) => {
     await page.goto(pageUrl('/short'));

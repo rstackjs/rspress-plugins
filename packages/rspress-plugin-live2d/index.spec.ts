@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import * as path from 'node:path';
-import { expect, test } from '@playwright/test';
+import { beforeEach, describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
@@ -8,8 +8,8 @@ const sdk = await readFile(
   path.join(import.meta.dirname, 'node_modules/oh-my-live2d/lib/complete.js'),
 );
 
-test.describe('rspress-plugin-live2d', () => {
-  test.beforeEach(async ({ page }) => {
+describe('rspress-plugin-live2d', () => {
+  beforeEach(async ({ page }) => {
     await page.route('https://e2e.local/complete.js', (route) =>
       route.fulfill({
         body: sdk,

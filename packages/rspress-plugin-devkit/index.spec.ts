@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-devkit', () => {
+describe('rspress-plugin-devkit', () => {
   // Covers the code-block factory's component replacement.
   test('replaces a matching code block with a global component', async ({
     page,

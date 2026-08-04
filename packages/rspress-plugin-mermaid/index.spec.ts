@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-mermaid', () => {
+describe('rspress-plugin-mermaid', () => {
   // Covers conversion of the Mermaid code block to an SVG diagram.
   test('renders the diagram as SVG', async ({ page }) => {
     await page.goto(pageUrl());

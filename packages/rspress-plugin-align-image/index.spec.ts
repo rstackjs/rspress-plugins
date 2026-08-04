@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-align-image', () => {
+describe('rspress-plugin-align-image', () => {
   // Covers the plugin's wrapper transformation and configured alignment.
   test('wraps a standalone image with configured classes', async ({ page }) => {
     await page.goto(pageUrl());

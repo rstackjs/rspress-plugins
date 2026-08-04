@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-katex', () => {
+describe('rspress-plugin-katex', () => {
   // Covers conversion of a math code block to display-mode KaTeX.
   test('renders a display math block', async ({ page }) => {
     await page.goto(pageUrl());

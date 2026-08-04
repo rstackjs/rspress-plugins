@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-file-tree', () => {
+describe('rspress-plugin-file-tree', () => {
   // Covers structured rendering and the configured initial expansion depth.
   test('renders a structured, initially expanded tree', async ({ page }) => {
     await page.goto(pageUrl());

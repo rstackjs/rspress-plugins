@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-gh-pages', () => {
+describe('rspress-plugin-gh-pages', () => {
   // Covers base-path inference from the configured GitHub repository URL.
   test('serves docs from the inferred repository base', async ({ page }) => {
     await page.goto(pageUrl('/rspress-plugins/'));

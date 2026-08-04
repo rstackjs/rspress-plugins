@@ -1,10 +1,10 @@
-import { expect, test } from '@playwright/test';
+import { beforeEach, describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-vercel-analytics', () => {
-  test.beforeEach(async ({ page }) => {
+describe('rspress-plugin-vercel-analytics', () => {
+  beforeEach(async ({ page }) => {
     await page.route('https://va.vercel-scripts.com/**', (route) =>
       route.abort(),
     );

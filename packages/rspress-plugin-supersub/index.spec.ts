@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-supersub', () => {
+describe('rspress-plugin-supersub', () => {
   // Covers superscript conversion for simple and equation content.
   test('renders superscript content', async ({ page }) => {
     await page.goto(pageUrl());

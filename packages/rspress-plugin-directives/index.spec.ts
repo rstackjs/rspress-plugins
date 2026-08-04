@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { describe, expect, test } from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
 
-test.describe('rspress-plugin-directives', () => {
+describe('rspress-plugin-directives', () => {
   // Covers conversion of a named directive to its registered component.
   test('renders the registered directive component', async ({ page }) => {
     await page.goto(pageUrl());
