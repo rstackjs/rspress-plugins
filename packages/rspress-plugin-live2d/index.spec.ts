@@ -1,6 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import * as path from 'node:path';
-import { beforeEach, describe, expect, test } from '../../e2e/test.ts';
+import {
+  beforeEach,
+  describe,
+  expect,
+  test,
+  type PlaywrightFixture,
+} from '../../e2e/test.ts';
 import { useRspressDevServer } from '../../e2e/utils.ts';
 
 const pageUrl = useRspressDevServer(import.meta.dirname);
@@ -10,7 +16,7 @@ const sdk = await readFile(
 const sdkUrl = 'https://lib.oml2d.com/complete.js';
 
 describe('rspress-plugin-live2d', () => {
-  beforeEach(async ({ page }) => {
+  beforeEach<PlaywrightFixture>(async ({ page }) => {
     await page.route(sdkUrl, (route) =>
       route.fulfill({
         body: sdk,

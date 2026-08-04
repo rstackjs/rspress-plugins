@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "target": "ES2023",
     "module": "ESNext",
     "jsx": "preserve",
@@ -8,7 +9,6 @@
     "sourceMap": false,
     "declarationMap": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "bundler",
     "allowJs": true,

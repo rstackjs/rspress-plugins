@@ -8,6 +8,7 @@ export {
   describe,
   expect,
 } from '@rstest/playwright';
+export type { PlaywrightFixture } from '@rstest/playwright';
 
 export const test: PlaywrightTest = baseTest.extend({
   playwright: {

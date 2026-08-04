@@ -28,8 +28,26 @@ define.lint(async () => {
       rules: {
         '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/no-empty-object-type': 'off',
-        '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
+      },
+    },
+    {
+      // Preserve existing legacy exceptions without weakening new TypeScript files.
+      files: [
+        'packages/rspress-plugin-align-image/src/index.ts',
+        'packages/rspress-plugin-devkit/src/DirectivesTransformer/index.ts',
+        'packages/rspress-plugin-devkit/src/NodeFactory/ESTreeNodeFactory.ts',
+        'packages/rspress-plugin-devkit/src/NodeFactory/MdAstNodeFactory.ts',
+        'packages/rspress-plugin-devkit/src/NodeFactory/MdxAttrNodeFactory.ts',
+        'packages/rspress-plugin-devkit/src/NodeFactory/MdxJsxElementFactory.ts',
+        'packages/rspress-plugin-devkit/src/RemarkPluginFactory/FactoryBase.ts',
+        'packages/rspress-plugin-devkit/src/RemarkPluginFactory/InsertComponent.ts',
+        'packages/rspress-plugin-file-tree/src/components/FileTree/FileTreeItem.tsx',
+        'packages/rspress-plugin-file-tree/src/components/FileTree/RemoteSvgIcon.tsx',
+        'packages/rspress-plugin-katex/src/index.ts',
+      ],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
       },
     },
   ];
