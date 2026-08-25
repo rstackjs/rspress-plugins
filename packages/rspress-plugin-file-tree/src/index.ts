@@ -11,7 +11,10 @@ interface RspressPluginFileTreeOptions {
   initialExpandDepth?: number;
 }
 
-const PACKAGE_ROOT = fileURLToPath(new URL('../', import.meta.url));
+const PACKAGE_ROOT = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '..',
+);
 
 export default function rspressPluginFileTree(
   options: RspressPluginFileTreeOptions = {},

@@ -37,6 +37,12 @@ define.lint(async () => {
       },
     },
     {
+      files: ['**/*.cjs'],
+      rules: {
+        '@typescript-eslint/no-require-imports': 'off',
+      },
+    },
+    {
       // Preserve existing legacy exceptions without weakening new TypeScript files.
       files: [
         'packages/rspress-plugin-align-image/src/index.ts',
