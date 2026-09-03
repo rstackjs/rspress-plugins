@@ -1,9 +1,9 @@
 import * as path from 'path';
 import { defineConfig } from '@rspress/core';
-import katex from './src';
+import katex from 'rspress-plugin-katex';
 
 export default defineConfig({
-  root: path.join(__dirname, 'docs'),
+  root: path.join(import.meta.dirname, 'docs'),
   title: 'Rspress x KateX Example',
   plugins: [
     katex({

@@ -1,3 +1,39 @@
 packages:
   - 'packages/*'
   - 'wip-packages/*'
+
+catalogMode: prefer
+
+cleanupUnusedCatalogs: true
+
+catalog:
+  '@rsbuild/plugin-less': '^2.0.1'
+  '@rsbuild/plugin-react': '^2.1.0'
+  '@rspress/core': '^2.0.19'
+  '@types/node': '^24.13.3'
+  '@types/react': '^18.3.31'
+  react: '^18.3.1'
+  react-dom: '^18.3.1'
+  typescript: '^6.0.3'
+
+dedupePeers: true
+
+engineStrict: true
+
+minimumReleaseAge: 1440
+
+minimumReleaseAgeExclude:
+  - '@rsbuild/*'
+  - '@rslib/*'
+  - '@rslint/*'
+  - '@rspack/*'
+  - '@rspress/*'
+  - '@rstackjs/*'
+  - '@rstest/*'
+  - '@typescript/*'
+  - 'rsbuild-plugin-*'
+  - rstack
+  - typescript
+
+overrides:
+  '@rstest/core': '0.11.5'

@@ -1,5 +1,4 @@
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import { RemarkCodeBlockToGlobalComponentPluginFactory } from 'rspress-plugin-devkit';
 
@@ -11,7 +10,7 @@ interface RspressPluginFileTreeOptions {
   initialExpandDepth?: number;
 }
 
-const PACKAGE_ROOT = fileURLToPath(new URL('../', import.meta.url));
+const PACKAGE_ROOT = path.resolve(import.meta.dirname, '..');
 
 export default function rspressPluginFileTree(
   options: RspressPluginFileTreeOptions = {},

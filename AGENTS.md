@@ -2,32 +2,37 @@
 
 ## Stack
 
-- Node.js via the repository CI matrix
-- `pnpm` workspace with packages under `packages/*`
+- Node.js 24.18.0 in CI; Rstack CLI requires Node.js 22.12+
+- pnpm 11 workspace with packages under `packages/*`
 - Rspress plugin packages published as TypeScript ESM packages
-- Build: mostly `tsc`, with `rspress-plugin-file-tree` using Rslib
-- Unit tests: Rstest
-- E2E tests: Playwright
-- Lint and format: Rslint and Prettier
+- Build, lint, tests, and Git hooks: Rstack CLI
+- Build: shared Rslib v1 configuration, with package-specific entries only when required
+- Unit tests: Rstest through `rs test`
+- E2E tests: Playwright through `@rstest/playwright`
+- Lint and format: `rs lint --type-check` and `rs fmt`
 
 ## Commands (run early)
 
 ```bash
-# setup
-corepack enable && pnpm install
+# setup (also installs Rstack-managed Git hooks and builds packages)
+corepack enable
+pnpm install
 
 # checks
 pnpm lint
 pnpm test
+pnpm e2e
 
-# build / package validation
-pnpm run build
+# build / docs validation
+pnpm build
+pnpm docs:build
 ```
 
 ## Project structure
 
 ```text
 packages/   # published Rspress plugin packages
+scripts/    # shared Rstack library configuration
 templates/  # plugin template sources
 e2e/        # Playwright end-to-end tests
 ```

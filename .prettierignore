@@ -1,8 +1,0 @@
-dist
-**/dist
-build
-**/build
-coverage
-playwright-report
-test-results
-pnpm-lock.yaml

@@ -18,40 +18,42 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rstackjs/rspress-plugins.git"
+    "url": "git+https://github.com/rstackjs/rspress-plugins.git",
+    "directory": "packages/rspress-plugin-file-tree"
   },
   "license": "MIT",
   "author": "Linbudu <linbudu599@gmail.com> (https://github.com/linbudu599)",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "default": "./dist/index.js"
     }
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "rslib build",
-    "dev": "rslib build -w",
-    "docs:build": "rspress build",
-    "docs:dev": "rspress dev"
+    "build": "rs lib",
+    "dev": "rs lib -w",
+    "docs:build": "rs doc build",
+    "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
   "dependencies": {
     "rspress-plugin-devkit": "workspace:^"
   },
   "devDependencies": {
-    "@rsbuild/plugin-less": "^2.0.0",
-    "@rsbuild/plugin-react": "^2.1.0",
-    "@rslib/core": "^0.23.0",
-    "@types/node": "^20.12.5",
-    "@types/react": "^18.2.74",
-    "@typescript/native-preview": "7.0.0-dev.20260622.1",
+    "@rsbuild/plugin-less": "catalog:",
+    "@rsbuild/plugin-react": "catalog:",
+    "@rspress/core": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
     "material-icon-theme": "^5.30.0",
-    "rsbuild-plugin-publint": "^1.0.0",
-    "typescript": "^6.0.3"
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "rspress-plugin-file-tree": "workspace:*",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"

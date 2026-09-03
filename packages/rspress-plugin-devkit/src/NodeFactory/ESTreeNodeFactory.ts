@@ -43,6 +43,7 @@ export class ESTreeNodeFactory {
   ): ImportDeclaration {
     return {
       type: 'ImportDeclaration',
+      attributes: [],
       specifiers: specifiers.map((specifier) =>
         ESTreeNodeFactory.createNamedImportSpecifierNode(specifier),
       ),
@@ -56,6 +57,7 @@ export class ESTreeNodeFactory {
   ): ImportDeclaration {
     return {
       type: 'ImportDeclaration',
+      attributes: [],
       specifiers: [
         ESTreeNodeFactory.createDefaultImportSpecifierNode(specifier),
       ],

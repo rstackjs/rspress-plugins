@@ -1,4 +1,4 @@
-import { expect, test } from '@rstest/core';
+import { expect, test } from 'rstack/test';
 import { parseTreeContent } from '../src/components/tree-parser/tree-parser';
 
 test('Should parse normal input', () => {

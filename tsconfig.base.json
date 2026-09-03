@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
+    "strict": true,
+    "target": "ES2023",
     "module": "ESNext",
     "jsx": "preserve",
     "declaration": true,
-    "lib": ["es2022", "esnext", "dom"],
+    "lib": ["ES2023", "ESNext", "DOM"],
     "sourceMap": false,
     "declarationMap": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "bundler",
     "allowJs": true,
