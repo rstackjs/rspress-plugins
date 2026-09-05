@@ -1,50 +1,67 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 
 import mermaid, { type MermaidConfig } from 'mermaid';
 
-import type { MermaidRendererProps } from '../src/typings';
+interface MermaidRendererProps {
+  code: string;
+  config?: MermaidConfig;
+}
 
 const MermaidRenderer: React.FC<MermaidRendererProps> = (props) => {
   const { code, config = {} } = props;
 
-  const id = useId();
+  // useId() may contain characters that must not leak into mermaid's render id
+  // (it ends up in the SVG id and url(#...) marker references), e.g. ":" in
+  // React 18, "«»" in React 19.0-19.1, "_"-wrapped forms in React 19.2+.
+  const id = useId().replace(/[^a-zA-Z0-9_-]/g, '');
 
   const [svg, setSvg] = useState('');
 
   const [renderError, setRenderError] = useState(false);
 
-  const renderMermaid2SVG = React.useCallback(async () => {
-    // https://github.com/mermaid-js/mermaid/blob/1b40f552b20df4ab99a986dd58c9d254b3bfd7bc/packages/mermaid/src/docs/.vitepress/theme/Mermaid.vue#L53
-    const hasDarkClass = document.documentElement.classList.contains('dark');
+  // Skip re-renders unless the diagram source or light/dark theme changed.
+  // Separate refs compare prop identity directly, so a long diagram source is
+  // never re-allocated into a combined key.
+  const lastTheme = useRef<string | null>(null);
+  const lastCode = useRef<string | null>(null);
 
-    const mermaidConfig: MermaidConfig = {
-      securityLevel: 'loose',
-      startOnLoad: false,
-      theme: hasDarkClass ? 'dark' : 'default',
-      ...config,
+  useEffect(() => {
+    // Concurrent calls are safe: mermaid queues render() calls internally
+    // and runs them serially.
+    const render = async () => {
+      const theme = document.documentElement.classList.contains('dark')
+        ? 'dark'
+        : 'default';
+
+      if (lastTheme.current === theme && lastCode.current === code) {
+        return;
+      }
+
+      lastTheme.current = theme;
+      lastCode.current = code;
+
+      const mermaidConfig: MermaidConfig = {
+        securityLevel: 'loose',
+        startOnLoad: false,
+        theme,
+        ...config,
+      };
+
+      try {
+        mermaid.initialize(mermaidConfig);
+        const { svg } = await mermaid.render(id, code);
+        setSvg(svg);
+        setRenderError(false);
+      } catch (error) {
+        lastTheme.current = null;
+        lastCode.current = null;
+        setRenderError(true);
+      }
     };
 
-    try {
-      mermaid.initialize(mermaidConfig);
-
-      const { svg } = await mermaid.render(
-        id.replace(/:/g, ''),
-        code as string,
-      );
-
-      setSvg(svg);
-    } catch (error) {
-      setRenderError(true);
-    }
-  }, [code, config, id]);
-
-  useEffect(() => {
-    renderMermaid2SVG();
-  }, [renderMermaid2SVG]);
-
-  useEffect(() => {
+    render();
     const observer = new MutationObserver(() => {
-      renderMermaid2SVG();
+      render();
     });
 
     observer.observe(document.documentElement, {
@@ -55,7 +72,7 @@ const MermaidRenderer: React.FC<MermaidRendererProps> = (props) => {
     return () => {
       observer.disconnect();
     };
-  }, [renderMermaid2SVG]);
+  }, [code, config, id]);
 
   return (
     <>

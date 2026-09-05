@@ -1,7 +1,6 @@
 import path from 'node:path';
 
 import {
-  PresetConfigMutator,
   RemarkCodeBlockToGlobalComponentPluginFactory,
 } from 'rspress-plugin-devkit';
 
@@ -23,7 +22,7 @@ export default function rspressPluginMermaid(
       {
         lang: 'mermaid',
         componentPath: path.join(
-          __dirname,
+          import.meta.dirname,
           '../components',
           'MermaidRender.tsx',
         ),
