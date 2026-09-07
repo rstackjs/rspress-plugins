@@ -1,8 +1,6 @@
 import path from 'node:path';
 
-import {
-  RemarkCodeBlockToGlobalComponentPluginFactory,
-} from 'rspress-plugin-devkit';
+import { RemarkCodeBlockToGlobalComponentPluginFactory } from 'rspress-plugin-devkit';
 
 import type { RspressPlugin } from '@rspress/core';
 import type { MermaidConfig } from 'mermaid';
