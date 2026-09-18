@@ -1,5 +1,11 @@
 # rspress-plugin-google-analytics
 
+## 1.0.1
+
+### Patch Changes
+
+- 20196b7: fix: replace `__dirname` with ESM-compatible `import.meta.url` to fix `ReferenceError: __dirname is not defined` when loading plugins as ESM
+
 ## 1.0.0
 
 ### Major Changes

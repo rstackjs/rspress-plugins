@@ -1,6 +1,6 @@
 {
   "name": "rspress-plugin-vercel-analytics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rspress plugin for vercel analytics",
   "type": "module",
   "files": [
