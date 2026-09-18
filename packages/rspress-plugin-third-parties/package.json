@@ -1,0 +1,96 @@
+{
+  "name": "rspress-plugin-third-parties",
+  "version": "2.1.2",
+  "description": "Optimized third-party components (YouTube, Google Maps, Twitter/X, GA) and script loading strategies for Rspress.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./plugin": {
+      "import": {
+        "types": "./dist/plugin.d.ts",
+        "default": "./dist/plugin.js"
+      },
+      "require": {
+        "types": "./dist/plugin.d.ts",
+        "default": "./dist/plugin.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "rslib build --watch",
+    "build": "NODE_ENV=production rslib build",
+    "typecheck": "tsc --noEmit",
+    "test": "rstest --config=rstest.browser.config.mts",
+    "docs:dev": "rspress dev",
+    "docs:build": "rspress build"
+  },
+  "keywords": [
+    "rspress",
+    "rspress-plugin",
+    "react",
+    "analytics",
+    "google-analytics",
+    "youtube",
+    "embed",
+    "performance"
+  ],
+  "author": "Sanjaiyan Parthipan <https://github.com/sanjaiyan-dev>",
+  "license": "MIT",
+  "homepage": "https://sanjaiyan-dev.github.io/rspress-plugin-third-parties",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rstackjs/rspress-plugins.git",
+    "directory": "packages/rspress-plugin-third-parties"
+  },
+  "bugs": {
+    "url": "https://github.com/rstackjs/rspress-plugins/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "react-compiler-runtime": "0.0.0-experimental-a1856f3-20260507",
+    "react-tweet": "^3.3.1",
+    "third-party-capital": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@rspress/core": ">=2.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "@rsbuild/plugin-react": "^2.1.0",
+    "@rslib/core": "^0.23.2",
+    "@rspress/core": "^2.0.18",
+    "@rspress/shared": "^2.0.18",
+    "@rstest/browser": "^0.11.5",
+    "@rstest/browser-react": "^0.11.5",
+    "@rstest/core": "^0.11.5",
+    "@testing-library/dom": "^10.0.0",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "babel-plugin-react-compiler": "0.0.0-experimental-a1856f3-20260507",
+    "typescript": "^7.0.2"
+  }
+}
