@@ -1,10 +1,14 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { RemarkCodeBlockToGlobalComponentPluginFactory } from 'rspress-plugin-devkit';
 
 import { parseTreeContent } from './components/tree-parser/tree-parser';
 
 import type { RspressPlugin } from '@rspress/core';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 interface RspressPluginFileTreeOptions {
   initialExpandDepth?: number;

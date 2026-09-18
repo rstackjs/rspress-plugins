@@ -1,9 +1,13 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { PresetConfigMutator } from 'rspress-plugin-devkit';
 
 import type { RspressPlugin } from '@rspress/core';
 import type { Back2TopProps } from './components/Back2Top';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const componentsPath = path.join(__dirname, './components');
 
