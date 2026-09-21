@@ -36,6 +36,9 @@ describe('rspress-plugin-google-analytics', () => {
   test('configures every ID and reports the page view', async ({ page }) => {
     await page.goto(pageUrl());
 
+    // Analytics should report the canonical pathname used by the router.
+    await expect(page).toHaveURL(pageUrl('/index.html'));
+
     await expect
       .poll(
         () =>
@@ -51,7 +54,7 @@ describe('rspress-plugin-google-analytics', () => {
         expect.arrayContaining([
           ['config', 'G-E2EPRIMARY', { anonymize_ip: true }],
           ['config', 'G-E2ESECONDARY', { anonymize_ip: true }],
-          ['set', 'page_path', '/'],
+          ['set', 'page_path', '/index.html'],
           ['event', 'page_view'],
         ]),
       );
