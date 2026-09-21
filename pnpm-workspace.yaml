@@ -9,7 +9,7 @@ cleanupUnusedCatalogs: true
 catalog:
   '@rsbuild/plugin-less': '^2.0.1'
   '@rsbuild/plugin-react': '^2.1.0'
-  '@rspress/core': '^2.0.19'
+  '@rspress/core': '^2.0.22'
   '@types/node': '^24.13.3'
   '@types/react': '^18.3.31'
   react: '^18.3.1'

@@ -5,6 +5,9 @@ import ghpages from 'rspress-plugin-gh-pages';
 export default defineConfig({
   root: path.join(import.meta.dirname, 'docs'),
   title: 'Rspress x GHPages Example',
+  route: {
+    cleanUrls: true,
+  },
   plugins: [
     ghpages({
       repo: 'https://github.com/linbudu599/rspress-plugins.git',

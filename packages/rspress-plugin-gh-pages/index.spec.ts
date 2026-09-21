@@ -8,7 +8,7 @@ describe('rspress-plugin-gh-pages', () => {
   test('serves docs from the inferred repository base', async ({ page }) => {
     await page.goto(pageUrl('/rspress-plugins/'));
 
-    await expect(page).toHaveURL(/\/rspress-plugins\/$/);
+    await expect(page).toHaveURL(pageUrl('/rspress-plugins/'));
     await expect(
       page.getByRole('heading', { name: 'RSPress x GH Pages' }),
     ).toBeVisible();
