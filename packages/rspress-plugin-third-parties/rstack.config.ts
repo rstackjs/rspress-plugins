@@ -34,5 +34,3 @@ define.lib({
 });
 
 define.doc(async () => (await import('./rspress.config.ts')).default);
-
-define.test(async () => (await import('./rstest.browser.config.ts')).default);

@@ -23,7 +23,6 @@
   "scripts": {
     "build": "rs lib",
     "dev": "rs lib -w",
-    "test": "rs test",
     "docs:build": "rs doc build",
     "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
@@ -65,9 +64,6 @@
   "devDependencies": {
     "@rsbuild/plugin-react": "catalog:",
     "@rspress/core": "catalog:",
-    "@rstest/browser": "0.11.5",
-    "@rstest/browser-react": "0.11.5",
-    "@testing-library/dom": "^10.0.0",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "^18.3.7",
