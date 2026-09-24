@@ -18,7 +18,7 @@ describe('rspress-plugin-google-analytics', () => {
 
   // Covers injection of Google Analytics connection and loader tags.
   test('injects analytics tags for the primary ID', async ({ page }) => {
-    await page.goto(pageUrl());
+    await page.goto(pageUrl('/index.html'));
 
     await expect(
       page.locator(
@@ -34,7 +34,11 @@ describe('rspress-plugin-google-analytics', () => {
 
   // Covers multi-ID configuration, IP anonymization, and page-view reporting.
   test('configures every ID and reports the page view', async ({ page }) => {
-    await page.goto(pageUrl());
+    // Use the canonical index URL for the default cleanUrls: false.
+    await page.goto(pageUrl('/index.html'));
+
+    // Analytics should report the canonical pathname used by the router.
+    await expect(page).toHaveURL(pageUrl('/index.html'));
 
     await expect
       .poll(
@@ -51,7 +55,7 @@ describe('rspress-plugin-google-analytics', () => {
         expect.arrayContaining([
           ['config', 'G-E2EPRIMARY', { anonymize_ip: true }],
           ['config', 'G-E2ESECONDARY', { anonymize_ip: true }],
-          ['set', 'page_path', '/'],
+          ['set', 'page_path', '/index.html'],
           ['event', 'page_view'],
         ]),
       );

@@ -1,13 +1,14 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import {
-  PresetConfigMutator,
-  RemarkCodeBlockToGlobalComponentPluginFactory,
-} from 'rspress-plugin-devkit';
+import { RemarkCodeBlockToGlobalComponentPluginFactory } from 'rspress-plugin-devkit';
 
 import type { RspressPlugin } from '@rspress/core';
 import type { MermaidConfig } from 'mermaid';
 import type { MermaidRendererProps } from './typings';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 interface RspressPluginMermaidOptions {
   mermaidConfig?: MermaidConfig;
@@ -23,7 +24,7 @@ export default function rspressPluginMermaid(
       {
         lang: 'mermaid',
         componentPath: path.join(
-          __dirname,
+          import.meta.dirname,
           '../components',
           'MermaidRender.tsx',
         ),

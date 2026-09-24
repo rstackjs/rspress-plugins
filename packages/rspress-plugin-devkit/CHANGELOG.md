@@ -1,5 +1,12 @@
 # rspress-plugin-devkit
 
+## 1.0.1
+
+### Patch Changes
+
+- a59a167: Build the package with Rslib and expose its generated ESM and declaration entry
+  through package exports so it can be loaded by native Node.js ESM.
+
 ## 1.0.0
 
 ### Major Changes

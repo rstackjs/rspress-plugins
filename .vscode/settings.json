@@ -1,4 +1,6 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "compile-hero.config": null
+  "compile-hero.config": null,
+  "search.useIgnoreFiles": true,
+  "editor.defaultFormatter": "rstack.rstack"
 }

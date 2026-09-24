@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import readingTime, { type ReadTimeResults } from 'reading-time';
 
@@ -9,6 +10,9 @@ import {
 } from 'rspress-plugin-devkit';
 
 import type { RspressPlugin } from '@rspress/core';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export interface RspressPluginReadingTimeOptions extends WithDefaultLocale {
   getReadingTime?: (content: string) => ReadTimeResults;
