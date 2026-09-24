@@ -9,7 +9,7 @@
 
 [![npm version](https://img.shields.io/npm/v/rspress-plugin-third-parties.svg?style=for-the-badge&color=A855F7&labelColor=1F2937)](https://www.npmjs.com/package/rspress-plugin-third-parties)
 [![npm downloads](https://img.shields.io/npm/dm/rspress-plugin-third-parties.svg?style=for-the-badge&color=3B82F6&labelColor=1F2937)](https://www.npmjs.com/package/rspress-plugin-third-parties)
-[![license](https://img.shields.io/npm/l/rspress-plugin-third-parties.svg?style=for-the-badge&color=10B981&labelColor=1F2937)](./LICENSE)
+[![license](https://img.shields.io/npm/l/rspress-plugin-third-parties.svg?style=for-the-badge&color=10B981&labelColor=1F2937)](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/LICENSE)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black&labelColor=1F2937)](https://react.dev/)
 [![Rspress](https://img.shields.io/badge/Rspress-Plugin-FF4154?style=for-the-badge&logo=rspack&logoColor=white&labelColor=1F2937)](https://rspress.rs/)
 [![Docs & Demo](https://img.shields.io/badge/Docs_%26_Demo-Explore_Site-34268A?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=0C1D48)](https://sanjaiyan-dev.github.io/rspress-plugin-third-parties)
@@ -111,6 +111,8 @@ export default defineConfig({
 
 ### `<Script />`
 
+[Source code](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/src/components/Script.tsx)
+
 The foundation component powering all external integrations. It manages script mounting, deduplication, inline scripts, stylesheet preloading, and lifecycle events (`onLoad`, `onReady`, `onError`).
 
 ```mdx
@@ -147,6 +149,8 @@ import { Script } from 'rspress-plugin-third-parties';
 
 ### `<YouTubeEmbed />`
 
+[Source code](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/src/components/YouTubeEmbed.tsx)
+
 Powered by `lite-youtube-embed` under the hood. Renders an ultra-fast visual facade that defers the heavy YouTube player until play is clicked—keeping your main thread pristine and Lighthouse scores flawless.
 
 ```mdx
@@ -175,6 +179,8 @@ import { YouTubeEmbed } from 'rspress-plugin-third-parties';
 ---
 
 ### `<GoogleMapsEmbed />`
+
+[Source code](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/src/components/GoogleMapsEmbed.tsx)
 
 Provides performance-optimized embeds for Google Maps without blocking the browser during initial navigation.
 
@@ -208,6 +214,8 @@ import { GoogleMapsEmbed } from 'rspress-plugin-third-parties';
 
 ### `<TweetEmbed />`
 
+[Source code](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/src/components/TweetEmbed.tsx)
+
 Zero-overhead Twitter/X post embed powered by `react-tweet`. Fetches raw post data and renders lightweight, native React DOM components styled identically to X/Twitter UI without downloading heavy `widgets.js` scripts or layout-shifting IFrames.
 
 ```mdx
@@ -240,6 +248,8 @@ import { TweetEmbed } from 'rspress-plugin-third-parties';
 
 ### `<GoogleAnalytics />`
 
+[Source code](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/src/components/GoogleAnalytics/index.tsx)
+
 Explicitly embed Google Analytics 4 (GA4) inside MDX pages or custom layout components.
 
 ```mdx
@@ -260,6 +270,8 @@ import { GoogleAnalytics } from 'rspress-plugin-third-parties';
 ---
 
 ### `<GoogleTagManager />`
+
+[Source code](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/src/components/GoogleTagManager.tsx)
 
 Integrate Google Tag Manager (GTM) with support for custom domains, authentication, preview environments, and custom initial dataLayer states.
 
@@ -374,4 +386,4 @@ use the root Changesets configuration.
 
 ## 📄 License
 
-[MIT](./LICENSE) © [Sanjaiyan Parthipan](https://github.com/sanjaiyan-dev) and the Rspress Community (from September 2026 onward)
+[MIT](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/LICENSE) © [Sanjaiyan Parthipan](https://github.com/sanjaiyan-dev) and the Rspress Community (from September 2026 onward)
