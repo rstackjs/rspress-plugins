@@ -374,4 +374,4 @@ use the root Changesets configuration.
 
 ## 📄 License
 
-[MIT](./LICENSE) © [Sanjaiyan Parthipan](https://github.com/sanjaiyan-dev)
+[MIT](./LICENSE) © [Sanjaiyan Parthipan](https://github.com/sanjaiyan-dev) and the Rspress Community (from September 2026 onward)
