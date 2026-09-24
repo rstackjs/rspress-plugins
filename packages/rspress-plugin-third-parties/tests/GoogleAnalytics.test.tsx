@@ -32,13 +32,15 @@ describe('GoogleAnalytics Component & sendGAEvent', () => {
     await render(<GoogleAnalytics gaId="G-DEFAULT1" />);
 
     // Wait for external gtag.js script to attach to DOM
-    await page.locator('script[src*="gtag/js"]').waitFor({ state: 'attached' });
+    await page
+      .locator('script[data-rspress-script][src*="gtag/js"]')
+      .waitFor({ state: 'attached' });
 
     const gaScript = document.querySelector(
-      'script[src*="gtag/js"]',
+      'script[data-rspress-script][src*="gtag/js"]',
     ) as HTMLScriptElement;
     const initScript = document.querySelector(
-      'script:not([src])',
+      'script[data-rspress-script]:not([src])',
     ) as HTMLScriptElement;
 
     expect(gaScript).not.toBeNull();
@@ -57,10 +59,12 @@ describe('GoogleAnalytics Component & sendGAEvent', () => {
   test('applies debug_mode flag when debugMode prop is true', async () => {
     await render(<GoogleAnalytics gaId="G-DEBUG2" debugMode={true} />);
 
-    await page.locator('script[src*="gtag/js"]').waitFor({ state: 'attached' });
+    await page
+      .locator('script[data-rspress-script][src*="gtag/js"]')
+      .waitFor({ state: 'attached' });
 
     const initScript = document.querySelector(
-      'script:not([src])',
+      'script[data-rspress-script]:not([src])',
     ) as HTMLScriptElement;
 
     expect(initScript).not.toBeNull();
@@ -72,10 +76,12 @@ describe('GoogleAnalytics Component & sendGAEvent', () => {
       <GoogleAnalytics gaId="G-CUSTOM3" dataLayerName="customDataLayer" />,
     );
 
-    await page.locator('script[src*="gtag/js"]').waitFor({ state: 'attached' });
+    await page
+      .locator('script[data-rspress-script][src*="gtag/js"]')
+      .waitFor({ state: 'attached' });
 
     const initScript = document.querySelector(
-      'script:not([src])',
+      'script[data-rspress-script]:not([src])',
     ) as HTMLScriptElement;
 
     expect(initScript).not.toBeNull();
@@ -87,13 +93,22 @@ describe('GoogleAnalytics Component & sendGAEvent', () => {
 
     await render(<GoogleAnalytics gaId="G-NONCE4" nonce={nonceValue} />);
 
-    await page.locator('script[src*="gtag/js"]').waitFor({ state: 'attached' });
+    // Model the extra script inserted by Google's loader without fetching it.
+    const injectedScript = document.createElement('script');
+    injectedScript.type = 'application/json';
+    injectedScript.src =
+      'https://www.googletagmanager.com/gtag/js?id=G-NONCE4&cx=c';
+    document.head.appendChild(injectedScript);
+
+    await page
+      .locator('script[data-rspress-script][src*="gtag/js"]')
+      .waitFor({ state: 'attached' });
 
     const gaScript = document.querySelector(
-      'script[src*="gtag/js"]',
+      'script[data-rspress-script][src*="gtag/js"]',
     ) as HTMLScriptElement;
     const initScript = document.querySelector(
-      'script:not([src])',
+      'script[data-rspress-script]:not([src])',
     ) as HTMLScriptElement;
 
     expect(gaScript?.getAttribute('nonce')).toBe(nonceValue);
@@ -103,7 +118,9 @@ describe('GoogleAnalytics Component & sendGAEvent', () => {
   test('successfully pushes event payload via sendGAEvent after initialization', async () => {
     await render(<GoogleAnalytics gaId="G-EVENT5" />);
 
-    await page.locator('script[src*="gtag/js"]').waitFor({ state: 'attached' });
+    await page
+      .locator('script[data-rspress-script][src*="gtag/js"]')
+      .waitFor({ state: 'attached' });
 
     // Trigger GA event call
     sendGAEvent('event', 'button_click', { button_id: 'submit-btn' });

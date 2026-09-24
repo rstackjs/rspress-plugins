@@ -16,13 +16,15 @@ describe('GoogleTagManager Component', () => {
     await render(<GoogleTagManager gtmId="GTM-DEFAULT1" />);
 
     // Wait for external script to attach
-    await page.locator('script[src*="gtm.js"]').waitFor({ state: 'attached' });
+    await page
+      .locator('script[data-rspress-script][src*="gtm.js"]')
+      .waitFor({ state: 'attached' });
 
     const gtmScript = document.querySelector(
-      'script[src*="gtm.js"]',
+      'script[data-rspress-script][src*="gtm.js"]',
     ) as HTMLScriptElement;
     const initScript = document.querySelector(
-      'script:not([src])',
+      'script[data-rspress-script]:not([src])',
     ) as HTMLScriptElement;
 
     expect(initScript).not.toBeNull();
@@ -42,10 +44,12 @@ describe('GoogleTagManager Component', () => {
       />,
     );
 
-    await page.locator('script[src*="gtm.js"]').waitFor({ state: 'attached' });
+    await page
+      .locator('script[data-rspress-script][src*="gtm.js"]')
+      .waitFor({ state: 'attached' });
 
     const gtmScript = document.querySelector(
-      'script[src*="gtm.js"]',
+      'script[data-rspress-script][src*="gtm.js"]',
     ) as HTMLScriptElement;
     expect(gtmScript).not.toBeNull();
 
@@ -66,11 +70,11 @@ describe('GoogleTagManager Component', () => {
     );
 
     await page
-      .locator('script[src*="custom-proxy"]')
+      .locator('script[data-rspress-script][src*="custom-proxy"]')
       .waitFor({ state: 'attached' });
 
     const gtmScript = document.querySelector(
-      'script[src*="custom-proxy"]',
+      'script[data-rspress-script][src*="custom-proxy"]',
     ) as HTMLScriptElement;
     expect(gtmScript).not.toBeNull();
 
@@ -84,13 +88,15 @@ describe('GoogleTagManager Component', () => {
 
     await render(<GoogleTagManager gtmId="GTM-NONCE4" nonce={nonceValue} />);
 
-    await page.locator('script[src*="gtm.js"]').waitFor({ state: 'attached' });
+    await page
+      .locator('script[data-rspress-script][src*="gtm.js"]')
+      .waitFor({ state: 'attached' });
 
     const gtmScript = document.querySelector(
-      'script[src*="gtm.js"]',
+      'script[data-rspress-script][src*="gtm.js"]',
     ) as HTMLScriptElement;
     const initScript = document.querySelector(
-      'script:not([src])',
+      'script[data-rspress-script]:not([src])',
     ) as HTMLScriptElement;
 
     expect(initScript).not.toBeNull();
@@ -107,10 +113,12 @@ describe('GoogleTagManager Component', () => {
       <GoogleTagManager gtmId="GTM-DATALAYER5" dataLayer={dataLayerPayload} />,
     );
 
-    await page.locator('script[src*="gtm.js"]').waitFor({ state: 'attached' });
+    await page
+      .locator('script[data-rspress-script][src*="gtm.js"]')
+      .waitFor({ state: 'attached' });
 
     const initScript = document.querySelector(
-      'script:not([src])',
+      'script[data-rspress-script]:not([src])',
     ) as HTMLScriptElement;
     expect(initScript).not.toBeNull();
 
