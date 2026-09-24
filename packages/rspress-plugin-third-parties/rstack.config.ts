@@ -1,4 +1,3 @@
-import { fileURLToPath } from 'node:url';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { define } from 'rstack';
 import { pluginConfig } from '../../scripts/rstack/lib.ts';
@@ -36,19 +35,4 @@ define.lib({
 
 define.doc(async () => (await import('./rspress.config.ts')).default);
 
-define.test({
-  include: ['tests/**/*.test.tsx'],
-  browser: {
-    enabled: true,
-    provider: 'playwright',
-    headless: true,
-  },
-  plugins: [pluginReact()],
-  resolve: {
-    alias: {
-      '@rspress/core/runtime': fileURLToPath(
-        new URL('./tests/rspress-core.ts', import.meta.url),
-      ),
-    },
-  },
-});
+define.test(async () => (await import('./rstest.browser.config.ts')).default);

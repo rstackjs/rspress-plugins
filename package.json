@@ -14,15 +14,14 @@
     "docs:build": "pnpm --filter=./packages/* --filter=!rspress-plugin-gh-pages -r run docs:build",
     "lint": "rs lint --type-check && rs fmt --check",
     "lint:write": "rs lint --type-check --fix && rs fmt",
-    "test": "rs test && pnpm test:browser",
+    "test": "rs test",
     "testu": "rs test --update",
     "e2e": "rstest run --config rstest.e2e.config.ts",
     "test:cov": "rs test --coverage",
     "version": "changeset version && pnpm install --frozen-lockfile",
     "version:beta": "changeset pre enter beta && changeset version",
     "release": "pnpm build && changeset publish",
-    "release:beta": "pnpm build && changeset publish",
-    "test:browser": "pnpm --filter rspress-plugin-third-parties test"
+    "release:beta": "pnpm build && changeset publish"
   },
   "config": {
     "commitizen": {
