@@ -1,6 +1,7 @@
+import type { JSX } from 'react';
 import { GoogleAnalytics } from './index';
 
-export default function GlobalGoogleAnalytics() {
+export default function GlobalGoogleAnalytics(): JSX.Element | null {
   // Rspress/Rsbuild define plugin injects process.env.RSPRESS_GA_CONFIG string
   const configString = process.env.RSPRESS_GA_CONFIG;
 

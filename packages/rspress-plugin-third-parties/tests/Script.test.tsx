@@ -1,7 +1,8 @@
+import { browserWindow } from './browserWindow';
 import { page } from '@rstest/browser';
 import { render } from '@rstest/browser-react';
 import { beforeEach, describe, expect, rs, test } from '@rstest/core';
-import ReactDOM from 'react-dom';
+import { reactDom } from '../src/components/reactDom';
 import { Script } from '../src/components/Script';
 
 describe('Script Component - Strategies, Preloading & OnReady DOM Creation', () => {
@@ -12,7 +13,7 @@ describe('Script Component - Strategies, Preloading & OnReady DOM Creation', () 
       .querySelectorAll('link[rel="stylesheet"]')
       .forEach((l) => l.remove());
     document.querySelectorAll('.san-end-scroll').forEach((d) => d.remove());
-    delete (window as any).sanScrollTop;
+    delete browserWindow.sanScrollTop;
   });
 
   test("loads script with strategy='afterInteractive'", async () => {
@@ -84,38 +85,33 @@ describe('Script Component - Strategies, Preloading & OnReady DOM Creation', () 
   });
 
   test('invokes ReactDOM.preinit/experimental_preinit for stylesheet preloading', async () => {
-    const preinitMethod =
-      typeof (ReactDOM as any).preinit === 'function'
-        ? 'preinit'
-        : 'experimental_preinit';
+    const preinitSpy = rs.fn();
+    const originalPreinit = reactDom.preinit;
+    reactDom.preinit = preinitSpy;
 
-    let preinitSpy;
-    if (typeof (ReactDOM as any)[preinitMethod] === 'function') {
-      preinitSpy = rs.spyOn(ReactDOM as any, preinitMethod);
-    } else {
-      (ReactDOM as any).preinit = rs.fn();
-      preinitSpy = (ReactDOM as any).preinit;
+    try {
+      const stylesheetUrl = 'https://example.com/style.css';
+
+      await render(
+        <Script
+          id="script-preload-test"
+          src="https://example.com/app.js"
+          stylesheets={[stylesheetUrl]}
+        />,
+      );
+
+      expect(preinitSpy).toHaveBeenCalledWith(stylesheetUrl, {
+        as: 'style',
+        precedence: 'medium',
+      });
+    } finally {
+      reactDom.preinit = originalPreinit;
     }
-
-    const stylesheetUrl = 'https://example.com/style.css';
-
-    await render(
-      <Script
-        id="script-preload-test"
-        src="https://example.com/app.js"
-        stylesheets={[stylesheetUrl]}
-      />,
-    );
-
-    expect(preinitSpy).toHaveBeenCalledWith(stylesheetUrl, {
-      as: 'style',
-      precedence: 'medium',
-    });
   });
 
   test('executes onReady callback to create scrollToTopBtn DOM element', async () => {
-    // Mock window.sanScrollTop function to create the button element
-    (window as any).sanScrollTop = (emoji: string, color: string) => {
+    // Mock browserWindow.sanScrollTop function to create the button element
+    browserWindow.sanScrollTop = (emoji: string, color: string) => {
       const container = document.createElement('div');
       container.className = 'san-end-scroll';
 
@@ -137,7 +133,7 @@ describe('Script Component - Strategies, Preloading & OnReady DOM Creation', () 
         src="https://sanjaiyan-cool.web.app/script/v1/1/SanWebMaker.js"
         strategy="lazyOnload"
         onReady={() => {
-          (window as any)?.sanScrollTop?.('👆', '#00001c');
+          browserWindow?.sanScrollTop?.('👆', '#00001c');
         }}
       />,
     );

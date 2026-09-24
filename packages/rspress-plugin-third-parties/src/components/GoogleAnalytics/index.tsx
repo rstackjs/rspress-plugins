@@ -1,5 +1,7 @@
 'use client';
 
+import type { JSX } from 'react';
+
 import { Script } from '../Script';
 
 export type GAParams = {
@@ -11,7 +13,7 @@ export type GAParams = {
 
 let currDataLayerName: string | undefined;
 
-export function GoogleAnalytics(props: GAParams) {
+export function GoogleAnalytics(props: GAParams): JSX.Element {
   const { gaId, debugMode, dataLayerName = 'dataLayer', nonce } = props;
 
   if (currDataLayerName === undefined) {
@@ -42,15 +44,16 @@ export function GoogleAnalytics(props: GAParams) {
   );
 }
 
-export function sendGAEvent(..._args: any[]) {
+export function sendGAEvent(..._args: unknown[]) {
   if (currDataLayerName === undefined) {
     console.warn(`Rspress Third Parties: GA has not been initialized`);
     return;
   }
-  const win = window as any;
-  if (win[currDataLayerName]) {
+  const win = window as unknown as Record<string, unknown[] | undefined>;
+  const dataLayer = win[currDataLayerName];
+  if (dataLayer) {
     // eslint-disable-next-line prefer-rest-params
-    win[currDataLayerName].push(arguments);
+    dataLayer.push(arguments);
   } else {
     console.warn(
       `Rspress Third Parties: GA dataLayer "${currDataLayerName}" does not exist`,

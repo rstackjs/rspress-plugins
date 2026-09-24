@@ -1,13 +1,11 @@
 'use client';
 
+import type { JSX } from 'react';
+
 import { Script } from './Script';
 
 type JSONValue =
-  | string
-  | number
-  | boolean
-  | JSONValue[]
-  | { [key: string]: JSONValue };
+  string | number | boolean | JSONValue[] | { [key: string]: JSONValue };
 
 type GTMParamsBaseParams = {
   dataLayer?: { [key: string]: JSONValue };
@@ -29,7 +27,7 @@ type GTMParamsWithScriptUrl = GTMParamsBaseParams & {
 
 export type GTMParams = GTMParamsWithId | GTMParamsWithScriptUrl;
 
-export function GoogleTagManager(props: GTMParams) {
+export function GoogleTagManager(props: GTMParams): JSX.Element {
   const {
     gtmId,
     gtmScriptUrl,

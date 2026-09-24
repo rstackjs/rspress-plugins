@@ -1,4 +1,5 @@
-import ReactDOM from 'react-dom';
+import type { JSX } from 'react';
+import { reactDom } from './reactDom';
 import { YouTubeEmbed as TPCYouTubeEmbed } from 'third-party-capital';
 import type { ScriptProps } from './Script';
 import { Script } from './Script';
@@ -18,8 +19,7 @@ interface PreconnectOptions {
 }
 
 const safePreconnect = (href: string, options?: PreconnectOptions) => {
-  const preconnectFn =
-    (ReactDOM as any).preconnect || (ReactDOM as any).experimental_preconnect;
+  const preconnectFn = reactDom.preconnect || reactDom.experimental_preconnect;
   if (typeof preconnectFn === 'function') {
     preconnectFn(href, options);
   }
@@ -37,7 +37,7 @@ const youtubePreconnectOpts = {
   crossOrigin: '',
 } as const;
 
-export function YouTubeEmbed(props: YouTubeEmbedTypes) {
+export function YouTubeEmbed(props: YouTubeEmbedTypes): JSX.Element {
   const { html, scripts, stylesheets } = TPCYouTubeEmbed(props);
   safePreconnect('https://cdn.jsdelivr.net', youtubePreconnectOpts);
 

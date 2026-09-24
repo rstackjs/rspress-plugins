@@ -1,3 +1,4 @@
+import { browserWindow } from './browserWindow';
 import { page } from '@rstest/browser';
 import { render } from '@rstest/browser-react';
 import { beforeEach, describe, expect, rs, test } from '@rstest/core';
@@ -10,8 +11,8 @@ describe('GoogleAnalytics Component & sendGAEvent', () => {
   beforeEach(() => {
     // Clean up injected script elements and global dataLayer objects between test runs
     document.querySelectorAll('script').forEach((s) => s.remove());
-    delete (window as any).dataLayer;
-    delete (window as any).customDataLayer;
+    delete browserWindow.dataLayer;
+    delete browserWindow.customDataLayer;
   });
 
   test('warns when sendGAEvent is called before GA initialization', () => {
@@ -107,8 +108,8 @@ describe('GoogleAnalytics Component & sendGAEvent', () => {
     // Trigger GA event call
     sendGAEvent('event', 'button_click', { button_id: 'submit-btn' });
 
-    const dataLayer = (window as any).dataLayer;
+    const dataLayer = browserWindow.dataLayer;
     expect(Array.isArray(dataLayer)).toBe(true);
-    expect(dataLayer.length).toBeGreaterThan(0);
+    expect(dataLayer?.length).toBeGreaterThan(0);
   });
 });

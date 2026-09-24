@@ -353,6 +353,25 @@ function FeedbackButton() {
 
 ---
 
+## Development
+
+Run these commands from the monorepo root:
+
+```bash
+pnpm install
+pnpm --filter rspress-plugin-third-parties build
+pnpm exec playwright install chromium
+pnpm test:browser
+pnpm lint
+pnpm --filter rspress-plugin-third-parties docs:build
+pnpm --filter rspress-plugin-third-parties docs:dev
+```
+
+The package uses the shared Rstack toolchain, TypeScript configuration, and pnpm
+catalog. It publishes ESM components and a separate Node.js plugin entry. Browser
+tests also run as part of the root `pnpm test` command. Versioning and publishing
+use the root Changesets configuration.
+
 ## 📄 License
 
 [MIT](./LICENSE) © [Sanjaiyan Parthipan](https://github.com/sanjaiyan-dev)

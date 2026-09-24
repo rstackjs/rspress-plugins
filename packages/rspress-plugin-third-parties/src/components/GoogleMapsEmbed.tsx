@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { GoogleMapsEmbed as TPCGoogleMapEmbed } from 'third-party-capital';
 import ThirdPartyScriptEmbed from './ThirdPartyScripts';
 
@@ -18,7 +19,7 @@ export type GoogleMapsEmbedTypes = {
   region?: string;
 };
 
-export function GoogleMapsEmbed(props: GoogleMapsEmbedTypes) {
+export function GoogleMapsEmbed(props: GoogleMapsEmbedTypes): JSX.Element {
   const { apiKey, ...restProps } = props;
   const formattedProps = { ...restProps, key: apiKey };
   const { html } = TPCGoogleMapEmbed(formattedProps);

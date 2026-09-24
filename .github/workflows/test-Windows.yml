@@ -49,11 +49,11 @@ jobs:
       - name: Build docs
         run: pnpm docs:build
 
-      - name: Unit test
-        run: pnpm test
-
       - name: Install Playwright
         run: pnpm exec playwright install --with-deps chromium
+
+      - name: Unit and browser tests
+        run: pnpm test
 
       - name: E2E test
         run: pnpm e2e

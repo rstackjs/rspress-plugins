@@ -3,29 +3,16 @@
   "version": "2.1.2",
   "description": "Optimized third-party components (YouTube, Google Maps, Twitter/X, GA) and script loading strategies for Rspress.",
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./plugin": {
-      "import": {
-        "types": "./dist/plugin.d.ts",
-        "default": "./dist/plugin.js"
-      },
-      "require": {
-        "types": "./dist/plugin.d.ts",
-        "default": "./dist/plugin.cjs"
-      }
+      "types": "./dist/plugin.d.ts",
+      "default": "./dist/plugin.js"
     }
   },
   "files": [
@@ -34,12 +21,11 @@
     "LICENSE"
   ],
   "scripts": {
-    "dev": "rslib build --watch",
-    "build": "NODE_ENV=production rslib build",
-    "typecheck": "tsc --noEmit",
-    "test": "rstest --config=rstest.browser.config.mts",
-    "docs:dev": "rspress dev",
-    "docs:build": "rspress build"
+    "build": "rs lib",
+    "dev": "rs lib -w",
+    "test": "rs test",
+    "docs:build": "rs doc build",
+    "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
   "keywords": [
     "rspress",
@@ -77,20 +63,19 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "@rsbuild/plugin-react": "^2.1.0",
-    "@rslib/core": "^0.23.2",
-    "@rspress/core": "^2.0.18",
-    "@rspress/shared": "^2.0.18",
-    "@rstest/browser": "^0.11.5",
-    "@rstest/browser-react": "^0.11.5",
-    "@rstest/core": "^0.11.5",
+    "@rsbuild/plugin-react": "catalog:",
+    "@rspress/core": "catalog:",
+    "@rstest/browser": "0.11.5",
+    "@rstest/browser-react": "0.11.5",
     "@testing-library/dom": "^10.0.0",
-    "@types/node": "^26.1.1",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "^18.3.7",
     "babel-plugin-react-compiler": "0.0.0-experimental-a1856f3-20260507",
-    "typescript": "^7.0.2"
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-render-to-markdown": "^18.3.1",
+    "rspress-plugin-third-parties": "workspace:*",
+    "typescript": "catalog:"
   }
 }

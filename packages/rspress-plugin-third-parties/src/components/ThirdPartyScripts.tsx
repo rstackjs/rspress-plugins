@@ -1,4 +1,7 @@
 'use client';
+
+import type { JSX } from 'react';
+
 export type ScriptEmbed = {
   html?: string | null;
   height?: string | number | null;
@@ -11,7 +14,7 @@ export default function ThirdPartyScriptEmbed({
   height = null,
   width = null,
   children,
-}: ScriptEmbed) {
+}: ScriptEmbed): JSX.Element {
   return (
     <>
       {/* insert script children */}

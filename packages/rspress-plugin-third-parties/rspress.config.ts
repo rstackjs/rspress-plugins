@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { defineConfig } from '@rspress/core';
 import { pluginThirdParties } from './dist/plugin.js';
 

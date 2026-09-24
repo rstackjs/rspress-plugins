@@ -3,7 +3,7 @@
 import type React from 'react';
 import type { ScriptHTMLAttributes } from 'react';
 import { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { reactDom } from './reactDom';
 import { requestIdleCallback, setAttributesFromProps } from './utils';
 
 // Cache to prevent duplicate loads of the same network scripts
@@ -13,23 +13,25 @@ const LoadCache = new Set<string>();
 // Deduplication tracker for React 18 stylesheets
 const insertedStylesheets = new Set<string>();
 
-export interface ScriptProps extends ScriptHTMLAttributes<HTMLScriptElement> {
+export interface ScriptProps extends Omit<
+  ScriptHTMLAttributes<HTMLScriptElement>,
+  'onLoad' | 'onError'
+> {
   strategy?: 'afterInteractive' | 'lazyOnload' | 'beforeInteractive';
   id?: string;
-  onLoad?: (e: any) => void;
+  onLoad?: (e: Event) => void;
   onReady?: () => void | null;
-  onError?: (e: any) => void;
+  onError?: (e: Event) => void;
   children?: React.ReactNode;
   stylesheets?: string[];
 }
 
 const safePreinit = (
   href: string,
-  options: { as: 'style' | 'script'; [key: string]: any },
+  options: Parameters<NonNullable<typeof reactDom.preinit>>[1],
   precedence: 'reset' | 'low' | 'medium' | 'high' = 'medium',
 ) => {
-  const preinitFn =
-    (ReactDOM as any).preinit || (ReactDOM as any).experimental_preinit;
+  const preinitFn = reactDom.preinit || reactDom.experimental_preinit;
   if (typeof preinitFn === 'function') {
     preinitFn(href, { precedence: precedence, ...options });
   }
@@ -37,10 +39,9 @@ const safePreinit = (
 
 const safePreload = (
   href: string,
-  options: { as: 'style' | 'script'; [key: string]: any },
+  options: Parameters<NonNullable<typeof reactDom.preinit>>[1],
 ) => {
-  const preloadFn =
-    (ReactDOM as any).preload || (ReactDOM as any).experimental_preload;
+  const preloadFn = reactDom.preload || reactDom.experimental_preload;
   if (typeof preloadFn === 'function') {
     preloadFn(href, options);
   }
@@ -48,8 +49,7 @@ const safePreload = (
 
 const insertStylesheets = (stylesheets: string[]) => {
   // Use ReactDOM.preinit if available (React 19)
-  const preinitFn =
-    (ReactDOM as any).preinit || (ReactDOM as any).experimental_preinit;
+  const preinitFn = reactDom.preinit || reactDom.experimental_preinit;
   if (typeof preinitFn === 'function') {
     stylesheets.forEach((stylesheet: string) => {
       safePreinit(stylesheet, { as: 'style' });

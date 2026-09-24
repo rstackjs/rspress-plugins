@@ -1,3 +1,4 @@
+import { browserWindow } from './browserWindow';
 import { page } from '@rstest/browser';
 import { render } from '@rstest/browser-react';
 import { beforeEach, describe, expect, test } from '@rstest/core';
@@ -7,8 +8,8 @@ describe('GoogleTagManager Component', () => {
   beforeEach(() => {
     // Clean up injected script tags from document body between test runs
     document.querySelectorAll('script').forEach((s) => s.remove());
-    delete (window as any).dataLayer;
-    delete (window as any).customDataLayer;
+    delete browserWindow.dataLayer;
+    delete browserWindow.customDataLayer;
   });
 
   test('renders GTM initialization and external scripts with default URL', async () => {

@@ -6,7 +6,7 @@ export const useSiteData = () => ({ site: {} });
 export const useI18n = () => (key: string) => key;
 export const useLang = () => 'ta';
 export const usePages = () => ({ pages: [] });
-export function defineConfig(config: any) {
+export function defineConfig<T>(config: T) {
   return config;
 }
 export const WithBase = ({ children }: { children?: React.ReactNode }) =>
