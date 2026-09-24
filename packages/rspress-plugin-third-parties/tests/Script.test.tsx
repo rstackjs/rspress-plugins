@@ -127,14 +127,17 @@ describe('Script Component - Strategies, Preloading & OnReady DOM Creation', () 
       document.body.appendChild(container);
     };
 
+    const onReady = rs.fn(() => {
+      browserWindow.sanScrollTop?.('👆', '#00001c');
+    });
+
     await render(
       <Script
         id="san-web-maker-demo"
-        src="https://sanjaiyan-cool.web.app/script/v1/1/SanWebMaker.js"
+        // Let the browser load a controlled script without a network request.
+        src="data:text/javascript,void 0"
         strategy="lazyOnload"
-        onReady={() => {
-          browserWindow?.sanScrollTop?.('👆', '#00001c');
-        }}
+        onReady={onReady}
       />,
     );
 
@@ -143,17 +146,12 @@ describe('Script Component - Strategies, Preloading & OnReady DOM Creation', () 
 
     await page.locator('#san-web-maker-demo').waitFor({ state: 'attached' });
 
-    const scriptEl = document.getElementById(
-      'san-web-maker-demo',
-    ) as HTMLScriptElement;
-
-    // Dispatch script 'load' event to trigger onReady
-    scriptEl.dispatchEvent(new Event('load'));
-
-    // Locate and verify created button element in DOM
+    // Wait for the native script load event to invoke onReady.
     const buttonLocator = page.locator('#scrollToTopBtn');
     await expect.element(buttonLocator).toBeVisible();
     await expect.element(buttonLocator).toHaveText('👆');
+    expect(onReady).toHaveBeenCalledTimes(1);
+    expect(document.querySelectorAll('#scrollToTopBtn')).toHaveLength(1);
 
     const buttonEl = document.getElementById(
       'scrollToTopBtn',
