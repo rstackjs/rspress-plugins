@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import pc from 'picocolors';
 import ghpages from 'gh-pages';
 import { logger } from '@rspress/core';
 
@@ -16,7 +16,7 @@ interface RspressPluginGHPagesOptions extends MarkRequired<
   siteBase?: string;
 }
 
-const logPrefix = chalk.green('[gh-pages]');
+const logPrefix = pc.green('[gh-pages]');
 
 function normalizeBase(base: string): string {
   return base === '/' || base === ''
@@ -61,7 +61,7 @@ export default function rspressPluginGHPages(
     async afterBuild(config, isBuild) {
       if (!repo) {
         logger.error(
-          `Option ${chalk.cyan('repo')} is required for rspress-plugin-gh-pages.`,
+          `Option ${pc.cyan('repo')} is required for rspress-plugin-gh-pages.`,
         );
       }
 
@@ -70,10 +70,8 @@ export default function rspressPluginGHPages(
       const publishDir = directory ?? config.outDir ?? DefaultDocBuildOutput;
 
       if (!silent) {
-        logger.info(
-          `${logPrefix} Publish directory: ${chalk.cyan(publishDir)}`,
-        );
-        logger.info(`${logPrefix} Publish branch: ${chalk.cyan(branch)}`);
+        logger.info(`${logPrefix} Publish directory: ${pc.cyan(publishDir)}`);
+        logger.info(`${logPrefix} Publish branch: ${pc.cyan(branch)}`);
       }
 
       try {

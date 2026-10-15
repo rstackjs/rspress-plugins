@@ -75,9 +75,6 @@ importers:
       czg:
         specifier: ^1.9.1
         version: 1.13.1
-      fs-extra:
-        specifier: ^11.3.6
-        version: 11.4.0
       get-port:
         specifier: ^7.1.0
         version: 7.2.0
@@ -272,12 +269,12 @@ importers:
 
   packages/rspress-plugin-gh-pages:
     dependencies:
-      chalk:
-        specifier: ^5.3.0
-        version: 5.6.2
       gh-pages:
         specifier: ^6.1.1
         version: 6.3.0
+      picocolors:
+        specifier: ^1.1.1
+        version: 1.1.1
       rspress-plugin-devkit:
         specifier: workspace:^
         version: link:../rspress-plugin-devkit
