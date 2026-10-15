@@ -28,7 +28,7 @@ define.lib({
         target: 'web',
         autoExternal: true,
       },
-      plugins: [pluginReact({ reactCompiler: { target: '18' } })],
+      plugins: [pluginReact({ reactCompiler: { target: '19' } })],
     },
   ],
 });

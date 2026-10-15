@@ -272,7 +272,7 @@ describe('YouTubeEmbed', () => {
     ).toHaveAttribute('crossorigin', '');
   });
 
-  test('loads with the React 18 resource API fallback', async ({ page }) => {
+  test('loads when resource APIs are unavailable', async ({ page }) => {
     await page.goto(scenarioUrl('youtube-no-resources'));
     await expect(page.locator('lite-youtube')).toHaveAttribute(
       'videoid',

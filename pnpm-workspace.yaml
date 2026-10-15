@@ -11,9 +11,10 @@ catalog:
   '@rsbuild/plugin-react': '^2.1.0'
   '@rspress/core': '^2.0.22'
   '@types/node': '^24.13.3'
-  '@types/react': '^18.3.31'
-  react: '^18.3.1'
-  react-dom: '^18.3.1'
+  '@types/react': '^19.3.0'
+  '@types/react-dom': '^19.3.0'
+  react: '^19.2.8'
+  react-dom: '^19.2.8'
   typescript: '^6.0.3'
 
 dedupePeers: true

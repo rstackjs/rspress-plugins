@@ -112,13 +112,13 @@ export function Scenarios(): JSX.Element {
   useEffect(() => {
     const name = new URLSearchParams(location.search).get('scenario') || '';
     if (name === 'youtube-no-resources') {
-      // Exercise the React 18 fallback without resource APIs. This page has its
+      // Exercise the fallback without resource APIs. This page has its
       // own browser context, so the override cannot leak into other tests.
-      reactDom.preconnect = undefined;
+      Reflect.set(reactDom, 'preconnect', undefined);
       reactDom.experimental_preconnect = undefined;
-      reactDom.preinit = undefined;
+      Reflect.set(reactDom, 'preinit', undefined);
       reactDom.experimental_preinit = undefined;
-      reactDom.preload = undefined;
+      Reflect.set(reactDom, 'preload', undefined);
       reactDom.experimental_preload = undefined;
     }
     setScenario(name);

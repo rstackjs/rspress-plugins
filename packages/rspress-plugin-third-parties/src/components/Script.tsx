@@ -10,7 +10,7 @@ import { requestIdleCallback, setAttributesFromProps } from './utils';
 const ScriptCache = new Map<string, Promise<Event>>();
 const LoadCache = new Set<string>();
 
-// Deduplication tracker for React 18 stylesheets
+// Deduplication tracker for stylesheets inserted without resource APIs
 const insertedStylesheets = new Set<string>();
 
 export interface ScriptProps extends Omit<
@@ -57,7 +57,7 @@ const insertStylesheets = (stylesheets: string[]) => {
     return;
   }
 
-  // Fall back to standard DOM manipulation on React 18 client-side
+  // Fall back to standard DOM manipulation when resource APIs are unavailable
   if (typeof window !== 'undefined') {
     const head = document.head;
     stylesheets.forEach((stylesheet: string) => {

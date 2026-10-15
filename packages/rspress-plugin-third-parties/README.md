@@ -63,6 +63,8 @@ External embeds (like YouTube, Google Maps, and Twitter/X posts) and script tags
 
 ## 📦 Installation
 
+Requires React 19 and React DOM 19.
+
 <a id="installation"></a>
 Install via your preferred package manager:
 
@@ -361,7 +363,7 @@ function FeedbackButton() {
 
 1. **React 19 Resource Pre-init**: Uses `ReactDOM.preinit` and `ReactDOM.preload` to declare external resource hints before browser parsing.
 2. **Script Caching**: Maintains global `ScriptCache` and `LoadCache` Map/Set singletons, ensuring identical script tags are never loaded twice across page transitions.
-3. **Graceful React 18 Fallback**: Fallbacks to dynamic `document.createElement('link')` stylesheet injection when React 19 resource pre-init functions are unavailable.
+3. **Resource API Fallback**: Fallbacks to dynamic `document.createElement('link')` stylesheet injection when React 19 resource pre-init functions are unavailable.
 
 ---
 
