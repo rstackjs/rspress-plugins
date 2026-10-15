@@ -10,7 +10,7 @@
 [![npm version](https://img.shields.io/npm/v/rspress-plugin-third-parties.svg?style=for-the-badge&color=A855F7&labelColor=1F2937)](https://www.npmjs.com/package/rspress-plugin-third-parties)
 [![npm downloads](https://img.shields.io/npm/dm/rspress-plugin-third-parties.svg?style=for-the-badge&color=3B82F6&labelColor=1F2937)](https://www.npmjs.com/package/rspress-plugin-third-parties)
 [![license](https://img.shields.io/npm/l/rspress-plugin-third-parties.svg?style=for-the-badge&color=10B981&labelColor=1F2937)](https://github.com/rstackjs/rspress-plugins/blob/main/packages/rspress-plugin-third-parties/LICENSE)
-[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black&labelColor=1F2937)](https://react.dev/)
+[![React 18 & 19](https://img.shields.io/badge/React-18%20%26%2019-61DAFB?style=for-the-badge&logo=react&logoColor=black&labelColor=1F2937)](https://react.dev/)
 [![Rspress](https://img.shields.io/badge/Rspress-Plugin-FF4154?style=for-the-badge&logo=rspack&logoColor=white&labelColor=1F2937)](https://rspress.rs/)
 [![Docs & Demo](https://img.shields.io/badge/Docs_%26_Demo-Explore_Site-34268A?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=0C1D48)](https://sanjaiyan-dev.github.io/rspress-plugin-third-parties)
 
@@ -34,7 +34,7 @@
 
 External embeds (like YouTube, Google Maps, and Twitter/X posts) and script tags (like GA4 and GTM) are notorious for blocking the main thread, lowering Lighthouse performance scores, and causing layout shifts. This plugin solves that by providing:
 
-- ⚡ **React Compiler Pre-Optimized**: Ships fully compiled with automated auto-memoization at build-time. Zero unnecessary re-renders.
+- ⚡ **React 18 & 19 Compatible**: Supports both React versions with the matching React DOM version.
 - 🚀 **Non-Blocking Execution**: Lazy loading scripts using `requestIdleCallback` and fine-grained loading strategies.
 - ⚡ **React 19 Resource Pre-initialization**: Leverages native `ReactDOM.preinit` and `ReactDOM.preload` during SSG/SSR.
 - 🧠 **Smart Memory Caching**: Built-in script deduplication and stylesheet cache registry.
