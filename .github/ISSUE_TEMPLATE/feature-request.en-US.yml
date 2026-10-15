@@ -1,0 +1,37 @@
+name: '💡 Feature Request'
+description: Submit a new feature request for Rspress Plugins
+title: '[Feature]: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting a feature request! Before submitting, please note:
+
+         - Confirm that this is a common feature and cannot be implemented through existing APIs.
+         - Make sure you've searched the [Issues](https://github.com/rstackjs/rspress-plugins/issues) and haven't found the same request.
+
+  - type: input
+    id: plugin
+    attributes:
+      label: Related plugin
+      description: Name the existing plugin, or indicate that you are proposing a new plugin.
+      placeholder: rspress-plugin-mermaid, or a new plugin
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What problem does this feature solve?
+      description: Please describe the usage scenario for this feature.
+    validations:
+      required: true
+
+  - type: textarea
+    id: api
+    attributes:
+      label: What does the proposed API look like?
+      description: Describe the proposed plugin API or configuration, and provide code examples.
+    validations:
+      required: true

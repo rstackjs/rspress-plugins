@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question about Rspress
+    url: https://github.com/web-infra-dev/rspress/discussions
+    about: Ask general Rspress usage questions in the Rspress discussions

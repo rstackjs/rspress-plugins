@@ -1,0 +1,65 @@
+name: '🐞 Bug Report'
+description: Report a bug in Rspress Plugins
+title: '[Bug]: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this issue! Before submitting, please note:
+
+         - Check the affected plugin's documentation first.
+         - Make sure you've searched the [Issues](https://github.com/rstackjs/rspress-plugins/issues) and haven't found the same issue.
+         - For general questions about Rspress, please use [Discussions](https://github.com/web-infra-dev/rspress/discussions).
+
+  - type: input
+    id: plugin
+    attributes:
+      label: Affected plugin
+      description: Which plugin package or packages are affected?
+      placeholder: rspress-plugin-mermaid
+    validations:
+      required: true
+
+  - type: textarea
+    id: versions
+    attributes:
+      label: Version
+      description: Run `npx envinfo --system --binaries --browsers --npmPackages '{@rspress/*,rspress,rspress-plugin-*,react,react-dom}'` in your project, and paste the output below. Include the affected plugin's version if it is missing.
+      placeholder: |
+        System:
+        Binaries:
+        Browsers:
+        npmPackages:
+      render: sh
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Describe the bug, what you expected to happen, and any relevant error logs or screenshots.
+    validations:
+      required: true
+
+  - type: input
+    id: repro
+    attributes:
+      label: Reproduce link
+      description: 'Please provide a minimal reproduction. You can create a GitHub repo using `npm create rspress@latest`, then install and configure the affected plugin.'
+      placeholder: paste link here
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Reproduce Steps
+      description: Please provide the minimal steps so that we can quickly reproduce the problem.
+      placeholder: |
+        for example:
+        1. run `pnpm i && pnpm dev`
+        2. check the error logs
+    validations:
+      required: true
