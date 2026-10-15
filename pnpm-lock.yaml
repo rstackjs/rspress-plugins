@@ -472,9 +472,6 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 19.3.0(@types/react@19.3.0)
-      babel-plugin-react-compiler:
-        specifier: 0.0.0-experimental-a1856f3-20260507
-        version: 0.0.0-experimental-a1856f3-20260507
       react:
         specifier: 'catalog:'
         version: 19.2.8
@@ -574,20 +571,8 @@ packages:
     resolution: {integrity: sha512-4cmGQEHoP9GLHEhGvd1vgSzO3Y6KF7FczDk4+q/VfXV9/9sNxNVgNHC8t3BglhIADDcoHrCMc9aw4lHG+M240A==}
     engines: {node: '>= 10'}
 
-  '@babel/helper-string-parser@7.29.7':
-    resolution: {integrity: sha512-Pb5ijPrZ89GDH8223L4UP8i6QApWxs04RbPQJTeWDV0/keR2E36MeKnyr6LYmUUvqRRI+Iv87SuF1W6ErINzYw==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/helper-validator-identifier@7.29.7':
-    resolution: {integrity: sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/runtime@7.29.7':
     resolution: {integrity: sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/types@7.29.8':
-    resolution: {integrity: sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg==}
     engines: {node: '>=6.9.0'}
 
   '@braintree/sanitize-url@6.0.4':
@@ -1735,9 +1720,6 @@ packages:
 
   async@3.2.6:
     resolution: {integrity: sha512-htCUDlxyyCLMgaM3xXg0C0LW2xqfuQ6p05pCEIsXuyQ+a1koYKTuBMzRNwmybfLgvJDMd0r1LTn4+E0Ti6C2AA==}
-
-  babel-plugin-react-compiler@0.0.0-experimental-a1856f3-20260507:
-    resolution: {integrity: sha512-NH/o9ojGrQ5xQhkLry8KulKssfWuM68myEGVUpIJhExt1/WVWBOTBPSPGiSRoJtfB9yP8Kj4UXZpLXKFCXineg==}
 
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
@@ -3513,16 +3495,7 @@ snapshots:
       '@ast-grep/napi-win32-ia32-msvc': 0.45.1
       '@ast-grep/napi-win32-x64-msvc': 0.45.1
 
-  '@babel/helper-string-parser@7.29.7': {}
-
-  '@babel/helper-validator-identifier@7.29.7': {}
-
   '@babel/runtime@7.29.7': {}
-
-  '@babel/types@7.29.8':
-    dependencies:
-      '@babel/helper-string-parser': 7.29.7
-      '@babel/helper-validator-identifier': 7.29.7
 
   '@braintree/sanitize-url@6.0.4': {}
 
@@ -4646,10 +4619,6 @@ snapshots:
   astring@1.9.0: {}
 
   async@3.2.6: {}
-
-  babel-plugin-react-compiler@0.0.0-experimental-a1856f3-20260507:
-    dependencies:
-      '@babel/types': 7.29.8
 
   bail@2.0.2: {}
 

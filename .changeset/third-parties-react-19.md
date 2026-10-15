@@ -1,5 +1,5 @@
 ---
-'rspress-plugin-third-parties': major
+'rspress-plugin-third-parties': patch
 ---
 
-Require React 19 and React DOM 19, target React 19 in the React Compiler, and remove the React 18 compiler runtime dependency.
+Remove React Compiler and its runtime dependency while preserving compatibility with React 18 and React 19.

@@ -12,7 +12,7 @@ type PreconnectOptions = {
   crossOrigin?: 'anonymous' | 'use-credentials' | '';
 };
 
-// Resource APIs may be unavailable in some renderers.
+// React 18 does not expose the resource APIs available in React 19.
 export const reactDom = ReactDOM as typeof ReactDOM & {
   preinit?: (href: string, options: ResourceOptions) => void;
   experimental_preinit?: (href: string, options: ResourceOptions) => void;

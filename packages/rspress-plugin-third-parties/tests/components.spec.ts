@@ -7,6 +7,7 @@ import {
   type PlaywrightFixture,
 } from '../../../e2e/test.ts';
 import { useRspressDevServer } from '../../../e2e/utils.ts';
+import { reactDom } from '../src/components/reactDom';
 
 const pageUrl = useRspressDevServer(join(import.meta.dirname, 'fixture'));
 const scenarioUrl = (scenario: string) =>
@@ -189,15 +190,22 @@ describe('Script', () => {
     });
   }
 
-  test('preinitializes stylesheets with medium precedence', async ({
+  test('loads stylesheets with resource APIs or the DOM fallback', async ({
     page,
   }) => {
     await page.goto(scenarioUrl('script-styles'));
-    await expect(
-      page.locator(
-        'link[rel="stylesheet"][href="https://example.com/style.css"]',
-      ),
-    ).toHaveAttribute('data-precedence', 'medium');
+    const stylesheet = page.locator(
+      'link[rel="stylesheet"][href="https://example.com/style.css"]',
+    );
+    await expect(stylesheet).toHaveCount(1);
+    if (
+      typeof reactDom.preinit === 'function' ||
+      typeof reactDom.experimental_preinit === 'function'
+    ) {
+      await expect(stylesheet).toHaveAttribute('data-precedence', 'medium');
+    } else {
+      await expect(stylesheet).not.toHaveAttribute('data-precedence');
+    }
   });
 
   test('creates exactly one scroll button from the native load callback', async ({
@@ -265,11 +273,22 @@ describe('YouTubeEmbed', () => {
     await expect(embed.locator('..')).toHaveCSS('height', '360px');
   });
 
-  test('preconnects to the script CDN', async ({ page }) => {
+  test('preconnects to the script CDN when resource APIs are available', async ({
+    page,
+  }) => {
     await page.goto(scenarioUrl('youtube-default'));
-    await expect(
-      page.locator('link[rel="preconnect"][href="https://cdn.jsdelivr.net"]'),
-    ).toHaveAttribute('crossorigin', '');
+    await expect(page.locator('lite-youtube')).toHaveCount(1);
+    const preconnect = page.locator(
+      'link[rel="preconnect"][href="https://cdn.jsdelivr.net"]',
+    );
+    if (
+      typeof reactDom.preconnect === 'function' ||
+      typeof reactDom.experimental_preconnect === 'function'
+    ) {
+      await expect(preconnect).toHaveAttribute('crossorigin', '');
+    } else {
+      await expect(preconnect).toHaveCount(0);
+    }
   });
 
   test('loads when resource APIs are unavailable', async ({ page }) => {

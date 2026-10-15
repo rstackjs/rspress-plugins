@@ -57,8 +57,8 @@
   },
   "peerDependencies": {
     "@rspress/core": ">=2.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@rsbuild/plugin-react": "catalog:",
@@ -66,7 +66,6 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "babel-plugin-react-compiler": "0.0.0-experimental-a1856f3-20260507",
     "react": "catalog:",
     "react-dom": "catalog:",
     "rspress-plugin-third-parties": "workspace:*",
