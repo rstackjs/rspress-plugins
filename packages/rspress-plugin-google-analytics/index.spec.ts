@@ -34,7 +34,7 @@ describe('rspress-plugin-google-analytics', () => {
 
   // Covers multi-ID configuration, IP anonymization, and page-view reporting.
   test('configures every ID and reports the page view', async ({ page }) => {
-    // Use the canonical index URL for the default cleanUrls: false.
+    // Use the canonical index URL for the explicit cleanUrls: false configuration.
     await page.goto(pageUrl('/index.html'));
 
     // Analytics should report the canonical pathname used by the router.

@@ -5,6 +5,10 @@ import ga from 'rspress-plugin-google-analytics';
 export default defineConfig({
   root: path.join(import.meta.dirname, 'docs'),
   title: 'Rspress x GA Example',
+  route: {
+    // Keep the canonical page path stable across Rspress defaults.
+    cleanUrls: false,
+  },
   plugins: [
     ga({
       id: ['G-E2EPRIMARY', 'G-E2ESECONDARY'],
