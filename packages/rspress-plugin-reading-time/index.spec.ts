@@ -33,4 +33,16 @@ describe('rspress-plugin-reading-time', () => {
       ),
     ).toBe(true);
   });
+
+  // Covers hiding the estimate via `hideReadingTime: true` frontmatter.
+  test('hides the estimate when frontmatter hideReadingTime is true', async ({
+    page,
+  }) => {
+    await page.goto(pageUrl('/hidden'));
+
+    await expect(
+      page.getByRole('heading', { name: 'RSPress x ReadingTime HIDDEN' }),
+    ).toBeVisible();
+    await expect(page.locator('.rp-reading-time')).toHaveCount(0);
+  });
 });
