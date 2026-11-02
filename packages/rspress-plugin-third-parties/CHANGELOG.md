@@ -1,5 +1,15 @@
 # rspress-plugin-third-parties
 
+## 3.0.0
+
+### Major Changes
+
+- 2a812cb: Publish ESM-only entry points instead of dual ESM/CommonJS output, and align the plugin with the monorepo's shared ESM build, dependency versions, and validation workflows.
+
+### Patch Changes
+
+- 661a3e0: Remove React Compiler and its runtime dependency while preserving compatibility with React 18 and React 19.
+
 ## 2.1.2
 
 ### Patch Changes

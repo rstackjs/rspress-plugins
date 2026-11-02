@@ -1,6 +1,6 @@
 {
   "name": "rspress-plugin-third-parties",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "description": "Optimized third-party components (YouTube, Google Maps, Twitter/X, GA) and script loading strategies for Rspress.",
   "type": "module",
   "main": "./dist/index.js",
