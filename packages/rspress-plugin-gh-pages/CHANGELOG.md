@@ -1,5 +1,11 @@
 # rspress-plugin-gh-pages
 
+## 1.0.1
+
+### Patch Changes
+
+- 9b05a56: Replace chalk with picocolors for colored deployment logs to reduce dependency size.
+
 ## 1.0.0
 
 ### Major Changes
