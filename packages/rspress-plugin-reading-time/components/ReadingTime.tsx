@@ -52,6 +52,8 @@ export const RspressReadingTimeComponent: React.FC<
     setReadingTime(getReadingTimeText(pageReadingTime, lang, defaultLocale));
   }, [lang, pageReadingTime]);
 
+  if (pageData.page.frontmatter?.hideReadingTime) return null;
+
   return (
     <span data-dark={String(dark)} className="rp-reading-time">
       {readingTime}

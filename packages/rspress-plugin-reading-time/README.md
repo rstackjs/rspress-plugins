@@ -52,3 +52,15 @@ export default defineConfig({
   ],
 });
 ```
+
+## Frontmatter
+
+### hideReadingTime
+
+Hide the reading time on a specific page.
+
+```md
+---
+hideReadingTime: true
+---
+```
