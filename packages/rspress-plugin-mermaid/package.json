@@ -1,6 +1,6 @@
 {
   "name": "rspress-plugin-mermaid",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Rspress plugin to render mermaid diagrams",
   "type": "module",
   "files": [
@@ -41,7 +41,7 @@
     "docs:dev": "concurrently --kill-others --names lib,doc \"rs lib -w\" \"rs doc\""
   },
   "dependencies": {
-    "mermaid": "^10.9.0",
+    "mermaid": "catalog:",
     "rspress-plugin-devkit": "workspace:^"
   },
   "devDependencies": {
@@ -53,5 +53,8 @@
   },
   "peerDependencies": {
     "@rspress/core": "^2.0.0-rc.4 || ^2.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

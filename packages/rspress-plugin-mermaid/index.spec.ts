@@ -34,6 +34,20 @@ describe('rspress-plugin-mermaid', () => {
     await expect(
       page.locator('svg[id^="_r_"]', { hasText: 'Alice' }),
     ).toBeVisible();
+    await expect(
+      page.locator('svg[id^="_r_"]', { hasText: 'Read documentation' }),
+    ).toBeVisible();
+  });
+
+  test('renders Mermaid 12 use case diagrams', async ({ page }) => {
+    await page.goto(pageUrl());
+
+    const diagram = page.locator('svg[id^="_r_"]', {
+      hasText: 'Read documentation',
+    });
+    await expect(diagram).toBeVisible();
+    await expect(diagram).toContainText('Reader');
+    await expect(diagram.locator('.error-icon')).toHaveCount(0);
   });
 
   // Covers the MutationObserver path: injecting the dark class must re-render

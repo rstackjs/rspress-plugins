@@ -17,5 +17,12 @@ sequenceDiagram
 ```
 
 ```mermaid
+usecase-beta
+    actor Reader
+    ReadDocs("Read documentation")
+    Reader --> ReadDocs
+```
+
+```mermaid
 this-is-not-a-valid-diagram-type
 ```
