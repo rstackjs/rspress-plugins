@@ -1,5 +1,11 @@
 # rspress-plugin-reading-time
 
+## 1.0.2
+
+### Patch Changes
+
+- fff11d5: feat: add frontmatter option to hide reading time (#44)
+
 ## 1.0.1
 
 ### Patch Changes
